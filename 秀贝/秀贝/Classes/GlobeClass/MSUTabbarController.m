@@ -102,6 +102,7 @@
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0.0,0.0,65,65)];
     button.center = CGPointMake(WIDTH/2,15);
     [button setBackgroundImage:[UIImage imageNamed:@"icon-z"] forState:UIControlStateNormal];
+    button.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [button addTarget:self action:@selector(pickClick) forControlEvents:UIControlEventTouchUpInside];
     [self.tabBar addSubview:button];
 }

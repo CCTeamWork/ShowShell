@@ -26,7 +26,16 @@
     [super viewDidLoad];
 
     self.view.backgroundColor = WHITECOLOR;
+    
+    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    testBtn.frame = CGRectMake(50, 50, 50, 50);
+    testBtn.backgroundColor = [UIColor blueColor];
+    [self.view addSubview:testBtn];
+    [testBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)btnClick:(UIButton *)sender{
+    
+}
 
 @end

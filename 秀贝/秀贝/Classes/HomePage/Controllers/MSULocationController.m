@@ -9,7 +9,6 @@
 #import "MSULocationController.h"
 #import "MSUPrefixHeader.pch"
 #import "MSUHomeNavView.h"
-#import "MSUCityCell.h"
 
 @interface MSULocationController ()<UITableViewDelegate,UITableViewDataSource>
 
