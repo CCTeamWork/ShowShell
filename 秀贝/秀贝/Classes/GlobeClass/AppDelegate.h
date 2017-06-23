@@ -8,12 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol  alipyDelegate <NSObject>
+
+-(void)alipydidSuccess;
+-(void)alipydidFaile;
+
+@end
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 /// 判断是否横竖屏
 @property (nonatomic,assign)BOOL allowRotation;
+
+@property (weak  , nonatomic) id<alipyDelegate> aliDelegate;  
 
 @end
 
