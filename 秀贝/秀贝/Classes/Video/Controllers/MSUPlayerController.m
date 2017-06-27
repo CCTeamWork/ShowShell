@@ -44,8 +44,8 @@
     [self playByAVPlayerController];
     
     /// 横竖屏相关
-//    AppDelegate *app =(AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    app.allowRotation = YES;
+    AppDelegate *app =(AppDelegate *)[[UIApplication sharedApplication] delegate];
+    app.allowRotation = YES;
 }
 
 - (void)dealloc{

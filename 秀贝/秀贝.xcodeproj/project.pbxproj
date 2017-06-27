@@ -13,6 +13,7 @@
 		F00B70461ED566E400629CEA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F00B70441ED566E400629CEA /* LaunchScreen.storyboard */; };
 		F00B70511ED566E400629CEA /* __Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = F00B70501ED566E400629CEA /* __Tests.m */; };
 		F00B705C1ED566E400629CEA /* __UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F00B705B1ED566E400629CEA /* __UITests.m */; };
+		F010314F1EFD0DCC00E2A1FB /* MSUTransitionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F010314E1EFD0DCC00E2A1FB /* MSUTransitionTool.m */; };
 		F02A6B041EFA14A80046E829 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A6B031EFA14A80046E829 /* CFNetwork.framework */; };
 		F02A6B061EFA14B30046E829 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A6B051EFA14B30046E829 /* CoreMotion.framework */; };
 		F02A6B0A1EFA14C70046E829 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A6B091EFA14C70046E829 /* libc++.tbd */; };
@@ -65,7 +66,7 @@
 		F03290A21ED6D530009BA6BB /* icon-z@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F03290A11ED6D530009BA6BB /* icon-z@2x.png */; };
 		F03290A41ED6D534009BA6BB /* icon-z@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F03290A31ED6D534009BA6BB /* icon-z@3x.png */; };
 		F03CBDDB1EDE506600E9DC3E /* MSUVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = F03CBDDA1EDE506600E9DC3E /* MSUVideoView.m */; };
-		F03CBDE01EDE569300E9DC3E /* MSUImageTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F03CBDDF1EDE569300E9DC3E /* MSUImageTools.m */; };
+		F03CBDE01EDE569300E9DC3E /* MSUPathTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F03CBDDF1EDE569300E9DC3E /* MSUPathTools.m */; };
 		F03CBDE21EDE57D500E9DC3E /* FoSe@2x.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F03CBDE11EDE57D500E9DC3E /* FoSe@2x.jpeg */; };
 		F03CBDE51EDE582700E9DC3E /* MSUPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F03CBDE41EDE582700E9DC3E /* MSUPlayerController.m */; };
 		F03CBDE71EDE586200E9DC3E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F03CBDE61EDE586200E9DC3E /* AVFoundation.framework */; };
@@ -140,6 +141,8 @@
 		F00B70571ED566E400629CEA /* 秀贝UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "秀贝UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F00B705B1ED566E400629CEA /* __UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __UITests.m; sourceTree = "<group>"; };
 		F00B705D1ED566E400629CEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F010314D1EFD0DCC00E2A1FB /* MSUTransitionTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUTransitionTool.h; sourceTree = "<group>"; };
+		F010314E1EFD0DCC00E2A1FB /* MSUTransitionTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUTransitionTool.m; sourceTree = "<group>"; };
 		F02A6B031EFA14A80046E829 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		F02A6B051EFA14B30046E829 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F02A6B071EFA14BC0046E829 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -294,8 +297,8 @@
 		F03290A31ED6D534009BA6BB /* icon-z@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-z@3x.png"; sourceTree = "<group>"; };
 		F03CBDD91EDE506600E9DC3E /* MSUVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUVideoView.h; sourceTree = "<group>"; };
 		F03CBDDA1EDE506600E9DC3E /* MSUVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUVideoView.m; sourceTree = "<group>"; };
-		F03CBDDE1EDE569300E9DC3E /* MSUImageTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUImageTools.h; sourceTree = "<group>"; };
-		F03CBDDF1EDE569300E9DC3E /* MSUImageTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUImageTools.m; sourceTree = "<group>"; };
+		F03CBDDE1EDE569300E9DC3E /* MSUPathTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUPathTools.h; sourceTree = "<group>"; };
+		F03CBDDF1EDE569300E9DC3E /* MSUPathTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUPathTools.m; sourceTree = "<group>"; };
 		F03CBDE11EDE57D500E9DC3E /* FoSe@2x.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "FoSe@2x.jpeg"; sourceTree = "<group>"; };
 		F03CBDE31EDE582700E9DC3E /* MSUPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUPlayerController.h; sourceTree = "<group>"; };
 		F03CBDE41EDE582700E9DC3E /* MSUPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUPlayerController.m; sourceTree = "<group>"; };
@@ -925,8 +928,10 @@
 				F03290791ED6D51E009BA6BB /* MSUPermissionTool.m */,
 				F032907A1ED6D51E009BA6BB /* UIImage+MSUDecoder.h */,
 				F032907B1ED6D51E009BA6BB /* UIImage+MSUDecoder.m */,
-				F03CBDDE1EDE569300E9DC3E /* MSUImageTools.h */,
-				F03CBDDF1EDE569300E9DC3E /* MSUImageTools.m */,
+				F03CBDDE1EDE569300E9DC3E /* MSUPathTools.h */,
+				F03CBDDF1EDE569300E9DC3E /* MSUPathTools.m */,
+				F010314D1EFD0DCC00E2A1FB /* MSUTransitionTool.h */,
+				F010314E1EFD0DCC00E2A1FB /* MSUTransitionTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1288,11 +1293,12 @@
 				F032908C1ED6D51E009BA6BB /* MSUHomeNavView.m in Sources */,
 				F03CBDE51EDE582700E9DC3E /* MSUPlayerController.m in Sources */,
 				F032909C1ED6D51E009BA6BB /* MSUPersonCenterController.m in Sources */,
+				F010314F1EFD0DCC00E2A1FB /* MSUTransitionTool.m in Sources */,
 				F03290A01ED6D51E009BA6BB /* MSUVideoController.m in Sources */,
 				F032908A1ED6D51E009BA6BB /* SVRadialGradientLayer.m in Sources */,
 				F032909F1ED6D51E009BA6BB /* UIImage+MSUDecoder.m in Sources */,
 				F082D9B61ED8040200173948 /* TQLocationConverter.m in Sources */,
-				F03CBDE01EDE569300E9DC3E /* MSUImageTools.m in Sources */,
+				F03CBDE01EDE569300E9DC3E /* MSUPathTools.m in Sources */,
 				F032909B1ED6D51E009BA6BB /* MSUScanView.m in Sources */,
 				F032909D1ED6D51E009BA6BB /* MSUShopStoreController.m in Sources */,
 				F03CBDDB1EDE506600E9DC3E /* MSUVideoView.m in Sources */,

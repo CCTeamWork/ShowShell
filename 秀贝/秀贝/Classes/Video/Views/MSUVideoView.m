@@ -8,7 +8,7 @@
 
 #import "MSUVideoView.h"
 #import "MSUPrefixHeader.pch"
-#import "MSUImageTools.h"
+#import "MSUPathTools.h"
 
 @implementation MSUVideoView
 
@@ -26,7 +26,7 @@
 - (void)createView{
     /// imageview
     UIImageView *videoIma = [[UIImageView alloc] init];
-    videoIma.image = [MSUImageTools showImageWithContentOfFileByName:@"FoSe.jpeg"];
+    videoIma.image = [MSUPathTools showImageWithContentOfFileByName:@"FoSe.jpeg"];
     [self addSubview:videoIma];
     [videoIma makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.top).offset(15);

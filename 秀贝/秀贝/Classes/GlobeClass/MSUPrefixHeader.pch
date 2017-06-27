@@ -43,8 +43,9 @@
 #define CyanColor [UIColor colorWithRed:0/255.0 green:199/255.0 blue:217/255.0 alpha:1.0]
 #define NavColor [UIColor colorWithRed:27/255.0 green:37/255.0 blue:54/255.0 alpha:1.0]
 
-
-
+// 系统版本
+#define iOS10 ([[UIDevice currentDevice].systemVersion doubleValue] >= 10.0)
+#define iOS8 ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0)
 
 //Debug调试
 //#ifdef DEBUG

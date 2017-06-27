@@ -50,7 +50,7 @@
 
 /* 请求用户权限 - 注册远程通知 */
 - (void)pushNotifacationByRequestAuthorizatonAndregisterNotificationWithApplication:(UIApplication *)application{
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+    if (iOS10) {
         //iOS10特有
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
         // 必须写代理，不然无法监听通知的接收与点击
@@ -68,7 +68,7 @@
                 NSLog(@"注册失败");
             }
         }];
-    }else if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0){
+    }else if (iOS8){
         //iOS8 - iOS10
         // 申请用户权限
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge categories:nil]];

@@ -18,6 +18,8 @@
 /* 工具类 */
 #import "MSUPrefixHeader.pch"
 #import "MSUPermissionTool.h"
+#import "MSUTransitionTool.h"
+#import "MSUPathTools.h"
 
 /* 地图框架 */
 #import <CoreLocation/CoreLocation.h>
@@ -49,12 +51,33 @@
     // 背景颜色
 //    self.view.backgroundColor = NavColor;
     self.view.backgroundColor = [UIColor orangeColor];
+    
+    // 定位初始化
     [self locationInit];
-
+    // 后台进入前台 通知 （此处通知是为了 用户跳往设置打开定位允许回到APP页面后，自动刷新定位城市）
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(ApplicationDidBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification object:nil];
+    
     // 导航栏
     [self createNavView];
     // 中部视图
     [self createCenterView];
+}
+
+- (void)ApplicationDidBecomeActive:(NSNotification *)noti{
+    NSLog(@"由后台进入前台");
+    // 判断是否定位权限被允许 ，此处为未允许
+    if (!([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined)) {
+        // 判断是否 city是否被存储 ，此处为未存储
+        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"city"]) {
+            [self locationInit];
+        }
+    }
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - 视图相关
@@ -126,8 +149,10 @@
             self.hidesBottomBarWhenPushed = NO;
         }else{
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请去-> [设置 - 隐私 - 定位服务 - 秀贝] 打开访问开关" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
             [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 //确定按钮点击事件处理
+                [MSUPathTools skipToSettingPathWithUrl:MSUAppAbout];
             }]];
             [self presentViewController:alert animated:YES completion:nil];
         }
@@ -138,7 +163,9 @@
 - (void)homeSearchBtnClick:(UIButton *)sender{
     self.hidesBottomBarWhenPushed = YES;
     MSUSearchController *search = [[MSUSearchController alloc] init];
-    [self.navigationController pushViewController:search animated:YES];
+    [MSUTransitionTool transitionControllerWithType:MSUFade durationTime:0.7 direction:MSUMiddle];
+    [self presentViewController:search animated:NO completion:nil];
+//    [self.navigationController pushViewController:search animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
 

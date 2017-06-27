@@ -69,11 +69,12 @@
 }
 
 //自封装方法
--(UINavigationController*)createNavWithViewController:(UIViewController *)viewController WithTitle:(NSString*) title image:(UIImage*)image selectedImage:(UIImage *)selectedImage
+-(UINavigationController*)createNavWithViewController:(UIViewController *)viewController WithTitle:(NSString*) title image:(UIImage*)image selectedImage:(UIImage *)selectedImage badgeValue:(NSString *)value
 {
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
     nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:title image:image selectedImage:selectedImage];
     nav.navigationBar.hidden = YES;
+    nav.tabBarItem.badgeValue = value;
     return nav;
 }
 
@@ -90,11 +91,12 @@
     NSArray *selectImaArr = @[@"homechoose",@"marketchoose",@"videochoose",@"myselfchoose"];
     
     //数组设置
-    self.viewControllers = [NSArray arrayWithObjects:[self createNavWithViewController:home WithTitle:@"首页" image:[UIImage imageNamed:imageArr[0]] selectedImage:[UIImage imageNamed:selectImaArr[0]]],
-                            [self createNavWithViewController:shop WithTitle:@"商城" image:[UIImage imageNamed:imageArr[1]] selectedImage:[UIImage imageNamed:selectImaArr[1]]],
-                            [self createNavWithViewController:vc WithTitle:nil image:nil selectedImage:nil],
-                            [self createNavWithViewController:video WithTitle:@"视频" image:[UIImage imageNamed:imageArr[2]] selectedImage:[UIImage imageNamed:selectImaArr[2]]],
-                           [self createNavWithViewController:center WithTitle:@"我的" image:[UIImage imageNamed:imageArr[3]] selectedImage:[UIImage imageNamed:selectImaArr[3]]],
+    self.viewControllers = [NSArray arrayWithObjects:
+                            [self createNavWithViewController:home WithTitle:@"首页" image:[UIImage imageNamed:imageArr[0]] selectedImage:[UIImage imageNamed:selectImaArr[0]] badgeValue:@"18"],
+                            [self createNavWithViewController:shop WithTitle:@"商城" image:[UIImage imageNamed:imageArr[1]] selectedImage:[UIImage imageNamed:selectImaArr[1]] badgeValue:nil],
+                            [self createNavWithViewController:vc WithTitle:nil image:nil selectedImage:nil badgeValue:nil],
+                            [self createNavWithViewController:video WithTitle:@"视频" image:[UIImage imageNamed:imageArr[2]] selectedImage:[UIImage imageNamed:selectImaArr[2]] badgeValue:nil],
+                           [self createNavWithViewController:center WithTitle:@"我的" image:[UIImage imageNamed:imageArr[3]] selectedImage:[UIImage imageNamed:selectImaArr[3]] badgeValue:nil],
                             nil];
     
     

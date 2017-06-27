@@ -31,9 +31,13 @@
     [self createNavView];
     /// 中心视图
     [self createCenterView];
-    self.sectionArr = @[@"热门城市",@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"J",@"K",@"L",@"M",@"N",@"P",@"Q",@"R",@"S",@"T",@"W",@"X",@"Y",@"Z"];
+//    self.sectionArr = @[@"热门城市",@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"J",@"K",@"L",@"M",@"N",@"P",@"Q",@"R",@"S",@"T",@"W",@"X",@"Y",@"Z"];
     NSString *addressPath = [[NSBundle mainBundle] pathForResource:@"cities" ofType:@"plist"];
     self.dataDict = [[NSMutableDictionary alloc] initWithContentsOfFile:addressPath];
+    self.sectionArr = [[self.dataDict allKeys] sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        return obj1 > obj2;
+    }];
+//    NSLog(@"城市城市城市%@",self.sectionArr);
 
 }
 

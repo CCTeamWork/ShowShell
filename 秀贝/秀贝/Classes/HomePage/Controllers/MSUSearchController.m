@@ -111,7 +111,8 @@
 
 #pragma mark - 点击事件相关
 - (void)searchCancleBtnClick:(UIButton *)sender{
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 #pragma mark - 代理方法相关
