@@ -12,6 +12,7 @@
 
 // 支付宝
 #import <AlipaySDK/AlipaySDK.h>
+#import "MSUAliPayController.h"
 
 // 推送
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
@@ -44,7 +45,13 @@
     // 推送相关
     [self pushNotifacationByRequestAuthorizatonAndregisterNotificationWithApplication:application];
    
-
+    // 远程通知相关数据处理
+    if (launchOptions) {
+        NSDictionary *dict = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        if (dict) {
+            // 处理远程通知中的数据
+        }
+    }
     return YES;
 }
 
@@ -55,6 +62,14 @@
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
         // 必须写代理，不然无法监听通知的接收与点击
         center.delegate = self;
+        
+//        // 3D Touch模式时 通知回复
+//        UNNotificationAction *touchAction = [UNNotificationAction actionWithIdentifier:@"reply" title:@"回复" options:UNNotificationActionOptionNone];
+//        // 锁屏模式时 通知清除
+//        UNNotificationAction *clearAction = [UNNotificationAction actionWithIdentifier:@"clear" title:@"清除" options:UNNotificationActionOptionNone];
+//        UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:@"message" actions:@[touchAction,clearAction] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone | UNNotificationCategoryOptionCustomDismissAction];
+//        [center setNotificationCategories:[NSSet setWithArray:@[category]]];
+//        
         // 请求用户权限
         [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound) completionHandler:^(BOOL granted, NSError * _Nullable error) {
             // 点击允许
@@ -99,7 +114,8 @@
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    // 进入app后，将程序通知数量设置为0
+//    [application setApplicationIconBadgeNumber:0];
 }
 
 
@@ -120,30 +136,9 @@
 /* NOTE: 9.0以后使用新API接口 */
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
 {
-    if ([url.host isEqualToString:@"safepay"]) {
-        // 支付跳转支付宝钱包进行支付，处理支付结果
-        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            NSLog(@"result = %@",resultDic);
-        }];
-        
-        // 授权跳转支付宝钱包进行支付，处理支付结果
-        [[AlipaySDK defaultService] processAuth_V2Result:url standbyCallback:^(NSDictionary *resultDic) {
-            NSLog(@"result = %@",resultDic);
-            // 解析 auth code
-            NSString *result = resultDic[@"result"];
-            NSString *authCode = nil;
-            if (result.length>0) {
-                NSArray *resultArr = [result componentsSeparatedByString:@"&"];
-                for (NSString *subResult in resultArr) {
-                    if (subResult.length > 10 && [subResult hasPrefix:@"auth_code="]) {
-                        authCode = [subResult substringFromIndex:10];
-                        break;
-                    }
-                }
-            }
-            NSLog(@"授权结果 authCode = %@", authCode?:@"");
-        }];
-    }
+    // 支付完成回调相关
+    [MSUAliPayController appDelegatePaySomethingWithurl:url];
+    
     return YES;
 }
 
@@ -169,25 +164,55 @@
 
 /* 获得Device Token失败 */
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
-    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
+    NSLog(@"远程推送接收失败: %@", error);
 }
 
-/* 接收到推送消息的代理方法 */
+/* iOS10 以下版本 接收到推送消息的代理方法 */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
     NSLog(@"-----------接收到了远程通知--------------%@",userInfo);
     if (application.applicationState == UIApplicationStateInactive) {
-        NSLog(@"Inactive");
+        NSLog(@"Inactive 锁屏");
         completionHandler(UIBackgroundFetchResultNewData);
         
     } else if (application.applicationState == UIApplicationStateActive){
-        NSLog(@"Active");
+        NSLog(@"Active 前台");
         completionHandler(UIBackgroundFetchResultNewData);
 
     } else if (application.applicationState == UIApplicationStateBackground){
-        NSLog(@"Backround");
+        NSLog(@"Backround 后台");
         completionHandler(UIBackgroundFetchResultNewData);
 
     }
+}
+
+/* iOS10 以后版本新增代理 关闭或后台模式 点击通知栏会调用这个方法 */
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler{
+    NSLog(@"iOS10 后新增代理 点击通知栏会调用这个方法");
+//    NSDictionary *dict = response.notification.request.content.userInfo;
+    
+//    NSString *categoryIdentifier = response.notification.request.content.categoryIdentifier;
+//    
+//    if ([categoryIdentifier isEqualToString:@"message"]) {//识别需要被处理的拓展
+//        
+//        if ([response.actionIdentifier isEqualToString:@"回复"]) {//识别用户点击的是哪个 action
+//            
+//            //假设点击了输入内容的 UNTextInputNotificationAction 把 response 强转类型
+//            UNTextInputNotificationResponse *textResponse = (UNTextInputNotificationResponse*)response;
+//            //获取输入内容
+//            NSString *userText = textResponse.userText;
+//            //发送 userText 给需要接收的方法
+//
+//        } else if ([response.actionIdentifier isEqualToString:@"清除"]){
+//            
+//        }
+//    }
+}
+
+/* iOS10 以后版本新增代理 前台模式 可显示通知提示内容 */
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
+    NSLog(@"iOS10 后新增代理 前台可显示通知提示内容");
+    // 显示通知
+    completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge);
 }
 
 @end

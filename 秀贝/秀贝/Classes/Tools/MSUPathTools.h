@@ -13,6 +13,10 @@
 #define iOS10 ([[UIDevice currentDevice].systemVersion doubleValue] >= 10.0)
 #define iOS8 ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0)
 
+/// 完成回调
+typedef void(^complementBlock)(NSString *message,NSInteger code);
+
+/// 设置的url类型枚举
 typedef NS_ENUM(NSInteger , MSUUrlType){
     MSUWIFI = 0,            //无线局域网
     MSUSIRI,                //Siri
@@ -37,7 +41,22 @@ typedef NS_ENUM(NSInteger , MSUUrlType){
     MSUAppAbout             //APP本身相关
 };
 
+/// 文件路径枚举
+typedef NS_ENUM(NSInteger , MSUFileType){
+    MSUDocuments = 0,
+    MSUAlbum
+};
+
+/// Document 类型枚举
+typedef NS_ENUM(NSInteger , MSUDocumentsType){
+    MSUString = 0,
+    MSUComponent
+};
+
 @interface MSUPathTools : NSObject
+
+/// 完成回调
+@property (nonatomic , copy) complementBlock complementBlock;
 
 /* NSBundle版 获取路径加载图片 */
 + (UIImage *)showImageWithContentOfFileByName:(NSString *)imageName;
@@ -46,10 +65,14 @@ typedef NS_ENUM(NSInteger , MSUUrlType){
 + (NSMutableDictionary *)getPlistPathWithName:(NSString *)name type:(NSString *)type;
 
 /* Documents 文件路径 */
-+ (NSString *)getDocumentsPathWithFileName:(NSString *)name;
-
++ (NSString *)getDocumentsPathWithFileType:(MSUDocumentsType)type fileName:(NSString *)name;
 /* 获取跳转设置相关路径权限 */
 + (void)skipToSettingPathWithUrl:(MSUUrlType)type;
 
+/* App缓存大小 cache */
++ (CGFloat)cacheSizeInApp;
+
+/* 清除 App缓存 cache */
++ (void)cleanCacheSizeInAppWithComplement:(complementBlock)block;
 
 @end

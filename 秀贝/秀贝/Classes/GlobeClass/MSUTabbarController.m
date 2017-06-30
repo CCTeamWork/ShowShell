@@ -119,13 +119,15 @@
                 picker.delegate = self;
 //                picker.allowsEditing = YES;/** 设置拍照后的图片可被编辑 */
                 
-                //录制视频时长，默认10s
-                picker.videoMaximumDuration = 15;
-                //相机类型（拍照、录像...）字符串需要做相应的类型转换
-                picker.mediaTypes = @[(NSString *)kUTTypeImage,(NSString *)kUTTypeMovie];
-                picker.videoQuality = UIImagePickerControllerQualityTypeHigh;
-                //设置摄像头模式（拍照，录制视频）为录像模式
-                picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    //录制视频时长，默认10s
+                    picker.videoMaximumDuration = 15;
+                    //相机类型（拍照、录像...）字符串需要做相应的类型转换
+                    picker.mediaTypes = @[(NSString *)kUTTypeImage,(NSString *)kUTTypeMovie];
+                    picker.videoQuality = UIImagePickerControllerQualityTypeHigh;
+                    //设置摄像头模式（拍照，录制视频）为录像模式
+                    picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
+                });
                 
                 [self presentViewController:picker animated:YES completion:^{
                     [UIApplication sharedApplication].statusBarHidden = YES;;

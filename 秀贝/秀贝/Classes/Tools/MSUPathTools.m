@@ -10,13 +10,14 @@
 
 @implementation MSUPathTools
 
-
+#pragma mark - 图片缓存相关
 /* NSBundle版加载图片 */
 + (UIImage *)showImageWithContentOfFileByName:(NSString *)imageName {
     NSString *path = [NSString stringWithFormat:@"%@/%@",[[NSBundle mainBundle] resourcePath],imageName ];
     return [UIImage imageWithContentsOfFile:path];
 }
 
+#pragma mark - 获取 Plist 文件路径和数据
 /* Plist 获取路径 并获取 数据字典*/
 + (NSMutableDictionary *)getPlistPathWithName:(NSString *)name type:(NSString *)type{
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:name ofType:type];
@@ -24,14 +25,30 @@
     return dataDict;
 }
 
+#pragma mark - 获取 Documents 文件路径
 /* Documents 文件路径 */
-+ (NSString *)getDocumentsPathWithFileName:(NSString *)name{
++ (NSString *)getDocumentsPathWithFileType:(MSUDocumentsType)type fileName:(NSString *)name{
     // 获取根目录
 //    NSString *home = NSHomeDirectory();
     // 查找Documents文件
     NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     // 拼接文件路径
-    NSString *path = [doc stringByAppendingString:name];
+    NSString *path;
+    switch (type) {
+        case MSUString:
+        {
+            path = [doc stringByAppendingString:name];
+        }
+            break;
+        case MSUComponent:
+        {
+            path = [doc stringByAppendingPathComponent:name];
+        }
+            break;
+            
+        default:
+            break;
+    }
     
     // 调用writeToFile将数据写入文件
     //NSArray *arr = @[@"lnj", @"28"];
@@ -46,6 +63,87 @@
     return path;
 }
 
+#pragma mark - 截屏 并保存
+- (void)getScreenShotWithLayer:(UIView *)view saveToFile:(MSUFileType)type{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        UIGraphicsBeginImageContext(view.frame.size);
+        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage *shotImage = UIGraphicsGetImageFromCurrentImageContext();
+        switch (type) {
+            case MSUAlbum:
+            {
+                UIImageWriteToSavedPhotosAlbum(shotImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+            }
+                break;
+            case MSUDocuments:
+            {
+                NSString *path = [MSUPathTools getDocumentsPathWithFileType:MSUComponent fileName:@"abc.png"];
+                NSData *data = UIImagePNGRepresentation(shotImage);
+                [data writeToFile:path atomically:YES];
+            }
+                break;
+
+            default:
+                break;
+        }
+    });
+}
+
+/// 方法
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    if (!error) {
+        NSLog(@"保存成功");
+    }else{
+        NSLog(@"保存失败 %@",error);
+    }
+}
+
+#pragma mark - App内缓存相关
+/* App缓存大小 cache */
++ (CGFloat)cacheSizeInApp{
+    CGFloat cacheSize = 0.0;
+    
+    // 获取路径
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+    // 获取所有文件的数组
+    NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachePath];
+    NSLog(@"缓存文件数：%ld",files.count);
+    // 遍历缓存文件
+    for (NSString *path in files) {
+        NSString *filePath = [cachePath stringByAppendingString:[NSString stringWithFormat:@"/%@",path]];
+        cacheSize += [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:nil].fileSize;
+    }
+    // 转换为M为单位
+    CGFloat sizeM = cacheSize /1024.0 /1024.0;
+    
+    return sizeM;
+}
+
+/* 清除 App缓存 cache */
++ (void)cleanCacheSizeInAppWithComplement:(complementBlock)block{
+    // 获取路径
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+    // 获取所有文件的数组
+    NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachePath];
+    // 遍历缓存文件
+    for (NSString *path in files) {
+        NSError *error;
+        // 缓存文件中的具体文件的路径
+        NSString *filePath = [cachePath stringByAppendingString:[NSString stringWithFormat:@"/%@",path]];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+            BOOL isRemove = [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
+            if (isRemove) {
+                // 清除成功
+                block(@"清除成功",200);
+            }else{
+                // 清除失败
+                block(@"清除失败",404);
+            }
+        }
+    }
+}
+
+#pragma mark - 获取设置 url 路径，跳转到设置相关选项中去
 /* 跳转设置相关路径 */
 + (void)skipToSettingPathWithUrl:(MSUUrlType)type{
     NSString *str ;

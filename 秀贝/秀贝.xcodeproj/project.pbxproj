@@ -14,6 +14,7 @@
 		F00B70511ED566E400629CEA /* __Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = F00B70501ED566E400629CEA /* __Tests.m */; };
 		F00B705C1ED566E400629CEA /* __UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F00B705B1ED566E400629CEA /* __UITests.m */; };
 		F010314F1EFD0DCC00E2A1FB /* MSUTransitionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F010314E1EFD0DCC00E2A1FB /* MSUTransitionTool.m */; };
+		F01D3A971F06245F00FA08EF /* MSUAliPayController.m in Sources */ = {isa = PBXBuildFile; fileRef = F01D3A961F06245F00FA08EF /* MSUAliPayController.m */; };
 		F02A6B041EFA14A80046E829 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A6B031EFA14A80046E829 /* CFNetwork.framework */; };
 		F02A6B061EFA14B30046E829 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A6B051EFA14B30046E829 /* CoreMotion.framework */; };
 		F02A6B0A1EFA14C70046E829 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A6B091EFA14C70046E829 /* libc++.tbd */; };
@@ -143,6 +144,8 @@
 		F00B705D1ED566E400629CEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F010314D1EFD0DCC00E2A1FB /* MSUTransitionTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUTransitionTool.h; sourceTree = "<group>"; };
 		F010314E1EFD0DCC00E2A1FB /* MSUTransitionTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUTransitionTool.m; sourceTree = "<group>"; };
+		F01D3A951F06245F00FA08EF /* MSUAliPayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUAliPayController.h; sourceTree = "<group>"; };
+		F01D3A961F06245F00FA08EF /* MSUAliPayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUAliPayController.m; sourceTree = "<group>"; };
 		F02A6B031EFA14A80046E829 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		F02A6B051EFA14B30046E829 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F02A6B071EFA14BC0046E829 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -369,13 +372,13 @@
 				F02A6B041EFA14A80046E829 /* CFNetwork.framework in Frameworks */,
 				F02A6C511EFA21E00046E829 /* AlipaySDK.framework in Frameworks */,
 				F02A6C531EFA21E00046E829 /* libssl.a in Frameworks */,
-				F082D9BF1ED8109D00173948 /* AssetsLibrary.framework in Frameworks */,
 				F03CBDE91EDE5DAF00E9DC3E /* AVKit.framework in Frameworks */,
 				F03CBDE71EDE586200E9DC3E /* AVFoundation.framework in Frameworks */,
-				F082D9BD1ED8109200173948 /* Contacts.framework in Frameworks */,
 				F082D9C31ED8126D00173948 /* CoreLocation.framework in Frameworks */,
-				F082D9BB1ED8108B00173948 /* EventKit.framework in Frameworks */,
 				B322F80602C0FCC0935FE1F8 /* libPods-秀贝.a in Frameworks */,
+				F082D9BD1ED8109200173948 /* Contacts.framework in Frameworks */,
+				F082D9BF1ED8109D00173948 /* AssetsLibrary.framework in Frameworks */,
+				F082D9BB1ED8108B00173948 /* EventKit.framework in Frameworks */,
 				F082D9B91ED8108600173948 /* Photos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -822,6 +825,8 @@
 			children = (
 				F03290671ED6D51E009BA6BB /* MSUPersonCenterController.h */,
 				F03290681ED6D51E009BA6BB /* MSUPersonCenterController.m */,
+				F01D3A951F06245F00FA08EF /* MSUAliPayController.h */,
+				F01D3A961F06245F00FA08EF /* MSUAliPayController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1314,6 +1319,7 @@
 				F032909E1ED6D51E009BA6BB /* MSUPermissionTool.m in Sources */,
 				F032908B1ED6D51E009BA6BB /* AppDelegate.m in Sources */,
 				F032908D1ED6D51E009BA6BB /* MSUTabbarController.m in Sources */,
+				F01D3A971F06245F00FA08EF /* MSUAliPayController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
