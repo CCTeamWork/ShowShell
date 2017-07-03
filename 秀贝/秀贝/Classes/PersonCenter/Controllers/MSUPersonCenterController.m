@@ -9,6 +9,7 @@
 #import "MSUPersonCenterController.h"
 #import "MSUPrefixHeader.pch"
 #import "MSUAliPayController.h"
+#import "MSUShareController.h"
 
 @interface MSUPersonCenterController ()
 
@@ -33,7 +34,7 @@
     payBtn.backgroundColor = [UIColor blueColor];
     [payBtn setTitle:@"点我支付" forState:UIControlStateNormal];
     [self.view addSubview:payBtn];
-    [payBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [payBtn addTarget:self action:@selector(payBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [payBtn makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.top).offset(64);
         make.left.equalTo(self.view.left).offset(20);
@@ -45,7 +46,7 @@
     shareBtn.backgroundColor = [UIColor blueColor];
     [shareBtn setTitle:@"点我分享" forState:UIControlStateNormal];
     [self.view addSubview:shareBtn];
-    [shareBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [shareBtn addTarget:self action:@selector(shareBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [shareBtn makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(payBtn.bottom).offset(20);
         make.left.equalTo(self.view.left).offset(20);
@@ -55,8 +56,12 @@
 
 }
 
-- (void)btnClick:(UIButton *)sender{
+- (void)payBtnClick:(UIButton *)sender{
     [MSUAliPayController payForSomethingWithAliPay];
+}
+
+- (void)shareBtnClick:(UIButton *)sender{
+    [MSUShareController makeShareSomeContentWithText:@"何龙飞真帅" title:@"分享" url:nil];
 }
 
 @end

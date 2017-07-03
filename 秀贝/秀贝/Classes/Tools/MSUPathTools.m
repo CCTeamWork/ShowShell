@@ -125,6 +125,13 @@
     NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
     // 获取所有文件的数组
     NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachePath];
+    
+    //删除 sd 图片缓存
+    //先清除内存中的图片缓存
+//    [[SDImageCache sharedImageCache] clearMemory];
+    //清除磁盘的缓存
+//    [[SDImageCache sharedImageCache] clearDisk];
+    
     // 遍历缓存文件
     for (NSString *path in files) {
         NSError *error;

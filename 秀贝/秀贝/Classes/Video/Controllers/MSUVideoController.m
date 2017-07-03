@@ -24,6 +24,8 @@
     [super viewWillAppear:animated];
     /// 状态栏字体颜色
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    // 状态栏菊花转
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 - (void)viewDidLoad {

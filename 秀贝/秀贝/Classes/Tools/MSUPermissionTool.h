@@ -92,8 +92,7 @@
  */
 +(void)getReminderPermission:(void (^)(NSInteger authStatus))block;
 
-/// NSBundle版加载图片
-+ (UIImage *)showImageWithContentOfFileByName:(NSString *)imageName;
-
+/* 获取设备型号 */
++ (NSString *)getDeviceInfoByVersion;
 
 @end
