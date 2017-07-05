@@ -12,13 +12,6 @@
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
 
-// 弹出分享菜单需要导入的头文件
-#import <ShareSDKUI/ShareSDK+SSUI.h>
-// 自定义分享菜单栏需要导入的头文件
-#import <ShareSDKUI/SSUIShareActionSheetStyle.h>
-// 自定义分享编辑界面所需要导入的头文件
-#import <ShareSDKUI/SSUIEditorViewStyle.h>
-
 @interface MSUShareController ()
 
 @end
@@ -80,6 +73,40 @@
 }
 
 
+// 不编辑
++ (void)shareSomething{
+    //先构造分享参数：
+    NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+    [shareParams SSDKSetupShareParamsByText:@"分享内容"
+                                     images:@[[UIImage imageNamed:@"logo"]]
+                                        url:[NSURL URLWithString:@"http://mob.com"]
+                                      title:@"分享标题"
+                                       type:SSDKContentTypeAuto];
+    //有的平台要客户端分享需要加此方法，例如微博
+    [shareParams SSDKEnableUseClientShare];
+    //调用分享的方法
+    SSUIShareActionSheetController *sheet = [ShareSDK showShareActionSheet:nil
+                                                                     items:nil
+                                                               shareParams:shareParams
+                                                       onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+                                                           switch (state) {
+                                                               case SSDKResponseStateSuccess:
+                                                                   NSLog(@"分享成功!");
+                                                                   break;
+                                                               case SSDKResponseStateFail:
+                                                                   NSLog(@"分享失败%@",error);
+                                                                   break;
+                                                               case SSDKResponseStateCancel:
+                                                                   NSLog(@"分享已取消");
+                                                                   break;
+                                                               default:
+                                                                   break;
+                                                           }
+                                                       }];
+    //删除和添加平台示例
+    //    [sheet.directSharePlatforms removeObject:@(SSDKPlatformTypeWechat)];//(默认微信，QQ，QQ空间都是直接跳客户端分享，加了这个方法之后，可以跳分享编辑界面分享)
+    [sheet.directSharePlatforms addObject:@(SSDKPlatformTypeSinaWeibo)];//（加了这个方法之后可以不跳分享编辑界面，直接点击分享菜单里的选项，直接分享）
+}
 
 
 @end

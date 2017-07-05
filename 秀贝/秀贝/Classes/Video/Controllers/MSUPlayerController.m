@@ -15,7 +15,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
 
-@interface MSUPlayerController ()
+@interface MSUPlayerController ()<AVPlayerViewControllerDelegate>
 
 @property (nonatomic , strong) AVPlayerViewController *avPlayerVC;
 @property (nonatomic , strong) AVPlayer *player;
@@ -40,8 +40,8 @@
     [self createNavView];
     
     /// 播放器
-//     [self playByAVPlayer];
-    [self playByAVPlayerController];
+     [self playByAVPlayer];
+//    [self playByAVPlayerController];
     
     /// 横竖屏相关
     AppDelegate *app =(AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -98,6 +98,16 @@
     [_player play];
     
     [self AVPlayerParameterWithAVPlayer:_player AVPlayerItem:_playerItem];
+    
+//    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(10, 64+10, WIDTH-20, 200)];
+//    navView.backgroundColor = [UIColor clearColor];
+//    [self.view addSubview:navView];
+//    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    testBtn.backgroundColor = SLIVERYCOLOR;
+//    testBtn.frame = CGRectMake(0, 170, 50, 30);
+//    [navView addSubview:testBtn];
+//    [testBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+
 }
 
 /* 视频播放相关参数 */
@@ -171,24 +181,23 @@
     _avPlayerVC.player = [AVPlayer playerWithURL:localVideoUrl];
     
     // 设置画面缩放模式
-    _avPlayerVC.videoGravity = AVLayerVideoGravityResizeAspect;
-    
-//    [self.view addSubview:_avPlayerVC.view];
-//    [_avPlayerVC.view makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.view.top).offset(64);
-//        make.left.equalTo(self.view.left).offset(0);
-//        make.right.equalTo(self.view.right).offset(0);
-//        make.bottom.equalTo(self.view.bottom).offset(0);
-//    }];
+//    _avPlayerVC.videoGravity = AVLayerVideoGravityResizeAspectFill;
 
-    // 弹出播放页面 自动播放
-    [self presentViewController:_avPlayerVC animated:YES completion:^{
-        // 开始播放
-        [_avPlayerVC.player play];
-    }];
+
+    [_avPlayerVC.view setTranslatesAutoresizingMaskIntoConstraints:YES];
+    // 设置媒体播放器视图大小
+//    _avPlayerVC.view.bounds = CGRectMake(0, 0, WIDTH, 300);
+//    _avPlayerVC.view.center = CGPointMake(CGRectGetMidX(self.view.bounds), 64 + CGRectGetMidY(_avPlayerVC.view.bounds));
+    // 直接在本视图控制器播放
+    [self addChildViewController:_avPlayerVC];
+    [self.view addSubview:_avPlayerVC.view];
+//    // 设置拉伸模式
+//    _avPlayerVC.videoGravity = AVLayerVideoGravityResizeAspect;
+//     _avPlayerVC.delegate = self;
     
     // 弹出播放页面，需要点击播放按钮开始播放
-//    [self presentViewController:playerViewController animated:YES completion:nil];
+//    [self presentViewController:_avPlayerVC animated:YES completion:nil];
+    _avPlayerVC.view.frame = CGRectMake(0, 64, WIDTH, 200);
     
     [self AVPlayerVCParameterWithAVPlayerVC:_avPlayerVC];
     
@@ -200,7 +209,7 @@
     // float totalSecond = CMTimeGetSeconds(duration);
     
     // 跳转到指定位置 （10 / 1 = 10，跳转到第 10 秒的位置处）
-     [avPlayerVC.player.currentItem seekToTime:CMTimeMake(10, 1)];
+     [avPlayerVC.player.currentItem seekToTime:CMTimeMake(1, 1)];
     
     // 设置播放速率（默认为 1.0 (normal speed)，设为 0.0 时暂停播放。设置后立即开始播放，可放在开始播放后设置）
     avPlayerVC.player.rate = 1.0;
@@ -285,5 +294,6 @@
     NSLog(@"播放结束");
     //    [player seekToTime:kCMTimeZero];
 }
+
 
 @end

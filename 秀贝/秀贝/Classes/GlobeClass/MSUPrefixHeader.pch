@@ -54,7 +54,8 @@
 //#define NSLog(format, ...)
 //#endif
 
-
+// 是否横屏
+#define IS_LANDSCAPE UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])
 
 
 #endif /* MSUPrefixHeader_pch */
