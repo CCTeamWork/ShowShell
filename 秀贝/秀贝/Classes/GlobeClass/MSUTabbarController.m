@@ -11,6 +11,7 @@
 #import "MSUVideoController.h"
 #import "MSUShopStoreController.h"
 #import "MSUPersonCenterController.h"
+#import "MSUNaviBaseController.h"
 
 /* 工具类 */
 #import "MSUPermissionTool.h"
@@ -36,6 +37,14 @@
     // tabbar创建方法
     [self createSystemTabbar];
 }
+
+#pragma mark - 旋转相关 （tabbar控制器下的子控制器需要旋转需要重写此方法，且需要旋转哪个控制器就传入哪个）
+- (BOOL)shouldAutorotate
+{
+    //在viewControllers中返回需要改变的NavigationController
+    return [self.viewControllers[3] shouldAutorotate];
+}
+
 
 + (void)load
 {
@@ -68,10 +77,11 @@
     // item.imageInsets = UIEdgeInsetsMake(<#CGFloat top#>, <#CGFloat left#>, <#CGFloat bottom#>, <#CGFloat right#>);
 }
 
+#pragma mark - tabbar 子控制器们
 //自封装方法
 -(UINavigationController*)createNavWithViewController:(UIViewController *)viewController WithTitle:(NSString*) title image:(UIImage*)image selectedImage:(UIImage *)selectedImage badgeValue:(NSString *)value
 {
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
+    MSUNaviBaseController *nav = [[MSUNaviBaseController alloc] initWithRootViewController:viewController];
     nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:title image:image selectedImage:selectedImage];
     nav.navigationBar.hidden = YES;
     nav.tabBarItem.badgeValue = value;
@@ -109,6 +119,7 @@
     [self.tabBar addSubview:button];
 }
 
+#pragma mark - 中间突出按钮点击事件
 //点击事件
 - (void)pickClick{
     [MSUPermissionTool getCamerasPermission:^(NSInteger authStatus) {

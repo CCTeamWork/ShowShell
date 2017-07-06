@@ -25,11 +25,11 @@
 
 @implementation MSUPlayerController
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    /// 状态栏字体颜色
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-}
+//- (void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//    /// 状态栏字体颜色
+//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,9 +43,16 @@
      [self playByAVPlayer];
 //    [self playByAVPlayerController];
     
-    /// 横竖屏相关
-    AppDelegate *app =(AppDelegate *)[[UIApplication sharedApplication] delegate];
-    app.allowRotation = YES;
+//    /// 横竖屏相关
+//    AppDelegate *app =(AppDelegate *)[[UIApplication sharedApplication] delegate];
+//    app.allowRotation = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    // 鉴于上一个控制器不需要旋转，所以此旋转视图即将消失时候，将导航栏恢复竖屏
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:YES];
 }
 
 - (void)dealloc{
@@ -99,16 +106,75 @@
     
     [self AVPlayerParameterWithAVPlayer:_player AVPlayerItem:_playerItem];
     
-//    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(10, 64+10, WIDTH-20, 200)];
-//    navView.backgroundColor = [UIColor clearColor];
-//    [self.view addSubview:navView];
-//    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    testBtn.backgroundColor = SLIVERYCOLOR;
-//    testBtn.frame = CGRectMake(0, 170, 50, 30);
-//    [navView addSubview:testBtn];
-//    [testBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-
+    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(10, 64+10, WIDTH-20, 200)];
+    navView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:navView];
+    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    testBtn.backgroundColor = SLIVERYCOLOR;
+    testBtn.frame = CGRectMake(0, 170, 50, 30);
+    [navView addSubview:testBtn];
+    [testBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
 }
+
+- (void)btnClick:(UIButton *)sender{
+    sender.selected = !sender.selected;
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange) name:UIDeviceOrientationDidChangeNotification object:nil];
+    if (sender.selected) {
+        [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];
+    }else{
+        [self interfaceOrientation:UIInterfaceOrientationPortrait];
+    }
+}
+
+- (void)interfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        SEL selector             = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        int val                  = orientation;
+        // 从2开始是因为0 1 两个参数已经被selector和target占用
+        [invocation setArgument:&val atIndex:2];
+        [invocation invoke];
+    }
+}
+
+- (void)deviceOrientationDidChange
+{
+    NSLog(@"NAV deviceOrientationDidChange:%ld",(long)[UIDevice currentDevice].orientation);
+    if([UIDevice currentDevice].orientation == UIDeviceOrientationPortrait) {
+        [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:YES];
+        [self orientationChange:NO];
+        //注意： UIDeviceOrientationLandscapeLeft 与 UIInterfaceOrientationLandscapeRight
+    } else if ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft) {
+        [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
+        [self orientationChange:YES];
+    }
+}
+
+- (void)orientationChange:(BOOL)landscapeRight
+{
+    if (landscapeRight) {
+        [UIView animateWithDuration:0.2f animations:^{
+            self.view.transform = CGAffineTransformMakeRotation(M_PI_2);
+            self.view.bounds = CGRectMake(0, 0, WIDTH, HEIGHT);
+        }];
+    } else {
+        [UIView animateWithDuration:0.2f animations:^{
+            self.view.transform = CGAffineTransformMakeRotation(0);
+            self.view.bounds = CGRectMake(0, 0, WIDTH, HEIGHT);
+        }];
+    }
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+
 
 /* 视频播放相关参数 */
 - (void)AVPlayerParameterWithAVPlayer:(AVPlayer *)avPlayer AVPlayerItem:(AVPlayerItem *)avPlayerItem{

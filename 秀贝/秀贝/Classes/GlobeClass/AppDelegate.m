@@ -196,12 +196,12 @@
 
 #pragma mark - 横竖屏
 /* 横竖屏 */
-- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-    if (self.allowRotation) {
-        return  UIInterfaceOrientationMaskAllButUpsideDown;
-    }
-    return UIInterfaceOrientationMaskPortrait;
-}
+//- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+//    if (self.allowRotation) {
+//        return  UIInterfaceOrientationMaskAllButUpsideDown;
+//    }
+//    return UIInterfaceOrientationMaskPortrait;
+//}
 
 #pragma mark - 支付宝相关
 /* NOTE: 9.0以后使用新API接口 */

@@ -112,6 +112,7 @@
 		F082D9BF1ED8109D00173948 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F082D9BE1ED8109D00173948 /* AssetsLibrary.framework */; };
 		F082D9C31ED8126D00173948 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F082D9C21ED8126D00173948 /* CoreLocation.framework */; };
 		F082D9CC1ED9565800173948 /* MSUSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F082D9CB1ED9565800173948 /* MSUSearchController.m */; };
+		F08839541F0CE45500F4E128 /* MSUNaviBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F08839531F0CE45500F4E128 /* MSUNaviBaseController.m */; };
 		F0D3E6461EDF9F98003F36AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0D3E6451EDF9F98003F36AA /* Images.xcassets */; };
 		F0D73EC21EE7962700102779 /* cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0D73EC11EE7962700102779 /* cities.plist */; };
 		F0D73F181EE7D6DC00102779 /* MSUAFNRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D73F171EE7D6DC00102779 /* MSUAFNRequest.m */; };
@@ -390,6 +391,8 @@
 		F082D9C21ED8126D00173948 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F082D9CA1ED9565800173948 /* MSUSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUSearchController.h; sourceTree = "<group>"; };
 		F082D9CB1ED9565800173948 /* MSUSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUSearchController.m; sourceTree = "<group>"; };
+		F08839521F0CE45500F4E128 /* MSUNaviBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUNaviBaseController.h; sourceTree = "<group>"; };
+		F08839531F0CE45500F4E128 /* MSUNaviBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUNaviBaseController.m; sourceTree = "<group>"; };
 		F0D3E6451EDF9F98003F36AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F0D73EC11EE7962700102779 /* cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cities.plist; sourceTree = "<group>"; };
 		F0D73F161EE7D6DC00102779 /* MSUAFNRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUAFNRequest.h; sourceTree = "<group>"; };
@@ -854,6 +857,8 @@
 				F03290431ED6D51E009BA6BB /* MSUPrefixHeader.pch */,
 				F03290441ED6D51E009BA6BB /* MSUTabbarController.h */,
 				F03290451ED6D51E009BA6BB /* MSUTabbarController.m */,
+				F08839521F0CE45500F4E128 /* MSUNaviBaseController.h */,
+				F08839531F0CE45500F4E128 /* MSUNaviBaseController.m */,
 				F0D73F161EE7D6DC00102779 /* MSUAFNRequest.h */,
 				F0D73F171EE7D6DC00102779 /* MSUAFNRequest.m */,
 			);
@@ -1505,6 +1510,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F08839541F0CE45500F4E128 /* MSUNaviBaseController.m in Sources */,
 				F082D9AC1ED7F86600173948 /* MSULocationController.m in Sources */,
 				F082D9B51ED8040200173948 /* GTMBase64.m in Sources */,
 				F00B70381ED566E400629CEA /* main.m in Sources */,

@@ -20,7 +20,7 @@
 @property (strong, nonatomic) UIWindow *window;
 
 /// 判断是否横竖屏
-@property (nonatomic,assign)BOOL allowRotation;
+//@property (nonatomic,assign)BOOL allowRotation;
 
 @property (weak  , nonatomic) id<alipyDelegate> aliDelegate;  
 
