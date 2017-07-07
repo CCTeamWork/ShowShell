@@ -53,7 +53,7 @@
     [self.window makeKeyAndVisible];
     
     /// 状态栏字体颜色
-    // [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     
     // 推送相关
     [self pushNotifacationByRequestAuthorizatonAndregisterNotificationWithApplication:application];

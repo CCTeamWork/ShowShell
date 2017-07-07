@@ -25,11 +25,13 @@
 
 @implementation MSUPlayerController
 
-//- (void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    /// 状态栏字体颜色
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-//}
+
+#pragma mark - 生命周期
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    /// 状态栏字体颜色
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,11 +50,23 @@
 //    app.allowRotation = YES;
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
     // 鉴于上一个控制器不需要旋转，所以此旋转视图即将消失时候，将导航栏恢复竖屏
     [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:YES];
+    
+    // 允许侧滑返回
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
 }
 
 - (void)dealloc{
@@ -70,6 +84,11 @@
 - (void)createNavView{
     MSUHomeNavView *nav = [[MSUHomeNavView alloc] initWithFrame:NavRect showNavWithNumber:5];
     [self.view addSubview:nav];
+    [nav.arrowBtn addTarget:self action:@selector(popBtnClick) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)popBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - AVPlayer 播放
@@ -150,6 +169,7 @@
         //注意： UIDeviceOrientationLandscapeLeft 与 UIInterfaceOrientationLandscapeRight
     } else if ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft) {
         [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone]; 
         [self orientationChange:YES];
     }
 }
@@ -174,7 +194,9 @@
     return NO;
 }
 
-
+- (BOOL)prefersStatusBarHidden{
+    return NO;
+}
 
 /* 视频播放相关参数 */
 - (void)AVPlayerParameterWithAVPlayer:(AVPlayer *)avPlayer AVPlayerItem:(AVPlayerItem *)avPlayerItem{
@@ -248,7 +270,6 @@
     
     // 设置画面缩放模式
 //    _avPlayerVC.videoGravity = AVLayerVideoGravityResizeAspectFill;
-
 
     [_avPlayerVC.view setTranslatesAutoresizingMaskIntoConstraints:YES];
     // 设置媒体播放器视图大小

@@ -32,7 +32,6 @@
     [super viewDidLoad];
 
     self.view.backgroundColor = WHITECOLOR;
-    
 
     /// 导航栏
     [self createNavView];

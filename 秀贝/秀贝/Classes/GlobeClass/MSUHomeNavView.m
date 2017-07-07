@@ -299,13 +299,13 @@
     }];
     
     // 扫描二维码
-    UILabel *scanLab = [[UILabel alloc] init];
-    scanLab.text = @"视频播放";
-    scanLab.font = [UIFont systemFontOfSize:20];
-    scanLab.textAlignment = NSTextAlignmentCenter;
-    [scanLab setTextColor:WHITECOLOR];
-    [self addSubview:scanLab];
-    [scanLab makeConstraints:^(MASConstraintMaker *make) {
+    UILabel *videoLab = [[UILabel alloc] init];
+    videoLab.text = @"视频播放";
+    videoLab.font = [UIFont systemFontOfSize:20];
+    videoLab.textAlignment = NSTextAlignmentCenter;
+    [videoLab setTextColor:WHITECOLOR];
+    [self addSubview:videoLab];
+    [videoLab makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.top).offset(5);
         make.left.equalTo(self.left).offset(WIDTH * 0.5 - 60);
         make.width.equalTo(120);

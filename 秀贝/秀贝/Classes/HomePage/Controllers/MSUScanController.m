@@ -16,6 +16,9 @@
 #import "MSUPermissionTool.h"
 #import "MSUHUD.h"
 
+#import <MobileCoreServices/MobileCoreServices.h>
+
+
 @interface MSUScanController ()<AVCaptureMetadataOutputObjectsDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 /// 二维码扫描相关
 @property (strong,nonatomic)AVCaptureSession * session;
@@ -139,13 +142,15 @@
             if (authStatus == 1) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+                    // 相册中视频也可显示和选择
+//                    imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
                     imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary; //（选择类型）表示仅仅从相册中选取照片
                     imagePicker.delegate = self;
+                    imagePicker.allowsEditing = YES;
                     [self presentViewController:imagePicker animated:YES completion:^{
                         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
                     }];
                 });
-
             }else{
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请去-> [设置 - 隐私 - 照片 - 秀贝] 打开访问开关" preferredStyle:UIAlertControllerStyleAlert];
                 [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -242,6 +247,14 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData){
  #pragma mark -- 相册代理（UIImagePickerControllerDelegate）
 /** 相册选择 */
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    NSString *chooseMediaType = info[UIImagePickerControllerMediaType];
+    if ([chooseMediaType isEqual:(NSString *)kUTTypeImage]) {
+        // 如果选取图片
+        UIImage *pickedImage;
+        pickedImage = info[UIImagePickerControllerEditedImage];
+
+    }
+
     [self.view addSubview:self.scanningView];
     [self dismissViewControllerAnimated:YES completion:^{
         [self scanMSUResultromPhotosInTheAlbum:[info objectForKey:@"UIImagePickerControllerOriginalImage"]];
