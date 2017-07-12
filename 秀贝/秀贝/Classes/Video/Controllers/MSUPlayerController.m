@@ -242,6 +242,7 @@
     float durationSeconds = CMTimeGetSeconds(timeRange.duration);
     
     float loadedSecond = startSeconds + durationSeconds;                      // 计算缓冲总进度
+    NSLog(@"%f",loadedSecond);
     
     // 监听缓冲进度属性
     [avPlayerItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
@@ -340,7 +341,8 @@
     float durationSeconds = CMTimeGetSeconds(timeRange.duration);
     
     float loadedSecond = startSeconds + durationSeconds;                      // 计算缓冲总进度
-    
+    NSLog(@"%f",loadedSecond);
+
     // 监听缓冲进度属性
      [avPlayerVC.player.currentItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
 }

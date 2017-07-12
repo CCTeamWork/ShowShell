@@ -114,6 +114,7 @@
 		F082D9CC1ED9565800173948 /* MSUSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F082D9CB1ED9565800173948 /* MSUSearchController.m */; };
 		F08839541F0CE45500F4E128 /* MSUNaviBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F08839531F0CE45500F4E128 /* MSUNaviBaseController.m */; };
 		F08F66321F0F2765001CFEB8 /* MSUCameraPhotoVc.m in Sources */ = {isa = PBXBuildFile; fileRef = F08F66311F0F2765001CFEB8 /* MSUCameraPhotoVc.m */; };
+		F08F66571F0F7D04001CFEB8 /* MSUQRCodeTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F08F66561F0F7D04001CFEB8 /* MSUQRCodeTools.m */; };
 		F0D3E6461EDF9F98003F36AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0D3E6451EDF9F98003F36AA /* Images.xcassets */; };
 		F0D73EC21EE7962700102779 /* cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0D73EC11EE7962700102779 /* cities.plist */; };
 		F0D73F181EE7D6DC00102779 /* MSUAFNRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D73F171EE7D6DC00102779 /* MSUAFNRequest.m */; };
@@ -396,6 +397,8 @@
 		F08839531F0CE45500F4E128 /* MSUNaviBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUNaviBaseController.m; sourceTree = "<group>"; };
 		F08F66301F0F2765001CFEB8 /* MSUCameraPhotoVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUCameraPhotoVc.h; sourceTree = "<group>"; };
 		F08F66311F0F2765001CFEB8 /* MSUCameraPhotoVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUCameraPhotoVc.m; sourceTree = "<group>"; };
+		F08F66551F0F7D04001CFEB8 /* MSUQRCodeTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUQRCodeTools.h; sourceTree = "<group>"; };
+		F08F66561F0F7D04001CFEB8 /* MSUQRCodeTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUQRCodeTools.m; sourceTree = "<group>"; };
 		F0D3E6451EDF9F98003F36AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F0D73EC11EE7962700102779 /* cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cities.plist; sourceTree = "<group>"; };
 		F0D73F161EE7D6DC00102779 /* MSUAFNRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUAFNRequest.h; sourceTree = "<group>"; };
@@ -1155,6 +1158,8 @@
 				F010314E1EFD0DCC00E2A1FB /* MSUTransitionTool.m */,
 				F08F66301F0F2765001CFEB8 /* MSUCameraPhotoVc.h */,
 				F08F66311F0F2765001CFEB8 /* MSUCameraPhotoVc.m */,
+				F08F66551F0F7D04001CFEB8 /* MSUQRCodeTools.h */,
+				F08F66561F0F7D04001CFEB8 /* MSUQRCodeTools.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1528,6 +1533,7 @@
 				F032908C1ED6D51E009BA6BB /* MSUHomeNavView.m in Sources */,
 				F03CBDE51EDE582700E9DC3E /* MSUPlayerController.m in Sources */,
 				F032909C1ED6D51E009BA6BB /* MSUPersonCenterController.m in Sources */,
+				F08F66571F0F7D04001CFEB8 /* MSUQRCodeTools.m in Sources */,
 				F010314F1EFD0DCC00E2A1FB /* MSUTransitionTool.m in Sources */,
 				F03290A01ED6D51E009BA6BB /* MSUVideoController.m in Sources */,
 				F032908A1ED6D51E009BA6BB /* SVRadialGradientLayer.m in Sources */,

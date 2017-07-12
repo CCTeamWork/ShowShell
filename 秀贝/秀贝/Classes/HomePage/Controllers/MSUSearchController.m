@@ -14,6 +14,8 @@
 
 /* 视图类 */
 #import "MSUHomeNavView.h"
+#import "MSUVideoController.h"
+#import "MSUTransitionTool.h"
 
 @interface MSUSearchController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 
@@ -162,6 +164,10 @@
         [cell.textLabel setText:self.dataList[indexPath.row]];
     }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
 }
 
 

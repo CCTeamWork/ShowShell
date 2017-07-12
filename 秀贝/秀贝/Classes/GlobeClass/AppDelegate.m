@@ -220,8 +220,9 @@
     NSLog(@"deviceTokenString : %@", tokenString);
 
     // 返给后台 deviceToken 必须返回
-    NSString *urlHttp = @"v.showbuy100.com/index.php?r=order/apns";
-    NSString *urlString = [urlHttp stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"`#%^{}\"[]|\\<> "].invertedSet];
+    NSString *urlHttp = @"http://192.168.10.90/index.php?r=personalorder/apns";
+//    NSString *urlString = [urlHttp stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"`#%^{}\"[]|\\<> "].invertedSet];
+    NSString *urlString = [urlHttp stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [[MSUAFNRequest sharedInstance] postRequestWithURL:urlString parameters:tokenString withBlock:^(id obj, NSError *error) {
         if (!error) {
             NSLog(@"------------obj--------------%@",obj);
