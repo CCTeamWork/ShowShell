@@ -14,7 +14,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface MSUCameraPhotoVc ()
+@interface MSUCameraPhotoVc ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @end
 
@@ -76,7 +76,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
                     // 相册中视频也可显示和选择
-                    //                    imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+//                    imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
                     imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary; //（选择类型）表示仅仅从相册中选取照片
                     imagePicker.delegate = obj;
 //                    imagePicker.allowsEditing = YES;
@@ -132,6 +132,7 @@
     }else{
         //如果是视频
         NSURL *url = info[UIImagePickerControllerMediaURL];
+//        CGSize videoSize = [MSUCameraPhotoVc getVideoSizeWithURL:url];
         NSLog(@"视频链接是%@",url);
         //        //播放视频
         //        _moviePlayer.contentURL = url;
@@ -175,6 +176,19 @@
     }
 }
 
+#pragma mark - 获取视频宽和高
+/* 获取视频宽和高 */
++ (CGSize)getVideoSizeWithURL:(NSURL *)url{
+    AVAsset *asset = [AVAsset assetWithURL:url];
+    NSArray *tracks = [asset tracksWithMediaType:AVMediaTypeVideo];
+    AVAssetTrack *videoTrack;
+    if([tracks count] > 0) {
+        videoTrack = [tracks objectAtIndex:0];
+//        CGAffineTransform t = videoTrack.preferredTransform;//这里的矩阵有旋转角度，转换一下即可
+//        NSLog(@"=====hello  width:%f===height:%f",videoTrack.naturalSize.width,videoTrack.naturalSize.height);//宽高
+    }
+        return videoTrack.naturalSize;
+}
 
 
 

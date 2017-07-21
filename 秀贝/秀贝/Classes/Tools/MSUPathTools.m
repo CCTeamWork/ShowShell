@@ -274,4 +274,13 @@
     }
 }
 
+#pragma mark - 获取四大文件路径URL
++ (NSURL *)getDocumentURLWithPath:(NSString *)path{
+     NSFileManager *manager = [NSFileManager defaultManager];
+     NSURL *docuUrl = [[manager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject];
+     NSURL *pathUrl = [docuUrl URLByAppendingPathComponent:path];
+//     NSURL *path = [url URLByAppendingPathComponent:@"MyDocument"];
+    return pathUrl;
+}
+
 @end

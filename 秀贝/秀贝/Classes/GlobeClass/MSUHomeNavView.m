@@ -51,7 +51,12 @@
                 [self createPlayerNavView];
             }
                 break;
-                
+            case 6:
+            {
+                /// 动态页面
+                [self createDanamicWithTittle:@"动态"];
+            }
+                break;
                 
             default:
                 break;
@@ -310,6 +315,33 @@
         make.left.equalTo(self.left).offset(WIDTH * 0.5 - 60);
         make.width.equalTo(120);
         make.height.equalTo(34);
+    }];
+}
+
+#pragma mark - 动态
+- (void)createDanamicWithTittle:(NSString *)tittle{
+    UILabel *titeleLab = [[UILabel alloc] init];
+    titeleLab.text = tittle;
+    titeleLab.font = [UIFont systemFontOfSize:20];
+    [titeleLab setTextColor:[UIColor whiteColor]];
+    [self addSubview:titeleLab];
+    [titeleLab makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.top).offset(0);
+        make.left.equalTo(self.left).offset(WIDTH * 0.5 - 25);
+        make.width.equalTo(50);
+        make.height.equalTo(44);
+    }];
+
+    
+    // 搜索按钮
+    self.homeSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_homeSearchBtn setImage:[UIImage imageNamed:@"Search"] forState:UIControlStateNormal];
+    [self addSubview:_homeSearchBtn];
+    [_homeSearchBtn makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.top).offset(7);
+        make.right.equalTo(self.right).offset(-10);
+        make.width.equalTo(30);
+        make.height.equalTo(30);
     }];
 }
 

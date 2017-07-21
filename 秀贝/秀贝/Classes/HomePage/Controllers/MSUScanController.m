@@ -16,6 +16,7 @@
 #import "MSUPermissionTool.h"
 #import "MSUHUD.h"
 
+#import "MSUCameraPhotoVc.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
 
@@ -143,7 +144,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
                     // 相册中视频也可显示和选择
-//                    imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+                    imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
                     imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary; //（选择类型）表示仅仅从相册中选取照片
                     imagePicker.delegate = self;
                     imagePicker.allowsEditing = YES;
@@ -253,7 +254,30 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData){
         UIImage *pickedImage;
         pickedImage = info[UIImagePickerControllerEditedImage];
 
+    }else{
+        //如果是视频
+        NSURL *url = info[UIImagePickerControllerMediaURL];
+        CGSize hgre = [MSUCameraPhotoVc getVideoSizeWithURL:url];
+        NSLog(@"宽 ：%f  高:%f",hgre.width,hgre.height);
+        NSLog(@"视频链接是%@",url);
+        
+        //        //播放视频
+        //        _moviePlayer.contentURL = url;
+        //        [_moviePlayer play];
+        //        //保存视频至相册（异步线程）
+        //        NSString *urlStr = [url path];
+        //
+        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //            if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(urlStr)) {
+        //
+        //                UISaveVideoAtPathToSavedPhotosAlbum(urlStr, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
+        //            }
+        //        });
+        //        NSData *videoData = [NSData dataWithContentsOfURL:url];
+        //        //视频上传
+        //        [self uploadVideoWithData:videoData];
     }
+
 
     [self.view addSubview:self.scanningView];
     [self dismissViewControllerAnimated:YES completion:^{

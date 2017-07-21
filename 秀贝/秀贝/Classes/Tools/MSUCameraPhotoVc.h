@@ -16,4 +16,7 @@
 /* 相册选择图片 */
 + (void)pickedPhontoWithObject:(id)obj;
 
+/* 获取视频宽和高 */
++ (CGSize)getVideoSizeWithURL:(NSURL *)url;
+
 @end

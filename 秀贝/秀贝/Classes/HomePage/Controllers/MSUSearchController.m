@@ -120,12 +120,12 @@
 #pragma mark - 代理方法相关
 /* searchBar 代理方法 */
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    [[MSUAFNRequest sharedInstance] postRequestWithURL:nil parameters:searchText withBlock:^(id obj, NSError *error) {
-        if (!error) {
-            
-        }
-    }];
-    
+//    [[MSUAFNRequest sharedInstance] postRequestWithURL:nil parameters:searchText withBlock:^(id obj, NSError *error) {
+//        if (!error) {
+//            
+//        }
+//    }];
+//    
     self.inputString = searchText;
     NSPredicate *preicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@", searchText];
     if (self.searchList!= nil) {

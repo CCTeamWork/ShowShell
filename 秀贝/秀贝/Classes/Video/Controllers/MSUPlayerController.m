@@ -14,12 +14,15 @@
 /// 视频播放器
 #import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
+#import "TestTools.h"
+
 
 @interface MSUPlayerController ()<AVPlayerViewControllerDelegate>
 
 @property (nonatomic , strong) AVPlayerViewController *avPlayerVC;
 @property (nonatomic , strong) AVPlayer *player;
 @property (nonatomic , strong) AVPlayerItem *playerItem;
+@property (nonatomic , strong) NSURL *localUrl;
 
 @end
 
@@ -38,12 +41,25 @@
 
     self.view.backgroundColor = NavColor;
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     /// 导航栏
-    [self createNavView];
+//    [self createNavView];
     
     /// 播放器
      [self playByAVPlayer];
 //    [self playByAVPlayerController];
+    
+    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(10, 64+10, WIDTH-20, 200)];
+    navView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:navView];
+    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    testBtn.backgroundColor = SLIVERYCOLOR;
+    testBtn.frame = CGRectMake(0, 170, 50, 30);
+    [navView addSubview:testBtn];
+    [testBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+
     
 //    /// 横竖屏相关
 //    AppDelegate *app =(AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -97,10 +113,15 @@
 //    NSURL *localMusicUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"蓝莲花" ofType:@"mp3"]];
     
     // 加载本地视频
-    NSURL *localVideoUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"经济技术" ofType:@"mp4"]];
+//    NSURL *localVideoUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"IMG_1234" ofType:@"MOV"]];
+//    NSURL *localVideoUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"经济技术" ofType:@"mp4"]];
+//    NSURL *localVideoUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"IMG_1233" ofType:@"MOV"]];
+    NSURL *localVideoUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"haha" ofType:@"mp4"]];
+
     
     // 加载网络视频
 //    NSURL *netVideoUrl = [NSURL URLWithString:@"http://w2.dwstatic.com/1/5/1525/127352-100-1434554639.mp4"];
+    
     
     // AVPlayerIterm
     self.playerItem = [AVPlayerItem playerItemWithURL:localVideoUrl];
@@ -108,31 +129,45 @@
     // 创建 AVPlayer 播放器
     self.player = [AVPlayer playerWithPlayerItem:_playerItem];
     
+    
     // 将 AVPlayer 添加到 AVPlayerLayer 上
     AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
-
+    AVAsset *asset = [AVAsset assetWithURL:localVideoUrl];
+    NSArray *tracks = [asset tracksWithMediaType:AVMediaTypeVideo];
+    AVAssetTrack *videoTrack;
+    if([tracks count] > 0) {
+        videoTrack = [tracks objectAtIndex:0];
+        CGAffineTransform t = videoTrack.preferredTransform;//这里的矩阵有旋转角度，转换一下即可
+        NSLog(@"像素点%@",NSStringFromCGAffineTransform(t));
+        NSLog(@"=====hello  width:%f===height:%f",videoTrack.naturalSize.width,videoTrack.naturalSize.height);//宽高
+    }
     // 设置播放页面大小
-    playerLayer.frame = CGRectMake(10, 64 + 10, WIDTH - 20, 200);
-    
+    playerLayer.frame = CGRectMake(0, 0, WIDTH, videoTrack.naturalSize.height);
+    NSLog(@"视频层 %@",NSStringFromCGRect(playerLayer.frame));
     // 设置画面缩放模式
-    playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
-    
+    playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+//        playerLayer.videoRect = CGRectMake(10, 64, WIDTH - 20, 400);
+
     // 在视图上添加播放器
     [self.view.layer addSublayer:playerLayer];
     
     // 开始播放
-    [_player play];
+    [_player pause];
+    
+    //获取总帧数与帧率
+//    NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+//    AVURLAsset *myAsset = [[AVURLAsset alloc] initWithURL:localVideoUrl options:opts];
+//    CMTimeValue  value = myAsset.duration.value;//总帧数
+//    CMTimeScale  timeScale =   myAsset.duration.timescale; //timescale为帧率  fps
+//    NSLog(@"-------%lld,%d",value,timeScale);
     
     [self AVPlayerParameterWithAVPlayer:_player AVPlayerItem:_playerItem];
     
-    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(10, 64+10, WIDTH-20, 200)];
-    navView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:navView];
-    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    testBtn.backgroundColor = SLIVERYCOLOR;
-    testBtn.frame = CGRectMake(0, 170, 50, 30);
-    [navView addSubview:testBtn];
-    [testBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    UIImageView *wolfIma = [[UIImageView alloc] init];
+//    wolfIma.frame = CGRectMake(0, HEIGHT/2, WIDTH, 200);
+//    wolfIma.image = [TestTools thumbnailImageForVideo:localVideoUrl atTime:1000];
+//    [self.view addSubview:wolfIma];
+    
 }
 
 - (void)btnClick:(UIButton *)sender{
@@ -204,7 +239,7 @@
     avPlayer.rate = 1.0;
     
     // 开始播放
-    [avPlayer play];
+//    [avPlayer play];
     
     // 暂停播放
     // [avPlayer pause];
@@ -341,12 +376,14 @@
     float durationSeconds = CMTimeGetSeconds(timeRange.duration);
     
     float loadedSecond = startSeconds + durationSeconds;                      // 计算缓冲总进度
-    NSLog(@"%f",loadedSecond);
+//    NSLog(@"%f",loadedSecond);
 
     // 监听缓冲进度属性
      [avPlayerVC.player.currentItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
 }
 
+
+#pragma mark - 系统通知
 /* 系统自带监听方法 */
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object

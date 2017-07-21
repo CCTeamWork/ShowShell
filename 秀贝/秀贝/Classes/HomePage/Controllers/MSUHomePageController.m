@@ -11,6 +11,8 @@
 #import "MSULocationController.h"
 #import "MSUSearchController.h"
 #import "AppDelegate.h"
+#import "MSUHomeCollectionCell.h"
+
 
 /* 视图类 */
 #import "MSUHomeNavView.h"
@@ -20,13 +22,14 @@
 #import "MSUPermissionTool.h"
 #import "MSUTransitionTool.h"
 #import "MSUPathTools.h"
+#import "MSUStringTools.h"
 
 /* 地图框架 */
 #import <CoreLocation/CoreLocation.h>
 #import "TQLocationConverter.h"
 #import "ZCChinaLocation.h"
 
-@interface MSUHomePageController ()<CLLocationManagerDelegate>
+@interface MSUHomePageController ()<CLLocationManagerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 /// 定位
 @property (nonatomic , strong) CLLocationManager *locationManager;
@@ -34,6 +37,8 @@
 @property (nonatomic , assign) CLLocationCoordinate2D curCoordinate2D;
 
 @property (nonatomic , strong) MSUHomeNavView *navView;
+
+@property (nonatomic , strong) UICollectionView *collectionView;
 
 @end
 
@@ -50,7 +55,7 @@
 
     // 背景颜色
 //    self.view.backgroundColor = NavColor;
-    self.view.backgroundColor = [UIColor orangeColor];
+    self.view.backgroundColor = [UIColor blackColor];
     
     // 定位初始化
     [self locationInit];
@@ -61,8 +66,8 @@
     
     // 导航栏
     [self createNavView];
-    // 中部视图
-    [self createCenterView];
+
+    [self createCollectionView];
 }
 
 - (void)ApplicationDidBecomeActive:(NSNotification *)noti{
@@ -85,7 +90,7 @@
 - (void)createNavView{
     self.navView = [[MSUHomeNavView alloc] initWithFrame:NavRect showNavWithNumber:0];
 //    nav.backgroundColor = NavColor;
-    _navView.backgroundColor = [UIColor orangeColor];
+    _navView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:_navView];
     
     // 点击事件
@@ -94,11 +99,25 @@
     [_navView.homeSearchBtn addTarget:self action:@selector(homeSearchBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-/// 中部视图
-- (void)createCenterView{
-    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64)];
-    navView.backgroundColor = CyanColor;
-    [self.view addSubview:navView];
+/* CollectionView */
+- (void)createCollectionView{
+    UICollectionViewFlowLayout *layOut = [[UICollectionViewFlowLayout alloc] init];
+    [layOut setScrollDirection:UICollectionViewScrollDirectionVertical];
+    layOut.itemSize = CGSizeMake(WIDTH * 0.5 - 5, 300);
+    // 列间距
+    layOut.minimumInteritemSpacing = 10;
+    // 行间距
+    layOut.minimumLineSpacing = 10;
+    // 四边距
+    layOut.sectionInset = UIEdgeInsetsMake(5, 0, 5, 0);
+    
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64 - 44) collectionViewLayout:layOut];
+    _collectionView.backgroundColor = SLIVERYCOLOR;
+    _collectionView.dataSource = self;
+    _collectionView.delegate = self;
+    
+    [_collectionView registerClass:[MSUHomeCollectionCell class] forCellWithReuseIdentifier:@"collectionViewCell"];
+    [self.view addSubview:_collectionView];
 }
 
 /// 定位初始化
@@ -212,6 +231,35 @@
         }
     }];
     return addressStr;
+}
+
+#pragma mark - CollectionView代理
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 15;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    MSUHomeCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionViewCell" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor whiteColor];
+    
+    cell.imageView.image = [UIImage imageNamed:@""];
+    cell.iconImage.image = [UIImage imageNamed:@"icon-z"];
+    cell.titleLabel.text = @"欧尼欧尼欧尼";
+    cell.likeNumLab.text = @"199233";
+    CGSize titleSize = [MSUStringTools danamicGetSizeFromText:cell.likeNumLab.text WithFont:[UIFont systemFontOfSize:10]];
+    cell.likeNumLab.frame = CGRectMake(WIDTH*0.5-10-titleSize.width, 300-40+5, titleSize.width, 30);
+    [cell.likeBtn setImage:[UIImage imageNamed:@"marketchoose"] forState:UIControlStateNormal];
+    cell.likeBtn.frame = CGRectMake(CGRectGetMinX(cell.likeNumLab.frame)-18-5, 300-40+10, 18, 18);
+    
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
 }
 
 @end
