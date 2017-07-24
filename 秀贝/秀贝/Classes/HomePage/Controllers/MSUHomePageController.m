@@ -250,10 +250,10 @@
     cell.iconImage.image = [UIImage imageNamed:@"icon-z"];
     cell.titleLabel.text = @"欧尼欧尼欧尼";
     cell.likeNumLab.text = @"199233";
-    CGSize titleSize = [MSUStringTools danamicGetSizeFromText:cell.likeNumLab.text WithFont:[UIFont systemFontOfSize:10]];
+    CGSize titleSize = [MSUStringTools danamicGetWidthFromText:cell.likeNumLab.text WithFont:[UIFont systemFontOfSize:10]];
     cell.likeNumLab.frame = CGRectMake(WIDTH*0.5-10-titleSize.width, 300-40+5, titleSize.width, 30);
     [cell.likeBtn setImage:[UIImage imageNamed:@"marketchoose"] forState:UIControlStateNormal];
-    cell.likeBtn.frame = CGRectMake(CGRectGetMinX(cell.likeNumLab.frame)-18-5, 300-40+10, 18, 18);
+//    cell.likeBtn.frame = CGRectMake(CGRectGetMinX(cell.likeNumLab.frame)-18-5, 300-40+11, 18, 18);
     
     return cell;
 }

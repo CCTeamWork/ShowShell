@@ -13,6 +13,8 @@
 		F00B70461ED566E400629CEA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F00B70441ED566E400629CEA /* LaunchScreen.storyboard */; };
 		F00B70511ED566E400629CEA /* __Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = F00B70501ED566E400629CEA /* __Tests.m */; };
 		F00B705C1ED566E400629CEA /* __UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F00B705B1ED566E400629CEA /* __UITests.m */; };
+		F00CE0451F25DEC8001B6445 /* like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F00CE0441F25DEC8001B6445 /* like@2x.png */; };
+		F00CE0481F25E3D0001B6445 /* MSUDanamicHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F00CE0471F25E3D0001B6445 /* MSUDanamicHeaderView.m */; };
 		F010314F1EFD0DCC00E2A1FB /* MSUTransitionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F010314E1EFD0DCC00E2A1FB /* MSUTransitionTool.m */; };
 		F0156F5A1F20BC38005CF610 /* MSUHomeCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0156F591F20BC38005CF610 /* MSUHomeCollectionCell.m */; };
 		F01D3A971F06245F00FA08EF /* MSUAliPayController.m in Sources */ = {isa = PBXBuildFile; fileRef = F01D3A961F06245F00FA08EF /* MSUAliPayController.m */; };
@@ -47,6 +49,7 @@
 		F01D3AE71F06302F00FA08EF /* MSUShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = F01D3AE61F06302F00FA08EF /* MSUShareController.m */; };
 		F02337A81F21E531003204AE /* MSUStringTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F02337A71F21E531003204AE /* MSUStringTools.m */; };
 		F02337AB1F21EDCD003204AE /* MSUDanamicTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F02337AA1F21EDCD003204AE /* MSUDanamicTableCell.m */; };
+		F02337AE1F220247003204AE /* MSUTimerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F02337AD1F220247003204AE /* MSUTimerHandler.m */; };
 		F02A6B041EFA14A80046E829 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A6B031EFA14A80046E829 /* CFNetwork.framework */; };
 		F02A6B061EFA14B30046E829 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A6B051EFA14B30046E829 /* CoreMotion.framework */; };
 		F02A6B0A1EFA14C70046E829 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A6B091EFA14C70046E829 /* libc++.tbd */; };
@@ -181,6 +184,9 @@
 		F00B70571ED566E400629CEA /* 秀贝UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "秀贝UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F00B705B1ED566E400629CEA /* __UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __UITests.m; sourceTree = "<group>"; };
 		F00B705D1ED566E400629CEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F00CE0441F25DEC8001B6445 /* like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like@2x.png"; sourceTree = "<group>"; };
+		F00CE0461F25E3D0001B6445 /* MSUDanamicHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUDanamicHeaderView.h; sourceTree = "<group>"; };
+		F00CE0471F25E3D0001B6445 /* MSUDanamicHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUDanamicHeaderView.m; sourceTree = "<group>"; };
 		F010314D1EFD0DCC00E2A1FB /* MSUTransitionTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUTransitionTool.h; sourceTree = "<group>"; };
 		F010314E1EFD0DCC00E2A1FB /* MSUTransitionTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUTransitionTool.m; sourceTree = "<group>"; };
 		F0156F581F20BC38005CF610 /* MSUHomeCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUHomeCollectionCell.h; sourceTree = "<group>"; };
@@ -228,6 +234,8 @@
 		F02337A71F21E531003204AE /* MSUStringTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUStringTools.m; sourceTree = "<group>"; };
 		F02337A91F21EDCD003204AE /* MSUDanamicTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUDanamicTableCell.h; sourceTree = "<group>"; };
 		F02337AA1F21EDCD003204AE /* MSUDanamicTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUDanamicTableCell.m; sourceTree = "<group>"; };
+		F02337AC1F220247003204AE /* MSUTimerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUTimerHandler.h; sourceTree = "<group>"; };
+		F02337AD1F220247003204AE /* MSUTimerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUTimerHandler.m; sourceTree = "<group>"; };
 		F02A6B031EFA14A80046E829 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		F02A6B051EFA14B30046E829 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F02A6B071EFA14BC0046E829 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -1137,6 +1145,7 @@
 		F03290731ED6D51E009BA6BB /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				F00CE0441F25DEC8001B6445 /* like@2x.png */,
 				F03290741ED6D51E009BA6BB /* @2X */,
 				F03290751ED6D51E009BA6BB /* @3X */,
 			);
@@ -1162,6 +1171,8 @@
 			children = (
 				F02337A91F21EDCD003204AE /* MSUDanamicTableCell.h */,
 				F02337AA1F21EDCD003204AE /* MSUDanamicTableCell.m */,
+				F00CE0461F25E3D0001B6445 /* MSUDanamicHeaderView.h */,
+				F00CE0471F25E3D0001B6445 /* MSUDanamicHeaderView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1186,6 +1197,8 @@
 				F04EDB291F1DEC00006DA738 /* TestTools.m */,
 				F02337A61F21E531003204AE /* MSUStringTools.h */,
 				F02337A71F21E531003204AE /* MSUStringTools.m */,
+				F02337AC1F220247003204AE /* MSUTimerHandler.h */,
+				F02337AD1F220247003204AE /* MSUTimerHandler.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1428,6 +1441,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F00CE0451F25DEC8001B6445 /* like@2x.png in Resources */,
 				F03290901ED6D51E009BA6BB /* QRCodeLeftBottom@2x.png in Resources */,
 				F03290931ED6D51E009BA6BB /* QRCodeRightTop@2x.png in Resources */,
 				F0D745C41ED6DA2B00039672 /* Search@3x.png in Resources */,
@@ -1557,6 +1571,7 @@
 				F082D9B51ED8040200173948 /* GTMBase64.m in Sources */,
 				F00B70381ED566E400629CEA /* main.m in Sources */,
 				F0156F5A1F20BC38005CF610 /* MSUHomeCollectionCell.m in Sources */,
+				F02337AE1F220247003204AE /* MSUTimerHandler.m in Sources */,
 				F02A6C561EFA21E00046E829 /* NSDataEx.m in Sources */,
 				F082D9B71ED8040200173948 /* ZCChinaLocation.m in Sources */,
 				F032908E1ED6D51E009BA6BB /* MSUHomePageController.m in Sources */,
@@ -1574,6 +1589,7 @@
 				F032908A1ED6D51E009BA6BB /* SVRadialGradientLayer.m in Sources */,
 				F032909F1ED6D51E009BA6BB /* UIImage+MSUDecoder.m in Sources */,
 				F082D9B61ED8040200173948 /* TQLocationConverter.m in Sources */,
+				F00CE0481F25E3D0001B6445 /* MSUDanamicHeaderView.m in Sources */,
 				F03CBDE01EDE569300E9DC3E /* MSUPathTools.m in Sources */,
 				F032909B1ED6D51E009BA6BB /* MSUScanView.m in Sources */,
 				F032909D1ED6D51E009BA6BB /* MSUShopStoreController.m in Sources */,

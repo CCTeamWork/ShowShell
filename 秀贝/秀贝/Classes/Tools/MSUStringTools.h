@@ -26,7 +26,11 @@
 /* 富文本 修改局部字段颜色 */
 + (NSMutableAttributedString*)changeLabelWithText:(NSString*)needText;
 
-/* 动态获取 String 宽高 */
-+ (CGSize)danamicGetSizeFromText:(NSString *)text WithFont:(UIFont *)font;
+/* 动态获取 String 宽 */
++ (CGSize)danamicGetWidthFromText:(NSString *)text WithFont:(UIFont *)font;
+
+/* 动态获取 String 高 */
++ (CGRect)danamicGetHeightFromText:(NSString *)text WithWidth:(CGFloat)width font:(UIFont *)font;
+
 
 @end

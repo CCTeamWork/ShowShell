@@ -104,12 +104,12 @@
         self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //        _likeBtn.backgroundColor = [UIColor blueColor];
         [self.contentView addSubview:_likeBtn];
-//        [_likeBtn makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(_imageView.bottom).offset(5);
-//            make.right.equalTo(_likeNumLab.left).offset(-5);
-//            make.width.equalTo(15);
-//            make.height.equalTo(15);
-//        }];
+        [_likeBtn makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_imageView.bottom).offset(11);
+            make.right.equalTo(_likeNumLab.left).offset(-5);
+            make.width.equalTo(18);
+            make.height.equalTo(18);
+        }];
     }
     return _likeBtn;
 }

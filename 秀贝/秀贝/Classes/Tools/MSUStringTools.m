@@ -117,10 +117,16 @@
 }
 
 #pragma amrk - 动态获取 String 宽高
-/* 动态获取 String 宽高 */
-+ (CGSize)danamicGetSizeFromText:(NSString *)text WithFont:(UIFont *)font{
+/* 动态获取 String 宽 */
++ (CGSize)danamicGetWidthFromText:(NSString *)text WithFont:(UIFont *)font{
     CGSize size = [text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
     return size;
+}
+
+/* 动态获取 String 高 */
++ (CGRect)danamicGetHeightFromText:(NSString *)text WithWidth:(CGFloat)width font:(UIFont *)font{
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil] context:nil];
+    return rect;
 }
 
 @end
