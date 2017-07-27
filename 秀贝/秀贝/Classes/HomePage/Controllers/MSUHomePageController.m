@@ -115,6 +115,9 @@
     _collectionView.backgroundColor = SLIVERYCOLOR;
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
+    _collectionView.scrollsToTop = NO;
+    _collectionView.showsVerticalScrollIndicator = NO;
+    _collectionView.showsHorizontalScrollIndicator = NO;
     
     [_collectionView registerClass:[MSUHomeCollectionCell class] forCellWithReuseIdentifier:@"collectionViewCell"];
     [self.view addSubview:_collectionView];

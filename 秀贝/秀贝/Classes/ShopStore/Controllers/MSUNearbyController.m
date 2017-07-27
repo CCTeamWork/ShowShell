@@ -1,27 +1,26 @@
 //
-//  MSUShopStoreController.m
+//  MSUNearbyController.m
 //  秀贝
 //
-//  Created by Zhuge_Su on 2017/5/24.
+//  Created by Zhuge_Su on 2017/7/25.
 //  Copyright © 2017年 Zhuge_Su. All rights reserved.
 //
 
-#import "MSUShopStoreController.h"
-#import "MSUPrefixHeader.pch"
-#import "MSUHomeNavView.h"
-#import "MSUDanamicTableCell.h"
-#import "MSUTimerHandler.h"
-#import "MSUStringTools.h"
-#import "MSUDanamicHeaderView.h"
 #import "MSUNearbyController.h"
-#import "MSUShopDetailController.h"
+#import "MSUHomeNavView.h"
+#import "MSUPrefixHeader.pch"
+#import "MSUNearbyCell.h"
+#import "MSUNearbyHeaderView.h"
+
+/// 工具类
+#import "MSUStringTools.h"
 
 /// 视频播放器
 #import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
 #import "TestTools.h"
 
-@interface MSUShopStoreController ()<UITableViewDelegate,UITableViewDataSource,AVPlayerViewControllerDelegate>
+@interface MSUNearbyController ()<UITableViewDelegate,UITableViewDataSource,AVPlayerViewControllerDelegate,UIScrollViewDelegate,UIScrollViewDelegate>
 
 /// 列表
 @property (nonatomic , strong) UITableView *tableView;
@@ -31,8 +30,8 @@
 
 // 播放视频相关
 @property (nonatomic , strong) UIView *playerView;
-@property (nonatomic,strong) NSIndexPath *currentIndexPath; 
-@property (nonatomic , strong) MSUDanamicTableCell *currentCell;
+@property (nonatomic,strong) NSIndexPath *currentIndexPath;
+@property (nonatomic , strong) MSUNearbyCell *currentCell;
 @property (nonatomic , strong) AVPlayerViewController *avPlayerVC;
 @property (nonatomic , strong) AVPlayer *player;
 @property (nonatomic , strong) AVPlayerItem *playerItem;
@@ -41,24 +40,17 @@
 
 @end
 
-@implementation MSUShopStoreController
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    /// 状态栏字体颜色
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-}
+@implementation MSUNearbyController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor blackColor];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-
+    
     // 导航视图
-    MSUHomeNavView *nav = [[MSUHomeNavView alloc] initWithFrame:NavRect showNavWithNumber:6];
+    MSUHomeNavView *nav = [[MSUHomeNavView alloc] initWithFrame:NavRect showNavWithNumber:7];
     [self.view addSubview:nav];
+    [nav.backArrowBtn addTarget:self action:@selector(backArrowBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     // 列表视图
     [self createTableView];
@@ -67,31 +59,80 @@
 - (void)dealloc{
     NSLog(@" dealloc");
     // AVPlayer版
+    [self releasePlayer];
+}
+
+#pragma mark - 点击事件相关
+/* 返回按钮点击事件 */
+- (void)backArrowBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+/* 视频按钮播放按钮 点击事件 */
+- (void)playBtnClick:(UIButton *)sender{
+    NSLog(@"点击了第%ld个按钮",sender.tag);
+    self.currentIndexPath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+
+    self.currentCell = (MSUNearbyCell *)sender.superview.superview;
+    // 当有上一个在播放的时候 点击 就先release
+    if (self.playerView) {
+        [self releasePlayer];
+        
+        self.playerView = [[UIView alloc] initWithFrame:self.currentCell.videoImaView.bounds];
+        //        NSLog(@"cell frame ： %@ ，videoBGView frame %@,frame ：%@",NSStringFromCGRect(self.currentCell.frame),NSStringFromCGRect(self.currentCell.videoImaView.frame),NSStringFromCGRect(self.playerView.frame));
+    }else{
+        self.playerView = [[UIView alloc] initWithFrame:self.currentCell.videoImaView.bounds];
+        //        NSLog(@"cell frame ： %@ ，videoBGView frame %@,frame ：%@",NSStringFromCGRect(self.currentCell.frame),NSStringFromCGRect(self.currentCell.videoImaView.frame),NSStringFromCGRect(self.playerView.frame));
+    }
+    
+    self.currentCell.playBtn.hidden = YES;
+    [self.currentCell.videoImaView addSubview:_playerView];
+    [self.currentCell.videoImaView bringSubviewToFront:_playerView];
+    [self playByAVPlayer];
+    NSLog(@"view2 : %@",self.playerView.superview.superview.superview);
+    
+}
+
+/* 释放播放器相关 */
+- (void)releasePlayer{
+    NSLog(@"view1 : %@",self.playerView.superview.superview.superview);
+    
+    MSUNearbyCell *cell = (MSUNearbyCell *)self.playerView.superview.superview.superview;
+    cell.playBtn.hidden = NO;
+    
     [_playerItem removeObserver:self forKeyPath:@"status" context:nil];
     [_playerItem removeObserver:self forKeyPath:@"loadedTimeRanges" context:nil];
+    
+    [_playerItem cancelPendingSeeks];
+    [_playerItem.asset cancelLoading];
+    
+    [self.playerView removeFromSuperview];
+    [self.playerLayer removeFromSuperlayer];
+    [self.player replaceCurrentItemWithPlayerItem:nil];
+    self.player = nil;
+    self.playerItem = nil;
+}
+
+/* nearbyPositionBtnClick 点击事件 */
+- (void)nearbyPositionBtnClick:(UIButton *)sender{
+    
 }
 
 #pragma mark - 中部视图
 - (void)createTableView{
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64 -44) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64) style:UITableViewStylePlain];
     _tableView.backgroundColor = SLIVERYCOLOR;
     _tableView.dataSource = self;
     _tableView.delegate = self;
     [self.view addSubview:_tableView];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    BOOL isAttention = NO;
-    CGFloat height;
-    if (isAttention) {
-        height = 50 + 20;
-    }else{
-        height = 50 + 15 + 80 + 70;
-    }
-    MSUDanamicHeaderView *header = [[MSUDanamicHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, height) isAttention:isAttention];
-    header.backgroundColor = YELLOWCOLOR;
+    MSUNearbyHeaderView *header = [[MSUNearbyHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 60)];
+    header.backgroundColor = BGLINECOLOR;
     _tableView.tableHeaderView = header;
-    
-    [header.nearbyBtn addTarget:self action:@selector(nearbyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    header.positionLab.text = @"杭州市 西湖文化广场";
+    [header.positionBtn addTarget:self action:@selector(nearbyPositionBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+
 }
 
 #pragma mark - 代理相关
@@ -105,9 +146,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"danamicTable";
-    MSUDanamicTableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    MSUNearbyCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
-        cell = [[MSUDanamicTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[MSUNearbyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.backgroundColor = [UIColor whiteColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
@@ -115,7 +156,7 @@
     // 头像
     [cell.iconBtn setImage:[UIImage imageNamed:@"icon-z"] forState:UIControlStateNormal];
     // 昵称
-    cell.nickLab.text = @"叶叶叶叶叶子";
+    cell.nickLab.text = @"何何何何太太";
     // 时间
     cell.timeLab.text = @"2017-07-11 19:30";
     // 是否转发
@@ -135,7 +176,7 @@
         
         cell.tittleBGView.backgroundColor = [UIColor grayColor];
         cell.videoBGView.backgroundColor = [UIColor grayColor];;
-
+        
     }else{
         // 内容正题
         cell.tittleLab.text = @"有一美人兮，见之不忘。一日不见兮，思之如狂。凤飞翱翔兮，四海求凰。无奈佳人兮，不在东墙。将琴代语兮，聊写衷肠。何日见许兮，慰我彷徨。愿言配德兮，携手相将。不得于飞兮，使我沦亡。";
@@ -144,7 +185,7 @@
         cell.tittleLab.frame = CGRectMake(10, 0, WIDTH-20, textRect.size.height);
         cell.videoBGView.frame = CGRectMake(0, CGRectGetMaxY(cell.tittleBGView.frame), WIDTH, 210);
     }
-
+    
     // 视频页面
     cell.videoImaView.image = [UIImage imageNamed:@"FoSe.jpeg"];
     // 播放按钮
@@ -157,19 +198,13 @@
         cell.lineView.frame = CGRectMake(0, CGRectGetMaxY(cell.videoBGView.frame) + 5+ 25+ 5 , WIDTH, 1);
     }else{
         cell.locationBtn.hidden = YES;
+        cell.dictanceBtn.hidden = YES;
         cell.lineView.frame = CGRectMake(0, CGRectGetMaxY(cell.videoBGView.frame) + 5 , WIDTH, 1);
     }
     
     self.cellHeight = CGRectGetMaxY(cell.lineView.frame) + 40 + 20;
     
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.hidesBottomBarWhenPushed = YES;
-    MSUShopDetailController *detail = [[MSUShopDetailController alloc] init];
-    [self.navigationController pushViewController:detail animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 /* scrollview delegate */
@@ -188,61 +223,6 @@
             }
         }
     }
-}
-
-#pragma mark - 按钮点击事件
-/* 视频按钮播放按钮 点击事件 */
-- (void)playBtnClick:(UIButton *)sender{
-    NSLog(@"点击了第%ld个按钮",sender.tag);
-
-    self.currentIndexPath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
-    
-    self.currentCell = (MSUDanamicTableCell *)sender.superview.superview;
-    // 当有上一个在播放的时候 点击 就先release
-    if (self.playerView) {
-        [self releasePlayer];
-        
-        self.playerView = [[UIView alloc] initWithFrame:self.currentCell.videoImaView.bounds];
-//        NSLog(@"cell frame ： %@ ，videoBGView frame %@,frame ：%@",NSStringFromCGRect(self.currentCell.frame),NSStringFromCGRect(self.currentCell.videoImaView.frame),NSStringFromCGRect(self.playerView.frame));
-    }else{
-        self.playerView = [[UIView alloc] initWithFrame:self.currentCell.videoImaView.bounds];
-//        NSLog(@"cell frame ： %@ ，videoBGView frame %@,frame ：%@",NSStringFromCGRect(self.currentCell.frame),NSStringFromCGRect(self.currentCell.videoImaView.frame),NSStringFromCGRect(self.playerView.frame));
-    }
-    
-    self.currentCell.playBtn.hidden = YES;
-    [self.currentCell.videoImaView addSubview:_playerView];
-    [self.currentCell.videoImaView bringSubviewToFront:_playerView];
-    [self playByAVPlayer];
-//    NSLog(@"view2 : %@",self.playerView.superview.superview.superview);
-
-}
-
-/* 释放播放器相关 */
-- (void)releasePlayer{
-//    NSLog(@"view1 : %@",self.playerView.superview.superview.superview);
-    
-    MSUDanamicTableCell *cell = (MSUDanamicTableCell *)self.playerView.superview.superview.superview;
-    cell.playBtn.hidden = NO;
-    
-    [_playerItem removeObserver:self forKeyPath:@"status" context:nil];
-    [_playerItem removeObserver:self forKeyPath:@"loadedTimeRanges" context:nil];
-    
-    [_playerItem cancelPendingSeeks];
-    [_playerItem.asset cancelLoading];
-    
-    [self.playerView removeFromSuperview];
-    [self.playerLayer removeFromSuperlayer];
-    [self.player replaceCurrentItemWithPlayerItem:nil];
-    self.player = nil;
-    self.playerItem = nil;
-}
-
-/* 附近人按钮点击事件 */
-- (void)nearbyBtnClick:(UIButton *)sender{
-    self.hidesBottomBarWhenPushed = YES;
-    MSUNearbyController *nearby = [[MSUNearbyController alloc] init];
-    [self.navigationController pushViewController:nearby animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma mark - 视频相关
@@ -270,7 +250,7 @@
     
     // 将 AVPlayer 添加到 AVPlayerLayer 上
     self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
-
+    
     // 设置播放页面大小
     _playerLayer.frame = self.playerView.bounds;
     NSLog(@"视频层 %@",NSStringFromCGRect(_playerLayer.frame));
@@ -344,7 +324,7 @@
     float durationSeconds = CMTimeGetSeconds(timeRange.duration);
     
     float loadedSecond = startSeconds + durationSeconds;                      // 计算缓冲总进度
-//    NSLog(@"%f",loadedSecond);
+    NSLog(@"%f",loadedSecond);
     
     // 监听缓冲进度属性
     [avPlayerItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
@@ -392,6 +372,7 @@
     //    [player seekToTime:kCMTimeZero];
     [self releasePlayer];
 }
+
 
 
 @end

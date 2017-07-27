@@ -57,7 +57,19 @@
                 [self createDanamicWithTittle:@"动态"];
             }
                 break;
-                
+            case 7:
+            {
+                /// 附近动态页面
+                [self createNearbyWithTittle:@"附近动态"];
+            }
+                break;
+            case 8:
+            {
+                /// 商品详情页面
+                [self createNearbyWithTittle:@"商品详情"];
+            }
+                break;
+
             default:
                 break;
         }
@@ -251,7 +263,6 @@
 //    _search.backgroundImage = [self imageWithColor:WHITECOLOR size:_search.bounds.size];
 //    [self addSubview:_search];
     
-    
     self.search = [[UISearchBar alloc]initWithFrame:CGRectMake(10, 3, WIDTH-10-60, 38)];
     _search.placeholder =  @"搜索商品、视频";
     _search.backgroundImage = [self imageWithColor:WHITECOLOR size:_search.bounds.size];
@@ -322,6 +333,7 @@
 - (void)createDanamicWithTittle:(NSString *)tittle{
     UILabel *titeleLab = [[UILabel alloc] init];
     titeleLab.text = tittle;
+    titeleLab.textAlignment = NSTextAlignmentCenter;
     titeleLab.font = [UIFont systemFontOfSize:20];
     [titeleLab setTextColor:[UIColor whiteColor]];
     [self addSubview:titeleLab];
@@ -331,13 +343,51 @@
         make.width.equalTo(50);
         make.height.equalTo(44);
     }];
-
-    
     // 搜索按钮
     self.homeSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_homeSearchBtn setImage:[UIImage imageNamed:@"Search"] forState:UIControlStateNormal];
     [self addSubview:_homeSearchBtn];
     [_homeSearchBtn makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.top).offset(7);
+        make.right.equalTo(self.right).offset(-10);
+        make.width.equalTo(30);
+        make.height.equalTo(30);
+    }];
+}
+
+#pragma  mark - 附近人动态
+- (void)createNearbyWithTittle:(NSString *)tittle{
+    // 左箭头
+    self.backArrowBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backArrowBtn.backgroundColor = [UIColor blueColor];
+    [self addSubview:_backArrowBtn];
+    [_backArrowBtn makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.top).offset(7);
+        make.left.equalTo(self.left).offset(15);
+        make.width.equalTo(20);
+        make.height.equalTo(30);
+    }];
+    
+    // 附近动态
+    UILabel *titeleLab = [[UILabel alloc] init];
+    titeleLab.text = tittle;
+    titeleLab.textAlignment = NSTextAlignmentCenter;
+    titeleLab.font = [UIFont systemFontOfSize:20];
+    [titeleLab setTextColor:[UIColor whiteColor]];
+    [self addSubview:titeleLab];
+    [titeleLab makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.top).offset(0);
+        make.left.equalTo(self.left).offset(WIDTH * 0.5 - 75);
+        make.width.equalTo(150);
+        make.height.equalTo(44);
+    }];
+    
+    
+    // 地图按钮
+    self.positionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_positionBtn setImage:[UIImage imageNamed:@"Search"] forState:UIControlStateNormal];
+    [self addSubview:_positionBtn];
+    [_positionBtn makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.top).offset(7);
         make.right.equalTo(self.right).offset(-10);
         make.width.equalTo(30);

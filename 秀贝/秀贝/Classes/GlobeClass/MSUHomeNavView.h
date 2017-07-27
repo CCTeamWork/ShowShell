@@ -40,6 +40,11 @@
 /// 取消按钮
 @property (nonatomic , strong) UIButton *searchCancleBtn;
 
+#pragma mark - 附近人动态相关
+/// 地图按钮
+@property (nonatomic , strong) UIButton *positionBtn;
+/// 返回按钮
+@property (nonatomic , strong) UIButton *backArrowBtn;
 
 
 /// 初始化
