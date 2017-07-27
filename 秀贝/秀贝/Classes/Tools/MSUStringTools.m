@@ -101,17 +101,26 @@
 
 #pragma mark - 富文本 修改局部字段颜色
 /* 富文本 修改局部字段颜色 */
-+ (NSMutableAttributedString*)changeLabelWithText:(NSString*)needText
++ (NSMutableAttributedString*)changeLabelWithText:(NSString*)needText AndFromOrigiFont:(CGFloat)origi toChangeFont:(CGFloat)change AndFromOrigiLoca:(NSInteger)loca WithBeforePart:(NSInteger)part
 {
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:needText];
-    
-    [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20] range:NSMakeRange(0,1)];
-    [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:51/255.0 green:3/255.0 blue:4/255.0 alpha:1] range:NSMakeRange(0,1)];
+    [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:origi] range:NSMakeRange(0,loca)];
     
     [attrString addAttribute:NSKernAttributeName value:@1.0f range:NSMakeRange(0, needText.length)];
     
-    [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:NSMakeRange(1,needText.length-1)];
-    [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(1,needText.length-1)];
+    [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:change] range:NSMakeRange(loca,needText.length-loca)];
+
+    // 如果是前半部分
+    if (!part) {
+        [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:236/255.0 green:0/255.0 blue:0/255.0 alpha:1] range:NSMakeRange(0,loca)];
+        
+        [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(loca,needText.length-loca)];
+    }else{
+        [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0,loca)];
+        
+        [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:236/255.0 green:0/255.0 blue:0/255.0 alpha:1] range:NSMakeRange(loca,needText.length-loca)];
+
+    }
     
     return attrString;
 }

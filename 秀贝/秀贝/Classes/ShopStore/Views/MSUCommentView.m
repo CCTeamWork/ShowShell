@@ -52,13 +52,13 @@
     
     // 查看全部评价
     self.allBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _allBtn.backgroundColor = [UIColor blueColor];
+//    _allBtn.backgroundColor = [UIColor blueColor];
     [_allBtn setTitle:@"查看全部评价" forState:UIControlStateNormal];
     [_allBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    _allBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    _allBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self addSubview:_allBtn];
     [_allBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_tableView.bottom).offset(10);
+        make.top.equalTo(_tableView.bottom).offset(5);
         make.left.equalTo(self.left).offset(0);
         make.width.equalTo(SelfWidth);
         make.height.equalTo(30);

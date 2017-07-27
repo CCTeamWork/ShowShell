@@ -140,6 +140,10 @@
 		F0A21ED21F29753100305FB3 /* MSUGeussCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A21ED11F29753100305FB3 /* MSUGeussCollectionViewCell.m */; };
 		F0A21ED51F298A7200305FB3 /* MSUCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A21ED41F298A7200305FB3 /* MSUCommentView.m */; };
 		F0A21ED81F298CDB00305FB3 /* MSUCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A21ED71F298CDB00305FB3 /* MSUCommentTableViewCell.m */; };
+		F0A21EDB1F29B58900305FB3 /* MSUOrderSureController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A21EDA1F29B58900305FB3 /* MSUOrderSureController.m */; };
+		F0A21EE11F29BA0200305FB3 /* MSUOrderContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A21EE01F29BA0200305FB3 /* MSUOrderContentView.m */; };
+		F0A21EE41F29BE1F00305FB3 /* MSUOrderSureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A21EE31F29BE1F00305FB3 /* MSUOrderSureCell.m */; };
+		F0A21EE71F29DE8B00305FB3 /* MSUPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A21EE61F29DE8B00305FB3 /* MSUPayView.m */; };
 		F0D3E6461EDF9F98003F36AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0D3E6451EDF9F98003F36AA /* Images.xcassets */; };
 		F0D73EC21EE7962700102779 /* cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0D73EC11EE7962700102779 /* cities.plist */; };
 		F0D73F181EE7D6DC00102779 /* MSUAFNRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D73F171EE7D6DC00102779 /* MSUAFNRequest.m */; };
@@ -466,6 +470,14 @@
 		F0A21ED41F298A7200305FB3 /* MSUCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUCommentView.m; sourceTree = "<group>"; };
 		F0A21ED61F298CDB00305FB3 /* MSUCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUCommentTableViewCell.h; sourceTree = "<group>"; };
 		F0A21ED71F298CDB00305FB3 /* MSUCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUCommentTableViewCell.m; sourceTree = "<group>"; };
+		F0A21ED91F29B58900305FB3 /* MSUOrderSureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUOrderSureController.h; sourceTree = "<group>"; };
+		F0A21EDA1F29B58900305FB3 /* MSUOrderSureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUOrderSureController.m; sourceTree = "<group>"; };
+		F0A21EDF1F29BA0200305FB3 /* MSUOrderContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUOrderContentView.h; sourceTree = "<group>"; };
+		F0A21EE01F29BA0200305FB3 /* MSUOrderContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUOrderContentView.m; sourceTree = "<group>"; };
+		F0A21EE21F29BE1F00305FB3 /* MSUOrderSureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUOrderSureCell.h; sourceTree = "<group>"; };
+		F0A21EE31F29BE1F00305FB3 /* MSUOrderSureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUOrderSureCell.m; sourceTree = "<group>"; };
+		F0A21EE51F29DE8B00305FB3 /* MSUPayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUPayView.h; sourceTree = "<group>"; };
+		F0A21EE61F29DE8B00305FB3 /* MSUPayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUPayView.m; sourceTree = "<group>"; };
 		F0D3E6451EDF9F98003F36AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F0D73EC11EE7962700102779 /* cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cities.plist; sourceTree = "<group>"; };
 		F0D73F161EE7D6DC00102779 /* MSUAFNRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUAFNRequest.h; sourceTree = "<group>"; };
@@ -1160,9 +1172,9 @@
 			isa = PBXGroup;
 			children = (
 				F032906F1ED6D51E009BA6BB /* Controllers */,
+				F03290761ED6D51E009BA6BB /* Views */,
 				F03290721ED6D51E009BA6BB /* Models */,
 				F03290731ED6D51E009BA6BB /* Resource */,
-				F03290761ED6D51E009BA6BB /* Views */,
 			);
 			path = ShopStore;
 			sourceTree = "<group>";
@@ -1176,6 +1188,8 @@
 				F033EBB21F26E5FF00DD4F10 /* MSUNearbyController.m */,
 				F024DCEB1F2830B000DDA48F /* MSUShopDetailController.h */,
 				F024DCEC1F2830B000DDA48F /* MSUShopDetailController.m */,
+				F0A21ED91F29B58900305FB3 /* MSUOrderSureController.h */,
+				F0A21EDA1F29B58900305FB3 /* MSUOrderSureController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1218,6 +1232,7 @@
 		F03290761ED6D51E009BA6BB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F0A21EDE1F29B9D800305FB3 /* Shop */,
 				F02337A91F21EDCD003204AE /* MSUDanamicTableCell.h */,
 				F02337AA1F21EDCD003204AE /* MSUDanamicTableCell.m */,
 				F00CE0461F25E3D0001B6445 /* MSUDanamicHeaderView.h */,
@@ -1355,6 +1370,19 @@
 				F082D9B41ED8040200173948 /* ZCChinaLocation.m */,
 			);
 			path = GTMBase64;
+			sourceTree = "<group>";
+		};
+		F0A21EDE1F29B9D800305FB3 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				F0A21EDF1F29BA0200305FB3 /* MSUOrderContentView.h */,
+				F0A21EE01F29BA0200305FB3 /* MSUOrderContentView.m */,
+				F0A21EE21F29BE1F00305FB3 /* MSUOrderSureCell.h */,
+				F0A21EE31F29BE1F00305FB3 /* MSUOrderSureCell.m */,
+				F0A21EE51F29DE8B00305FB3 /* MSUPayView.h */,
+				F0A21EE61F29DE8B00305FB3 /* MSUPayView.m */,
+			);
+			path = Shop;
 			sourceTree = "<group>";
 		};
 		F3229DFC9695EA7B36E437D6 /* Frameworks */ = {
@@ -1638,12 +1666,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F08839541F0CE45500F4E128 /* MSUNaviBaseController.m in Sources */,
+				F0A21EE71F29DE8B00305FB3 /* MSUPayView.m in Sources */,
 				F082D9AC1ED7F86600173948 /* MSULocationController.m in Sources */,
 				F082D9B51ED8040200173948 /* GTMBase64.m in Sources */,
 				F00B70381ED566E400629CEA /* main.m in Sources */,
 				F0156F5A1F20BC38005CF610 /* MSUHomeCollectionCell.m in Sources */,
 				F02337AE1F220247003204AE /* MSUTimerHandler.m in Sources */,
 				F02A6C561EFA21E00046E829 /* NSDataEx.m in Sources */,
+				F0A21EE11F29BA0200305FB3 /* MSUOrderContentView.m in Sources */,
 				F082D9B71ED8040200173948 /* ZCChinaLocation.m in Sources */,
 				F032908E1ED6D51E009BA6BB /* MSUHomePageController.m in Sources */,
 				F082D9CC1ED9565800173948 /* MSUSearchController.m in Sources */,
@@ -1652,6 +1682,7 @@
 				F02A6C591EFA21E00046E829 /* RSADataVerifier.m in Sources */,
 				F0A21ECF1F29725500305FB3 /* MSUGeussLikeView.m in Sources */,
 				F032908C1ED6D51E009BA6BB /* MSUHomeNavView.m in Sources */,
+				F0A21EDB1F29B58900305FB3 /* MSUOrderSureController.m in Sources */,
 				F024DD0A1F28A37A00DDA48F /* MSUAVPlayerViewTool.m in Sources */,
 				F04EDB2A1F1DEC00006DA738 /* TestTools.m in Sources */,
 				F03CBDE51EDE582700E9DC3E /* MSUPlayerController.m in Sources */,
@@ -1692,6 +1723,7 @@
 				F01D3A971F06245F00FA08EF /* MSUAliPayController.m in Sources */,
 				F033EBB91F26F1CD00DD4F10 /* MSUNearbyHeaderView.m in Sources */,
 				F024DCF01F28345700DDA48F /* MSUShopDetailView.m in Sources */,
+				F0A21EE41F29BE1F00305FB3 /* MSUOrderSureCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

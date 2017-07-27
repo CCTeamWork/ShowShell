@@ -60,13 +60,19 @@
             case 7:
             {
                 /// 附近动态页面
-                [self createNearbyWithTittle:@"附近动态"];
+                [self createNearbyWithTittle:@"附近动态" rightNumber:1];
             }
                 break;
             case 8:
             {
                 /// 商品详情页面
-                [self createNearbyWithTittle:@"商品详情"];
+                [self createNearbyWithTittle:@"商品详情" rightNumber:1];
+            }
+                break;
+            case 9:
+            {
+                /// 确认订单页面
+                [self createNearbyWithTittle:@"确认订单" rightNumber:0];
             }
                 break;
 
@@ -356,7 +362,7 @@
 }
 
 #pragma  mark - 附近人动态
-- (void)createNearbyWithTittle:(NSString *)tittle{
+- (void)createNearbyWithTittle:(NSString *)tittle rightNumber:(NSInteger)number{
     // 左箭头
     self.backArrowBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backArrowBtn.backgroundColor = [UIColor blueColor];
@@ -382,17 +388,18 @@
         make.height.equalTo(44);
     }];
     
-    
-    // 地图按钮
-    self.positionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_positionBtn setImage:[UIImage imageNamed:@"Search"] forState:UIControlStateNormal];
-    [self addSubview:_positionBtn];
-    [_positionBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.top).offset(7);
-        make.right.equalTo(self.right).offset(-10);
-        make.width.equalTo(30);
-        make.height.equalTo(30);
-    }];
+    if (number==1) {
+        // 地图按钮
+        self.positionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_positionBtn setImage:[UIImage imageNamed:@"Search"] forState:UIControlStateNormal];
+        [self addSubview:_positionBtn];
+        [_positionBtn makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.top).offset(7);
+            make.right.equalTo(self.right).offset(-10);
+            make.width.equalTo(30);
+            make.height.equalTo(30);
+        }];
+    }
 }
 
 @end

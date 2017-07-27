@@ -16,6 +16,8 @@
 #import "MSUCommentView.h"
 #import "MSUCommentTableViewCell.h"
 
+#import "MSUOrderSureController.h"
+
 #import "MSUAVPlayerViewTool.h"
 
 /* 工具类 */
@@ -88,8 +90,7 @@
     CGFloat headerHeight =  CGRectGetMaxY(_detail.bgView.frame);
     CGFloat centerHeight = 15+40+imageArr.count *400 + (imageArr.count-1)*10 + 15;
     CGFloat tableHeight = (50+10+self.commentHeight)*2;
-    NSLog(@"高高高高高%f",self.commentHeight);
-    MSUCommentView *comment = [[MSUCommentView alloc] initWithFrame:CGRectMake(0, headerHeight + centerHeight, WIDTH, 35 + 5 + tableHeight) tableViewHeight: tableHeight];
+    MSUCommentView *comment = [[MSUCommentView alloc] initWithFrame:CGRectMake(0, headerHeight + centerHeight, WIDTH, 35 + 5 + tableHeight + 35) tableViewHeight: tableHeight];
     comment.backgroundColor = [UIColor whiteColor];
     [scrollView addSubview:comment];
     BOOL isComment = YES;
@@ -113,11 +114,12 @@
     
     // 猜你喜欢页面
     MSUGeussLikeView *geuss = [[MSUGeussLikeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(info.frame)+15, WIDTH, (WIDTH - 30 - 30)/4+95+10) imageCount:8];
+    NSLog(@"111111111%@",NSStringFromCGRect(geuss.frame));
     geuss.backgroundColor = [UIColor whiteColor];
     [scrollView addSubview:geuss];
     geuss.collectionView.delegate = self;
     geuss.collectionView.dataSource = self;
-
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)createBottomView{
@@ -233,8 +235,10 @@
 
 #pragma mark - 点击事件
 - (void)buyBtnClick:(UIButton *)sender{
-//    MSUAVPlayerViewTool *avView = [[MSUAVPlayerViewTool alloc] initWithFrame:CGRectMake(0, 64, WIDTH, 300)];
-//    [self.view addSubview:avView];
+    self.hidesBottomBarWhenPushed = YES;
+    MSUOrderSureController *order = [[MSUOrderSureController alloc] init];
+    [self.navigationController pushViewController:order animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 @end

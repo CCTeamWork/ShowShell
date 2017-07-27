@@ -24,7 +24,7 @@
 + (BOOL)isContainChinese:(NSString *)str;
 
 /* 富文本 修改局部字段颜色 */
-+ (NSMutableAttributedString*)changeLabelWithText:(NSString*)needText;
++ (NSMutableAttributedString*)changeLabelWithText:(NSString*)needText AndFromOrigiFont:(CGFloat)origi toChangeFont:(CGFloat)change AndFromOrigiLoca:(NSInteger)loca WithBeforePart:(NSInteger)part;
 
 /* 动态获取 String 宽 */
 + (CGSize)danamicGetWidthFromText:(NSString *)text WithFont:(UIFont *)font;

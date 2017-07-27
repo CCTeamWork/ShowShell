@@ -51,6 +51,7 @@
     UICollectionViewFlowLayout *layOut = [[UICollectionViewFlowLayout alloc] init];
     [layOut setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     layOut.itemSize = CGSizeMake(wid, wid+50+10);
+    NSLog(@"22222222%@",NSStringFromCGSize(layOut.itemSize));
     // 列间距
 //    layOut.minimumInteritemSpacing = 10;
     // 行间距
