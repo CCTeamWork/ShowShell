@@ -15,7 +15,7 @@
 #import "MSUGeussCollectionViewCell.h"
 #import "MSUCommentView.h"
 #import "MSUCommentTableViewCell.h"
-
+#import "MSUShopDetailBoottomView.h"
 #import "MSUOrderSureController.h"
 
 #import "MSUAVPlayerViewTool.h"
@@ -46,12 +46,21 @@
     [self.view addSubview:nav];
     
     self.comText = @"因为我刚好遇见你，留下足迹才美丽，风吹花落泪如雨，因为不想分离；因为刚好遇见你，留下十年的期许，如果再相遇，我想我会记得你";
-    CGRect rect = [MSUStringTools danamicGetHeightFromText:_comText WithWidth:WIDTH font:[UIFont systemFontOfSize:14]];
+    CGRect rect = [MSUStringTools danamicGetHeightFromText:_comText WithWidth:WIDTH font:14];
     self.commentHeight = rect.size.height;
     
     [self createContentView];
-    [self createBottomView];
-    
+
+    // 底部试图
+    MSUShopDetailBoottomView *bottom = [[MSUShopDetailBoottomView alloc] initWithFrame:CGRectMake(0, HEIGHT-50, WIDTH, 50)];
+    bottom.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:bottom];
+    [bottom.buyBtn addTarget:self action:@selector(buyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.hidesBottomBarWhenPushed = YES;
 }
 
 #pragma mark - 内容视图
@@ -74,8 +83,8 @@
     _detail.scrollView.delegate = self;
     [scrollView addSubview:_detail];
 
-    CGRect titRect = [MSUStringTools danamicGetHeightFromText:titStr WithWidth:WIDTH font:[UIFont systemFontOfSize:16]];
-    CGSize priSize = [MSUStringTools danamicGetWidthFromText:priceStr WithFont:[UIFont systemFontOfSize:18]];
+    CGRect titRect = [MSUStringTools danamicGetHeightFromText:titStr WithWidth:WIDTH font:16];
+    CGSize priSize = [MSUStringTools danamicGetWidthFromText:priceStr WithFont:18];
     
     // 上半部分
     _detail.bgView.frame = CGRectMake(0, 400, WIDTH, 10 + titRect.size.height + 30 + 10);
@@ -120,60 +129,6 @@
     geuss.collectionView.delegate = self;
     geuss.collectionView.dataSource = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
-}
-
-- (void)createBottomView{
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, HEIGHT-50, WIDTH, 1)];
-    bgView.backgroundColor = BGLINECOLOR;
-    [self.view addSubview:bgView];
-    
-    UIButton *letterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    letterBtn.backgroundColor = [UIColor whiteColor];
-    [letterBtn setTitle:@"私信" forState:UIControlStateNormal];
-    [letterBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    letterBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    letterBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
-    letterBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [letterBtn setImage:[MSUPathTools showImageWithContentOfFileByName:@"like"] forState:UIControlStateNormal];
-    letterBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 5);
-    [self.view addSubview:letterBtn];
-    [letterBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.view.bottom).offset(0);
-        make.left.equalTo(self.view.left).offset(0);
-        make.width.equalTo(WIDTH*0.25);
-        make.height.equalTo(49);
-    }];
-    
-    UIButton *collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    collectBtn.backgroundColor = [UIColor whiteColor];
-    [collectBtn setTitle:@"收藏" forState:UIControlStateNormal];
-    [collectBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    collectBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    collectBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
-    collectBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [collectBtn setImage:[MSUPathTools showImageWithContentOfFileByName:@"like"] forState:UIControlStateNormal];
-    collectBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 5);
-    [self.view addSubview:collectBtn];
-    [collectBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.view.bottom).offset(0);
-        make.left.equalTo(letterBtn.right).offset(0);
-        make.width.equalTo(WIDTH*0.25);
-        make.height.equalTo(49);
-    }];
-    
-    UIButton *buyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    buyBtn.backgroundColor = [UIColor redColor];
-    [buyBtn setTitle:@"立即购买" forState:UIControlStateNormal];
-    buyBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    [self.view addSubview:buyBtn];
-    [buyBtn addTarget:self action:@selector(buyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [buyBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.view.bottom).offset(0);
-        make.left.equalTo(collectBtn.right).offset(0);
-        make.width.equalTo(WIDTH*0.5);
-        make.height.equalTo(49);
-    }];
-
 }
 
 #pragma mark - 代理
@@ -238,7 +193,6 @@
     self.hidesBottomBarWhenPushed = YES;
     MSUOrderSureController *order = [[MSUOrderSureController alloc] init];
     [self.navigationController pushViewController:order animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 @end

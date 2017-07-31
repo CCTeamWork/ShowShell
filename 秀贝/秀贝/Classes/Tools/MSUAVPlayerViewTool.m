@@ -151,10 +151,6 @@
 }
 
 #pragma mark - 系统通知
-- (void)notifacation{
-    
-}
-
 /* 系统自带监听方法 */
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object

@@ -135,7 +135,7 @@
             make.top.equalTo(attentionLab.bottom).offset(0);
             make.left.equalTo(self.left).offset(0);
             make.width.equalTo(SelfWidth);
-            make.height.equalTo(70);
+            make.height.equalTo(60);
         }];
   
         // 猜你喜欢
@@ -147,12 +147,12 @@
         geussLab.backgroundColor = [UIColor yellowColor];
         [self addSubview:geussLab];
         [geussLab makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(bgView.top).offset(20);
+            make.top.equalTo(bgView.top).offset(15);
             make.left.equalTo(self.left).offset(SelfWidth * 0.5-50);
             make.width.equalTo(110);
-            make.height.equalTo(40);
+            make.height.equalTo(30);
         }];
-        geussLab.layer.cornerRadius = 20;
+        geussLab.layer.cornerRadius = 15;
         geussLab.clipsToBounds = YES;
         geussLab.layer.shouldRasterize = YES;
         geussLab.layer.rasterizationScale = [UIScreen mainScreen].scale;

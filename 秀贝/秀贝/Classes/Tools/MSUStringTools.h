@@ -26,11 +26,14 @@
 /* 富文本 修改局部字段颜色 */
 + (NSMutableAttributedString*)changeLabelWithText:(NSString*)needText AndFromOrigiFont:(CGFloat)origi toChangeFont:(CGFloat)change AndFromOrigiLoca:(NSInteger)loca WithBeforePart:(NSInteger)part;
 
+/* 在已有字符串中 修改 输入字符 颜色和大小 */
++ (NSMutableAttributedString *)makeKeyWordAttributedWithSubText:(NSString *)subText inOrigiText:(NSString *)origiText;
+
 /* 动态获取 String 宽 */
-+ (CGSize)danamicGetWidthFromText:(NSString *)text WithFont:(UIFont *)font;
++ (CGSize)danamicGetWidthFromText:(NSString *)text WithFont:(CGFloat)font;
 
 /* 动态获取 String 高 */
-+ (CGRect)danamicGetHeightFromText:(NSString *)text WithWidth:(CGFloat)width font:(UIFont *)font;
++ (CGRect)danamicGetHeightFromText:(NSString *)text WithWidth:(CGFloat)width font:(CGFloat)font;
 
 
 @end

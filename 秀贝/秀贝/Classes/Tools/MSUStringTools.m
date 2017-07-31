@@ -100,7 +100,7 @@
 }
 
 #pragma mark - 富文本 修改局部字段颜色
-/* 富文本 修改局部字段颜色 */
+/* 富文本 修改局部（前半部或后半部）字段颜色 */
 + (NSMutableAttributedString*)changeLabelWithText:(NSString*)needText AndFromOrigiFont:(CGFloat)origi toChangeFont:(CGFloat)change AndFromOrigiLoca:(NSInteger)loca WithBeforePart:(NSInteger)part
 {
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:needText];
@@ -125,16 +125,33 @@
     return attrString;
 }
 
+/* 在已有字符串中 修改 输入字符 颜色和大小 */
++ (NSMutableAttributedString *)makeKeyWordAttributedWithSubText:(NSString *)subText inOrigiText:(NSString *)origiText{
+    // 获取关键字的位置
+    NSRange range = [origiText rangeOfString:subText];
+    
+    // 转换成可以操作的字符串类型.
+    NSMutableAttributedString *attribute = [[NSMutableAttributedString alloc] initWithString:origiText];
+    
+    // 添加属性(粗体)
+    [attribute addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:range];
+    
+    // 关键字高亮
+    [attribute addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:range];
+    
+    return attribute;
+}
+
 #pragma amrk - 动态获取 String 宽高
 /* 动态获取 String 宽 */
-+ (CGSize)danamicGetWidthFromText:(NSString *)text WithFont:(UIFont *)font{
-    CGSize size = [text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
++ (CGSize)danamicGetWidthFromText:(NSString *)text WithFont:(CGFloat)font{
+    CGSize size = [text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:font],NSFontAttributeName, nil]];
     return size;
 }
 
 /* 动态获取 String 高 */
-+ (CGRect)danamicGetHeightFromText:(NSString *)text WithWidth:(CGFloat)width font:(UIFont *)font{
-    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil] context:nil];
++ (CGRect)danamicGetHeightFromText:(NSString *)text WithWidth:(CGFloat)width font:(CGFloat)font{
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:font],NSFontAttributeName, nil] context:nil];
     return rect;
 }
 

@@ -263,26 +263,27 @@
 #pragma mark - 搜索框视图
 - (void)createSerachNavView{
     /// 搜索框
-//    self.search = [[UISearchBar alloc]initWithFrame:CGRectMake(10, 0, WIDTH-10-60, 44)];
-//    _search.placeholder =  @"请搜索输入";
-//    _search.searchBarStyle = UISearchBarStyleMinimal;
-//    _search.backgroundImage = [self imageWithColor:WHITECOLOR size:_search.bounds.size];
-//    [self addSubview:_search];
-    
-    self.search = [[UISearchBar alloc]initWithFrame:CGRectMake(10, 3, WIDTH-10-60, 38)];
-    _search.placeholder =  @"搜索商品、视频";
+    self.search = [[UISearchBar alloc]initWithFrame:CGRectMake(10, 0, WIDTH-10-60, 44)];
+    _search.placeholder =  @"搜索感兴趣的内容";
+    _search.searchBarStyle = UISearchBarStyleMinimal;
     _search.backgroundImage = [self imageWithColor:WHITECOLOR size:_search.bounds.size];
-    _search.layer.borderColor = NavColor.CGColor;
-    _search.layer.borderWidth = 2;
-    _search.layer.cornerRadius = 7;
-    _search.clipsToBounds = YES;
     [self addSubview:_search];
+    
+//    self.search = [[UISearchBar alloc]initWithFrame:CGRectMake(10, 3, WIDTH-10-60, 38)];
+//    _search.placeholder =  @"搜索感兴趣的内容";
+//    _search.backgroundImage = [self imageWithColor:WHITECOLOR size:_search.bounds.size];
+//    _search.layer.borderColor = NavColor.CGColor;
+//    _search.layer.borderWidth = 2;
+//    _search.layer.cornerRadius = 7;
+//    _search.clipsToBounds = YES;
+//    [self addSubview:_search];
     
     /// 取消按钮
     self.searchCancleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:_searchCancleBtn];
     [_searchCancleBtn setTitle:@"取消" forState:UIControlStateNormal];
     _searchCancleBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [_searchCancleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_searchCancleBtn makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.top).offset(0);
         make.left.equalTo(_search.right).offset(5);

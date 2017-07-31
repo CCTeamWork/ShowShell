@@ -89,7 +89,7 @@
     [characLab makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_imaBtn.bottom).offset(25);
         make.left.equalTo(_nickLab.left).offset(0);
-        make.width.equalTo([MSUStringTools danamicGetWidthFromText:characLab.text WithFont:characLab.font].width);
+        make.width.equalTo([MSUStringTools danamicGetWidthFromText:characLab.text WithFont:10].width);
         make.height.equalTo(20);
     }];
     
@@ -102,7 +102,7 @@
     [_attNumLab makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_imaBtn.bottom).offset(10);
         make.centerX.equalTo(characLab.centerX).offset(2);
-        make.width.equalTo([MSUStringTools danamicGetWidthFromText:@"2000.3万" WithFont:_attNumLab.font].width);
+        make.width.equalTo([MSUStringTools danamicGetWidthFromText:@"2000.3万" WithFont:12].width);
         make.height.equalTo(15);
     }];
     
@@ -139,7 +139,7 @@
     [shopLab makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_imaBtn.bottom).offset(25);
         make.left.equalTo(lineView.right).offset(20);
-        make.width.equalTo([MSUStringTools danamicGetWidthFromText:shopLab.text WithFont:shopLab.font].width);
+        make.width.equalTo([MSUStringTools danamicGetWidthFromText:shopLab.text WithFont:10].width);
         make.height.equalTo(20);
     }];
     
@@ -152,7 +152,7 @@
     [_shopNumLab makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_imaBtn.bottom).offset(10);
         make.centerX.equalTo(shopLab.centerX).offset(2);
-        make.width.equalTo([MSUStringTools danamicGetWidthFromText:@"2000.3万" WithFont:_shopNumLab.font].width);
+        make.width.equalTo([MSUStringTools danamicGetWidthFromText:@"2000.3万" WithFont:12].width);
         make.height.equalTo(15);
     }];
     

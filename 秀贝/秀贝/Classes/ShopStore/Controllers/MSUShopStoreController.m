@@ -85,7 +85,7 @@
     if (isAttention) {
         height = 50 + 20;
     }else{
-        height = 50 + 15 + 80 + 70;
+        height = 50 + 15 + 80 + 60;
     }
     MSUDanamicHeaderView *header = [[MSUDanamicHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, height) isAttention:isAttention];
     header.backgroundColor = YELLOWCOLOR;
@@ -124,11 +124,11 @@
     if (cell.isTranspod) {
         // 转发评论
         cell.transpodLab.text = @"转发视频";
-        CGRect transRect = [MSUStringTools danamicGetHeightFromText:cell.transpodLab.text WithWidth:WIDTH-10 font:[UIFont systemFontOfSize:12]];
+        CGRect transRect = [MSUStringTools danamicGetHeightFromText:cell.transpodLab.text WithWidth:WIDTH-10 font:12];
         cell.transpodLab.frame = CGRectMake(10, 50 + 10, WIDTH-20, transRect.size.height);
         // 内容正题
         cell.tittleLab.text = @"有一美人兮，见之不忘。一日不见兮，思之如狂。凤飞翱翔兮，四海求凰。无奈佳人兮，不在东墙。将琴代语兮，聊写衷肠。何日见许兮，慰我彷徨。愿言配德兮，携手相将。不得于飞兮，使我沦亡。";
-        CGRect textRect = [MSUStringTools danamicGetHeightFromText:cell.tittleLab.text WithWidth:WIDTH-10 font:[UIFont systemFontOfSize:12]];
+        CGRect textRect = [MSUStringTools danamicGetHeightFromText:cell.tittleLab.text WithWidth:WIDTH-10 font:12];
         cell.tittleBGView.frame = CGRectMake(0, 50 + 10 + transRect.size.height + 5, WIDTH, textRect.size.height);
         cell.tittleLab.frame = CGRectMake(10, 0, WIDTH-20, textRect.size.height);
         cell.videoBGView.frame = CGRectMake(0, CGRectGetMaxY(cell.tittleBGView.frame), WIDTH, 220);
@@ -139,7 +139,7 @@
     }else{
         // 内容正题
         cell.tittleLab.text = @"有一美人兮，见之不忘。一日不见兮，思之如狂。凤飞翱翔兮，四海求凰。无奈佳人兮，不在东墙。将琴代语兮，聊写衷肠。何日见许兮，慰我彷徨。愿言配德兮，携手相将。不得于飞兮，使我沦亡。";
-        CGRect textRect = [MSUStringTools danamicGetHeightFromText:cell.tittleLab.text WithWidth:WIDTH-10 font:[UIFont systemFontOfSize:12]];
+        CGRect textRect = [MSUStringTools danamicGetHeightFromText:cell.tittleLab.text WithWidth:WIDTH-10 font:12];
         cell.tittleBGView.frame = CGRectMake(0, 50 + 10 , WIDTH, textRect.size.height);
         cell.tittleLab.frame = CGRectMake(10, 0, WIDTH-20, textRect.size.height);
         cell.videoBGView.frame = CGRectMake(0, CGRectGetMaxY(cell.tittleBGView.frame), WIDTH, 210);

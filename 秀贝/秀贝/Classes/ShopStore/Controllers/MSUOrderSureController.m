@@ -45,7 +45,7 @@
     
     // 订单列表
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"icon-z",@"icon",@"叶叶叶叶叶子的个人展览馆",@"tittle",@"天青色等烟雨，而我在等你；炊烟袅袅升起，隔江千万里!",@"text",@"icon-z",@"image",@"88.80",@"price",@"1",@"number" ,nil];
-    self.textHeight = [MSUStringTools danamicGetHeightFromText:dic[@"text"] WithWidth:WIDTH font:[UIFont systemFontOfSize:18]];
+    self.textHeight = [MSUStringTools danamicGetHeightFromText:dic[@"text"] WithWidth:WIDTH font:18];
     
     [_dataArr addObject:dic];
     
