@@ -29,6 +29,7 @@
 #import "MSUSearchUserView.h"
 #import "MSUSearchUserTableCell.h"
 #import "MSUSearchHotView.h"
+#import "MSUAVPlayerViewTool.h"
 
 @interface MSUSearchController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -46,6 +47,8 @@
 
 /// 搜索结果之视频视图
 @property (nonatomic , strong) MSUSearchVideoView *videoView;
+@property (nonatomic , strong) MSUNearbyCell *currentCell;
+@property (nonatomic , strong) MSUAVPlayerViewTool *playView;
 
 /// 搜索结果之用户视图
 @property (nonatomic , strong) MSUSearchUserView *userView;
@@ -108,39 +111,6 @@
     [self createTableView];
     
 }
-
-- (void)seleBtnClick:(UIButton *)sender{
-    [UIView animateWithDuration:0.25 animations:^{
-        _resultView.underLineView.frame = CGRectMake(CGRectGetMidX(sender.frame)-15, 38, 30, 5);
-//        _resultView.underLineView.frame = CGRectMake(WIDTH/8-15+WIDTH/4*(sender.tag-2017), 38, 30, 5);
-    }];
-    
-    NSLog(@"==== 线%f, 按钮 %f ",CGRectGetMidX(_resultView.underLineView.frame),CGRectGetMidX(sender.frame));
-    
-    for (UIButton *btn in _resultView.seleArr) {
-        btn.selected = NO;
-    }
-    sender.selected = YES;
-    
-    
-    if (sender == _resultView.seleArr[0]) {
-        _resultView.scrollView.contentOffset = CGPointMake(0, 0);
-        self.totalView.hidden = NO;
-    }
-    else if (sender == _resultView.seleArr[1]){
-        _resultView.scrollView.contentOffset = CGPointMake(WIDTH, 0);
-        self.videoView.hidden = NO;
-    }
-    else if (sender == _resultView.seleArr[2]){
-        _resultView.scrollView.contentOffset = CGPointMake(WIDTH*2, 0);
-        self.userView.hidden = NO;
-    }
-    else if (sender == _resultView.seleArr[3]){
-        _resultView.scrollView.contentOffset = CGPointMake(WIDTH*3, 0);
-        self.hotView.hidden = NO;
-    }
-}
-
 
 #pragma mark - 视图相关
 /* 导航视图 */
@@ -432,6 +402,73 @@
     }];
 }
 
+- (void)seleBtnClick:(UIButton *)sender{
+    [UIView animateWithDuration:0.25 animations:^{
+        _resultView.underLineView.frame = CGRectMake(CGRectGetMidX(sender.frame)-15, 38, 30, 5);
+        //        _resultView.underLineView.frame = CGRectMake(WIDTH/8-15+WIDTH/4*(sender.tag-2017), 38, 30, 5);
+    }];
+    
+    NSLog(@"==== 线%f, 按钮 %f ",CGRectGetMidX(_resultView.underLineView.frame),CGRectGetMidX(sender.frame));
+    
+    for (UIButton *btn in _resultView.seleArr) {
+        btn.selected = NO;
+    }
+    sender.selected = YES;
+    
+    
+    if (sender == _resultView.seleArr[0]) {
+        _resultView.scrollView.contentOffset = CGPointMake(0, 0);
+        self.totalView.hidden = NO;
+    }
+    else if (sender == _resultView.seleArr[1]){
+        _resultView.scrollView.contentOffset = CGPointMake(WIDTH, 0);
+        self.videoView.hidden = NO;
+    }
+    else if (sender == _resultView.seleArr[2]){
+        _resultView.scrollView.contentOffset = CGPointMake(WIDTH*2, 0);
+        self.userView.hidden = NO;
+    }
+    else if (sender == _resultView.seleArr[3]){
+        _resultView.scrollView.contentOffset = CGPointMake(WIDTH*3, 0);
+        self.hotView.hidden = NO;
+    }
+}
+
+- (void)playBtnClick:(UIButton *)sender{
+    
+    self.currentCell = (MSUNearbyCell *)sender.superview.superview;
+    if (self.playView) {
+        [self releasePlayer];
+        self.playView = [[MSUAVPlayerViewTool alloc] initWithFrame:self.currentCell.videoImaView.bounds];
+    }else{
+        self.playView = [[MSUAVPlayerViewTool alloc] initWithFrame:self.currentCell.videoImaView.bounds];
+    }
+    
+    self.currentCell.playBtn.hidden = YES;
+    [self.currentCell.videoImaView addSubview:_playView];
+    [self.currentCell.videoImaView bringSubviewToFront:_playView];
+}
+
+/* 释放播放器相关 */
+- (void)releasePlayer{
+    //    NSLog(@"view1 : %@",self.playerView.superview.superview.superview);
+    
+    MSUNearbyCell *cell = (MSUNearbyCell *)self.playView.superview.superview.superview;
+    cell.playBtn.hidden = NO;
+    
+    [self.playView.playerItem removeObserver:self.playView  forKeyPath:@"status" context:nil];
+    [self.playView.playerItem removeObserver:self.playView  forKeyPath:@"loadedTimeRanges" context:nil];
+    
+    [self.playView.playerItem  cancelPendingSeeks];
+    [self.playView.playerItem .asset cancelLoading];
+    
+    [self.playView removeFromSuperview];
+    [self.playView .playerLayer removeFromSuperlayer];
+    [self.playView .player replaceCurrentItemWithPlayerItem:nil];
+    self.playView .player = nil;
+    self.playView .playerItem = nil;
+}
+
 
 
 #pragma mark - 初始化
@@ -547,7 +584,7 @@
     // 视频页面
     cell.videoImaView.image = [UIImage imageNamed:@"FoSe.jpeg"];
     // 播放按钮
-    //        [cell.playBtn addTarget:self action:@selector(playBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.playBtn addTarget:self action:@selector(playBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     cell.playBtn.tag = index;
     
     // 是否定位

@@ -11,6 +11,7 @@
 #import "MSUPrefixHeader.pch"
 #import "MSUNearbyCell.h"
 #import "MSUNearbyHeaderView.h"
+#import "MSUMapShowController.h"
 
 /// 工具类
 #import "MSUStringTools.h"
@@ -42,6 +43,11 @@
 
 @implementation MSUNearbyController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.hidesBottomBarWhenPushed = YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -51,6 +57,7 @@
     MSUHomeNavView *nav = [[MSUHomeNavView alloc] initWithFrame:NavRect showNavWithNumber:7];
     [self.view addSubview:nav];
     [nav.backArrowBtn addTarget:self action:@selector(backArrowBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [nav.positionBtn addTarget:self action:@selector(positionBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     // 列表视图
     [self createTableView];
@@ -66,6 +73,13 @@
 /* 返回按钮点击事件 */
 - (void)backArrowBtnClick{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+/* 地图按钮 */
+- (void)positionBtnClick:(UIButton *)sender{
+    self.hidesBottomBarWhenPushed = YES;
+    MSUMapShowController *map = [[MSUMapShowController alloc] init];
+    [self.navigationController pushViewController:map animated:YES];
 }
 
 /* 视频按钮播放按钮 点击事件 */

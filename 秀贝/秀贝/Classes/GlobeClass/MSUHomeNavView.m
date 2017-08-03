@@ -8,6 +8,7 @@
 
 #import "MSUHomeNavView.h"
 #import "MSUPrefixHeader.pch"
+#import "MSUPathTools.h"
 
 @implementation MSUHomeNavView
 
@@ -60,19 +61,31 @@
             case 7:
             {
                 /// 附近动态页面
-                [self createNearbyWithTittle:@"附近动态" rightNumber:1];
+                [self createNearbyWithTittle:@"附近动态" imageName:@"Search"];
             }
                 break;
             case 8:
             {
                 /// 商品详情页面
-                [self createNearbyWithTittle:@"商品详情" rightNumber:1];
+                [self createNearbyWithTittle:@"商品详情" imageName:nil];
             }
                 break;
             case 9:
             {
                 /// 确认订单页面
-                [self createNearbyWithTittle:@"确认订单" rightNumber:0];
+                [self createNearbyWithTittle:@"确认订单" imageName:nil];
+            }
+                break;
+            case 10:
+            {
+                /// 确认订单页面
+                [self createNearbyWithTittle:@"地理位置" imageName:nil];
+            }
+                break;
+            case 11:
+            {
+                /// 确认订单页面
+                [self createNearbyWithTittle:nil imageName:@"Search"];
             }
                 break;
 
@@ -363,7 +376,7 @@
 }
 
 #pragma  mark - 附近人动态
-- (void)createNearbyWithTittle:(NSString *)tittle rightNumber:(NSInteger)number{
+- (void)createNearbyWithTittle:(NSString *)tittle imageName:(NSString *)name{
     // 左箭头
     self.backArrowBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backArrowBtn.backgroundColor = [UIColor blueColor];
@@ -389,10 +402,10 @@
         make.height.equalTo(44);
     }];
     
-    if (number==1) {
+    if (name) {
         // 地图按钮
         self.positionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_positionBtn setImage:[UIImage imageNamed:@"Search"] forState:UIControlStateNormal];
+        [_positionBtn setImage:[MSUPathTools showImageWithContentOfFileByName:name] forState:UIControlStateNormal];
         [self addSubview:_positionBtn];
         [_positionBtn makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.top).offset(7);

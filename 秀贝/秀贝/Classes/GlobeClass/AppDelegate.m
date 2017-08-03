@@ -34,13 +34,27 @@
 #import "WeiboSDK.h"
 //新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加”-ObjC”
 
+//#import <BaiduMapKit/BaiduMapAPI_Map/BMKMapView.h>
+#import <BaiduMapAPI/BMapKit.h>
+
 
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
-
+{
+    BMKMapManager* mapManager;
+}
 @end
 
 @implementation AppDelegate
 
+-(void)setupBaiduMap
+{
+    mapManager = [[BMKMapManager alloc]init];
+    BOOL ret = [mapManager start:@"EHsSKUFoGbPuNNUSebBbiOOgm4bcAFiV" generalDelegate:nil];
+    
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
@@ -68,6 +82,9 @@
     
     // ShareSDK 分享登录相关
     [self registShareSDKInAppDelegate];
+    
+    // 百度地图
+    [self setupBaiduMap];
     
     return YES;
 }
@@ -170,6 +187,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+    [BMKMapView willBackGround];
 }
 
 
@@ -187,6 +205,8 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // 进入app后，将程序通知数量设置为0
 //    [application setApplicationIconBadgeNumber:0];
+    [BMKMapView didForeGround];
+
 }
 
 
@@ -286,5 +306,27 @@
     // 显示通知
     completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge);
 }
+
+- (void)onGetNetworkState:(int)iError
+{
+    if (0 == iError) {
+        NSLog(@"联网成功");
+    }
+    else{
+        NSLog(@"onGetNetworkState %d",iError);
+    }
+    
+}
+
+- (void)onGetPermissionState:(int)iError
+{
+    if (0 == iError) {
+        NSLog(@"授权成功");
+    }
+    else {
+        NSLog(@"onGetPermissionState %d",iError);
+    }
+}
+
 
 @end

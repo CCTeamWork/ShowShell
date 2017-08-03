@@ -53,6 +53,12 @@
 		F01D3AE21F062D3A00FA08EF /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01D3AE11F062D3A00FA08EF /* ImageIO.framework */; };
 		F01D3AE41F062D4600FA08EF /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F01D3AE31F062D4600FA08EF /* libsqlite3.tbd */; };
 		F01D3AE71F06302F00FA08EF /* MSUShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = F01D3AE61F06302F00FA08EF /* MSUShareController.m */; };
+		F02250ED1F31640500D6F61D /* MSUPaoPaoPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F02250EC1F31640500D6F61D /* MSUPaoPaoPopView.m */; };
+		F02250F01F316AD600D6F61D /* MSUPopTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F02250EF1F316AD600D6F61D /* MSUPopTableCell.m */; };
+		F02250F71F31ADC600D6F61D /* MSUVideoDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F02250F61F31ADC600D6F61D /* MSUVideoDetailController.m */; };
+		F02250FA1F31AFA900D6F61D /* MSUVideoDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = F02250F91F31AFA900D6F61D /* MSUVideoDetailView.m */; };
+		F02250FD1F31C0FF00D6F61D /* MSUVideoDetailBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = F02250FC1F31C0FF00D6F61D /* MSUVideoDetailBottomView.m */; };
+		F02251001F31CA0B00D6F61D /* MSUVideoDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F02250FF1F31CA0B00D6F61D /* MSUVideoDetailCommentView.m */; };
 		F02337A81F21E531003204AE /* MSUStringTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F02337A71F21E531003204AE /* MSUStringTools.m */; };
 		F02337AB1F21EDCD003204AE /* MSUDanamicTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F02337AA1F21EDCD003204AE /* MSUDanamicTableCell.m */; };
 		F02337AE1F220247003204AE /* MSUTimerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F02337AD1F220247003204AE /* MSUTimerHandler.m */; };
@@ -118,6 +124,13 @@
 		F033EBB31F26E5FF00DD4F10 /* MSUNearbyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F033EBB21F26E5FF00DD4F10 /* MSUNearbyController.m */; };
 		F033EBB61F26EA9A00DD4F10 /* MSUNearbyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F033EBB51F26EA9A00DD4F10 /* MSUNearbyCell.m */; };
 		F033EBB91F26F1CD00DD4F10 /* MSUNearbyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F033EBB81F26F1CD00DD4F10 /* MSUNearbyHeaderView.m */; };
+		F03C761B1F300E9A0010BE30 /* MSUMapShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F03C761A1F300E9A0010BE30 /* MSUMapShowController.m */; };
+		F03C76201F3019410010BE30 /* location_back_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F03C761F1F3019410010BE30 /* location_back_icon@2x.png */; };
+		F03C76221F301D850010BE30 /* location_green_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F03C76211F301D850010BE30 /* location_green_icon@2x.png */; };
+		F03C762B1F302C520010BE30 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F03C762A1F302C520010BE30 /* BaiduMapAPI.framework */; };
+		F03C762C1F302D530010BE30 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A6B071EFA14BC0046E829 /* Security.framework */; };
+		F03C762E1F302D900010BE30 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F03C762D1F302D900010BE30 /* OpenGLES.framework */; };
+		F03C76301F302D9A0010BE30 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F03C762F1F302D9A0010BE30 /* MessageUI.framework */; };
 		F03CBDDB1EDE506600E9DC3E /* MSUVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = F03CBDDA1EDE506600E9DC3E /* MSUVideoView.m */; };
 		F03CBDE01EDE569300E9DC3E /* MSUPathTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F03CBDDF1EDE569300E9DC3E /* MSUPathTools.m */; };
 		F03CBDE21EDE57D500E9DC3E /* FoSe@2x.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F03CBDE11EDE57D500E9DC3E /* FoSe@2x.jpeg */; };
@@ -134,6 +147,7 @@
 		F04EDB271F1DB2D5006DA738 /* IMG_1234.MOV in Resources */ = {isa = PBXBuildFile; fileRef = F04EDB261F1DB2D5006DA738 /* IMG_1234.MOV */; };
 		F04EDB2A1F1DEC00006DA738 /* TestTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F04EDB291F1DEC00006DA738 /* TestTools.m */; };
 		F04EDB2E1F1DF673006DA738 /* haha.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F04EDB2D1F1DF673006DA738 /* haha.mp4 */; };
+		F077E0C91F3085860015E5D9 /* MSUMapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = F077E0C81F3085860015E5D9 /* MSUMapAnnotationView.m */; };
 		F082D9AC1ED7F86600173948 /* MSULocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F082D9AB1ED7F86600173948 /* MSULocationController.m */; };
 		F082D9B51ED8040200173948 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = F082D9B01ED8040200173948 /* GTMBase64.m */; };
 		F082D9B61ED8040200173948 /* TQLocationConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = F082D9B21ED8040200173948 /* TQLocationConverter.m */; };
@@ -145,6 +159,7 @@
 		F082D9C31ED8126D00173948 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F082D9C21ED8126D00173948 /* CoreLocation.framework */; };
 		F082D9CC1ED9565800173948 /* MSUSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F082D9CB1ED9565800173948 /* MSUSearchController.m */; };
 		F08839541F0CE45500F4E128 /* MSUNaviBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F08839531F0CE45500F4E128 /* MSUNaviBaseController.m */; };
+		F0894E0C1F32D3BE0016836D /* MSUShopSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0894E0B1F32D3BE0016836D /* MSUShopSelectView.m */; };
 		F08F66321F0F2765001CFEB8 /* MSUCameraPhotoVc.m in Sources */ = {isa = PBXBuildFile; fileRef = F08F66311F0F2765001CFEB8 /* MSUCameraPhotoVc.m */; };
 		F08F66571F0F7D04001CFEB8 /* MSUQRCodeTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F08F66561F0F7D04001CFEB8 /* MSUQRCodeTools.m */; };
 		F0A21ECF1F29725500305FB3 /* MSUGeussLikeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A21ECE1F29725500305FB3 /* MSUGeussLikeView.m */; };
@@ -155,6 +170,8 @@
 		F0A21EE11F29BA0200305FB3 /* MSUOrderContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A21EE01F29BA0200305FB3 /* MSUOrderContentView.m */; };
 		F0A21EE41F29BE1F00305FB3 /* MSUOrderSureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A21EE31F29BE1F00305FB3 /* MSUOrderSureCell.m */; };
 		F0A21EE71F29DE8B00305FB3 /* MSUPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A21EE61F29DE8B00305FB3 /* MSUPayView.m */; };
+		F0C02C731F32B092006B2B47 /* MSUVideoCommentTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C02C721F32B092006B2B47 /* MSUVideoCommentTableCell.m */; };
+		F0C02C761F32C6D9006B2B47 /* MSUCommentTextTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C02C751F32C6D9006B2B47 /* MSUCommentTextTableCell.m */; };
 		F0D3E6461EDF9F98003F36AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0D3E6451EDF9F98003F36AA /* Images.xcassets */; };
 		F0D73EC21EE7962700102779 /* cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0D73EC11EE7962700102779 /* cities.plist */; };
 		F0D73F181EE7D6DC00102779 /* MSUAFNRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D73F171EE7D6DC00102779 /* MSUAFNRequest.m */; };
@@ -272,6 +289,18 @@
 		F01D3AE31F062D4600FA08EF /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		F01D3AE51F06302F00FA08EF /* MSUShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUShareController.h; sourceTree = "<group>"; };
 		F01D3AE61F06302F00FA08EF /* MSUShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUShareController.m; sourceTree = "<group>"; };
+		F02250EB1F31640500D6F61D /* MSUPaoPaoPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUPaoPaoPopView.h; sourceTree = "<group>"; };
+		F02250EC1F31640500D6F61D /* MSUPaoPaoPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUPaoPaoPopView.m; sourceTree = "<group>"; };
+		F02250EE1F316AD600D6F61D /* MSUPopTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUPopTableCell.h; sourceTree = "<group>"; };
+		F02250EF1F316AD600D6F61D /* MSUPopTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUPopTableCell.m; sourceTree = "<group>"; };
+		F02250F51F31ADC600D6F61D /* MSUVideoDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUVideoDetailController.h; sourceTree = "<group>"; };
+		F02250F61F31ADC600D6F61D /* MSUVideoDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUVideoDetailController.m; sourceTree = "<group>"; };
+		F02250F81F31AFA900D6F61D /* MSUVideoDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUVideoDetailView.h; sourceTree = "<group>"; };
+		F02250F91F31AFA900D6F61D /* MSUVideoDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUVideoDetailView.m; sourceTree = "<group>"; };
+		F02250FB1F31C0FF00D6F61D /* MSUVideoDetailBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUVideoDetailBottomView.h; sourceTree = "<group>"; };
+		F02250FC1F31C0FF00D6F61D /* MSUVideoDetailBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUVideoDetailBottomView.m; sourceTree = "<group>"; };
+		F02250FE1F31CA0B00D6F61D /* MSUVideoDetailCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUVideoDetailCommentView.h; sourceTree = "<group>"; };
+		F02250FF1F31CA0B00D6F61D /* MSUVideoDetailCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUVideoDetailCommentView.m; sourceTree = "<group>"; };
 		F02337A61F21E531003204AE /* MSUStringTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUStringTools.h; sourceTree = "<group>"; };
 		F02337A71F21E531003204AE /* MSUStringTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUStringTools.m; sourceTree = "<group>"; };
 		F02337A91F21EDCD003204AE /* MSUDanamicTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUDanamicTableCell.h; sourceTree = "<group>"; };
@@ -448,6 +477,13 @@
 		F033EBB51F26EA9A00DD4F10 /* MSUNearbyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUNearbyCell.m; sourceTree = "<group>"; };
 		F033EBB71F26F1CD00DD4F10 /* MSUNearbyHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUNearbyHeaderView.h; sourceTree = "<group>"; };
 		F033EBB81F26F1CD00DD4F10 /* MSUNearbyHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUNearbyHeaderView.m; sourceTree = "<group>"; };
+		F03C76191F300E9A0010BE30 /* MSUMapShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUMapShowController.h; sourceTree = "<group>"; };
+		F03C761A1F300E9A0010BE30 /* MSUMapShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUMapShowController.m; sourceTree = "<group>"; };
+		F03C761F1F3019410010BE30 /* location_back_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_back_icon@2x.png"; sourceTree = "<group>"; };
+		F03C76211F301D850010BE30 /* location_green_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_green_icon@2x.png"; sourceTree = "<group>"; };
+		F03C762A1F302C520010BE30 /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
+		F03C762D1F302D900010BE30 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		F03C762F1F302D9A0010BE30 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F03CBDD91EDE506600E9DC3E /* MSUVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUVideoView.h; sourceTree = "<group>"; };
 		F03CBDDA1EDE506600E9DC3E /* MSUVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUVideoView.m; sourceTree = "<group>"; };
 		F03CBDDE1EDE569300E9DC3E /* MSUPathTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUPathTools.h; sourceTree = "<group>"; };
@@ -473,6 +509,8 @@
 		F04EDB281F1DEBFF006DA738 /* TestTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTools.h; sourceTree = "<group>"; };
 		F04EDB291F1DEC00006DA738 /* TestTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTools.m; sourceTree = "<group>"; };
 		F04EDB2D1F1DF673006DA738 /* haha.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = haha.mp4; sourceTree = "<group>"; };
+		F077E0C71F3085860015E5D9 /* MSUMapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUMapAnnotationView.h; sourceTree = "<group>"; };
+		F077E0C81F3085860015E5D9 /* MSUMapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUMapAnnotationView.m; sourceTree = "<group>"; };
 		F082D9AA1ED7F86600173948 /* MSULocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSULocationController.h; sourceTree = "<group>"; };
 		F082D9AB1ED7F86600173948 /* MSULocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSULocationController.m; sourceTree = "<group>"; };
 		F082D9AF1ED8040200173948 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
@@ -491,6 +529,8 @@
 		F082D9CB1ED9565800173948 /* MSUSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUSearchController.m; sourceTree = "<group>"; };
 		F08839521F0CE45500F4E128 /* MSUNaviBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUNaviBaseController.h; sourceTree = "<group>"; };
 		F08839531F0CE45500F4E128 /* MSUNaviBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUNaviBaseController.m; sourceTree = "<group>"; };
+		F0894E0A1F32D3BE0016836D /* MSUShopSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUShopSelectView.h; sourceTree = "<group>"; };
+		F0894E0B1F32D3BE0016836D /* MSUShopSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUShopSelectView.m; sourceTree = "<group>"; };
 		F08F66301F0F2765001CFEB8 /* MSUCameraPhotoVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUCameraPhotoVc.h; sourceTree = "<group>"; };
 		F08F66311F0F2765001CFEB8 /* MSUCameraPhotoVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUCameraPhotoVc.m; sourceTree = "<group>"; };
 		F08F66551F0F7D04001CFEB8 /* MSUQRCodeTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUQRCodeTools.h; sourceTree = "<group>"; };
@@ -511,6 +551,10 @@
 		F0A21EE31F29BE1F00305FB3 /* MSUOrderSureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUOrderSureCell.m; sourceTree = "<group>"; };
 		F0A21EE51F29DE8B00305FB3 /* MSUPayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUPayView.h; sourceTree = "<group>"; };
 		F0A21EE61F29DE8B00305FB3 /* MSUPayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUPayView.m; sourceTree = "<group>"; };
+		F0C02C711F32B092006B2B47 /* MSUVideoCommentTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUVideoCommentTableCell.h; sourceTree = "<group>"; };
+		F0C02C721F32B092006B2B47 /* MSUVideoCommentTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUVideoCommentTableCell.m; sourceTree = "<group>"; };
+		F0C02C741F32C6D9006B2B47 /* MSUCommentTextTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUCommentTextTableCell.h; sourceTree = "<group>"; };
+		F0C02C751F32C6D9006B2B47 /* MSUCommentTextTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUCommentTextTableCell.m; sourceTree = "<group>"; };
 		F0D3E6451EDF9F98003F36AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F0D73EC11EE7962700102779 /* cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cities.plist; sourceTree = "<group>"; };
 		F0D73F161EE7D6DC00102779 /* MSUAFNRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUAFNRequest.h; sourceTree = "<group>"; };
@@ -545,6 +589,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F03C76301F302D9A0010BE30 /* MessageUI.framework in Frameworks */,
+				F03C762E1F302D900010BE30 /* OpenGLES.framework in Frameworks */,
+				F03C762C1F302D530010BE30 /* Security.framework in Frameworks */,
 				F01D3AE41F062D4600FA08EF /* libsqlite3.tbd in Frameworks */,
 				F01D3AE21F062D3A00FA08EF /* ImageIO.framework in Frameworks */,
 				F01D3AE01F062D0A00FA08EF /* libicucore.tbd in Frameworks */,
@@ -589,6 +636,7 @@
 				F082D9BF1ED8109D00173948 /* AssetsLibrary.framework in Frameworks */,
 				F082D9BB1ED8108B00173948 /* EventKit.framework in Frameworks */,
 				F082D9B91ED8108600173948 /* Photos.framework in Frameworks */,
+				F03C762B1F302C520010BE30 /* BaiduMapAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,6 +872,25 @@
 			path = Required;
 			sourceTree = "<group>";
 		};
+		F02250F11F31AD8200D6F61D /* VideoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F02250F81F31AFA900D6F61D /* MSUVideoDetailView.h */,
+				F02250F91F31AFA900D6F61D /* MSUVideoDetailView.m */,
+				F02250FB1F31C0FF00D6F61D /* MSUVideoDetailBottomView.h */,
+				F02250FC1F31C0FF00D6F61D /* MSUVideoDetailBottomView.m */,
+				F02250FE1F31CA0B00D6F61D /* MSUVideoDetailCommentView.h */,
+				F02250FF1F31CA0B00D6F61D /* MSUVideoDetailCommentView.m */,
+				F0C02C711F32B092006B2B47 /* MSUVideoCommentTableCell.h */,
+				F0C02C721F32B092006B2B47 /* MSUVideoCommentTableCell.m */,
+				F0C02C741F32C6D9006B2B47 /* MSUCommentTextTableCell.h */,
+				F0C02C751F32C6D9006B2B47 /* MSUCommentTextTableCell.m */,
+				F0894E0A1F32D3BE0016836D /* MSUShopSelectView.h */,
+				F0894E0B1F32D3BE0016836D /* MSUShopSelectView.m */,
+			);
+			path = VideoDetail;
+			sourceTree = "<group>";
+		};
 		F02A6BF11EFA21E00046E829 /* AliPay */ = {
 			isa = PBXGroup;
 			children = (
@@ -957,6 +1024,7 @@
 		F032902F1ED6D51E009BA6BB /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				F03C76291F302C520010BE30 /* Vendors */,
 				F01D3A9B1F062C9F00FA08EF /* ShareSDK */,
 				F02A6BF11EFA21E00046E829 /* AliPay */,
 				F03290301ED6D51E009BA6BB /* MSUProgressHUD */,
@@ -1251,6 +1319,10 @@
 				F024DCEC1F2830B000DDA48F /* MSUShopDetailController.m */,
 				F0A21ED91F29B58900305FB3 /* MSUOrderSureController.h */,
 				F0A21EDA1F29B58900305FB3 /* MSUOrderSureController.m */,
+				F03C76191F300E9A0010BE30 /* MSUMapShowController.h */,
+				F03C761A1F300E9A0010BE30 /* MSUMapShowController.m */,
+				F02250F51F31ADC600D6F61D /* MSUVideoDetailController.h */,
+				F02250F61F31ADC600D6F61D /* MSUVideoDetailController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1265,6 +1337,8 @@
 		F03290731ED6D51E009BA6BB /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				F03C76211F301D850010BE30 /* location_green_icon@2x.png */,
+				F03C761F1F3019410010BE30 /* location_back_icon@2x.png */,
 				F024DCF11F283AB500DDA48F /* 1.jpg */,
 				F024DCF21F283AB500DDA48F /* 2.jpg */,
 				F024DCF31F283AB500DDA48F /* 3.jpg */,
@@ -1293,6 +1367,8 @@
 		F03290761ED6D51E009BA6BB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F02250F11F31AD8200D6F61D /* VideoDetail */,
+				F077E0C61F3085540015E5D9 /* Map */,
 				F0A21EDE1F29B9D800305FB3 /* Shop */,
 				F02337A91F21EDCD003204AE /* MSUDanamicTableCell.h */,
 				F02337AA1F21EDCD003204AE /* MSUDanamicTableCell.m */,
@@ -1412,6 +1488,27 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		F03C76291F302C520010BE30 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				F03C762A1F302C520010BE30 /* BaiduMapAPI.framework */,
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
+		F077E0C61F3085540015E5D9 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				F077E0C71F3085860015E5D9 /* MSUMapAnnotationView.h */,
+				F077E0C81F3085860015E5D9 /* MSUMapAnnotationView.m */,
+				F02250EB1F31640500D6F61D /* MSUPaoPaoPopView.h */,
+				F02250EC1F31640500D6F61D /* MSUPaoPaoPopView.m */,
+				F02250EE1F316AD600D6F61D /* MSUPopTableCell.h */,
+				F02250EF1F316AD600D6F61D /* MSUPopTableCell.m */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		F082D9AD1ED803F000173948 /* 定位权限相关 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1451,6 +1548,8 @@
 		F3229DFC9695EA7B36E437D6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F03C762F1F302D9A0010BE30 /* MessageUI.framework */,
+				F03C762D1F302D900010BE30 /* OpenGLES.framework */,
 				F01D3AE31F062D4600FA08EF /* libsqlite3.tbd */,
 				F01D3AE11F062D3A00FA08EF /* ImageIO.framework */,
 				F01D3ADF1F062D0A00FA08EF /* libicucore.tbd */,
@@ -1604,6 +1703,7 @@
 				F03290931ED6D51E009BA6BB /* QRCodeRightTop@2x.png in Resources */,
 				F0D745C41ED6DA2B00039672 /* Search@3x.png in Resources */,
 				F0D745C31ED6DA2B00039672 /* scan@3x.png in Resources */,
+				F03C76201F3019410010BE30 /* location_back_icon@2x.png in Resources */,
 				F01D3AC61F062CA000FA08EF /* ShareSDKConfigFile.bundle in Resources */,
 				F024DCF81F283AB500DDA48F /* 4.jpg in Resources */,
 				F0D745B11ED6DA1A00039672 /* video@2x.png in Resources */,
@@ -1650,6 +1750,7 @@
 				F024DCF71F283AB500DDA48F /* 3.jpg in Resources */,
 				F0D745C11ED6DA2B00039672 /* myself@3x.png in Resources */,
 				F0D745B21ED6DA1A00039672 /* videochoose@2x.png in Resources */,
+				F03C76221F301D850010BE30 /* location_green_icon@2x.png in Resources */,
 				F0D745AD1ED6DA1A00039672 /* myself@2x.png in Resources */,
 				F0D745C81ED6DE7600039672 /* logo@2x.png in Resources */,
 				F0D745A91ED6DA1A00039672 /* home@2x.png in Resources */,
@@ -1730,19 +1831,24 @@
 			files = (
 				F08839541F0CE45500F4E128 /* MSUNaviBaseController.m in Sources */,
 				F0A21EE71F29DE8B00305FB3 /* MSUPayView.m in Sources */,
+				F077E0C91F3085860015E5D9 /* MSUMapAnnotationView.m in Sources */,
 				F082D9AC1ED7F86600173948 /* MSULocationController.m in Sources */,
 				F082D9B51ED8040200173948 /* GTMBase64.m in Sources */,
 				F00B70381ED566E400629CEA /* main.m in Sources */,
 				F0156F5A1F20BC38005CF610 /* MSUHomeCollectionCell.m in Sources */,
 				F02337AE1F220247003204AE /* MSUTimerHandler.m in Sources */,
 				F042F7901F2F130C004F201E /* MSUSearchUserView.m in Sources */,
+				F0C02C761F32C6D9006B2B47 /* MSUCommentTextTableCell.m in Sources */,
+				F02250FD1F31C0FF00D6F61D /* MSUVideoDetailBottomView.m in Sources */,
 				F02A6C561EFA21E00046E829 /* NSDataEx.m in Sources */,
 				F0A21EE11F29BA0200305FB3 /* MSUOrderContentView.m in Sources */,
 				F082D9B71ED8040200173948 /* ZCChinaLocation.m in Sources */,
 				F032908E1ED6D51E009BA6BB /* MSUHomePageController.m in Sources */,
 				F082D9CC1ED9565800173948 /* MSUSearchController.m in Sources */,
 				F032908F1ED6D51E009BA6BB /* MSUScanController.m in Sources */,
+				F03C761B1F300E9A0010BE30 /* MSUMapShowController.m in Sources */,
 				F033EBB31F26E5FF00DD4F10 /* MSUNearbyController.m in Sources */,
+				F0894E0C1F32D3BE0016836D /* MSUShopSelectView.m in Sources */,
 				F042F78D1F2F019D004F201E /* MSUSearchVideoView.m in Sources */,
 				F00BDCA61F2AC75700EC05CB /* MSUShopDetailBoottomView.m in Sources */,
 				F02A6C591EFA21E00046E829 /* RSADataVerifier.m in Sources */,
@@ -1755,6 +1861,7 @@
 				F024DD0A1F28A37A00DDA48F /* MSUAVPlayerViewTool.m in Sources */,
 				F04EDB2A1F1DEC00006DA738 /* TestTools.m in Sources */,
 				F03CBDE51EDE582700E9DC3E /* MSUPlayerController.m in Sources */,
+				F02250FA1F31AFA900D6F61D /* MSUVideoDetailView.m in Sources */,
 				F024DCFB1F28785700DDA48F /* MSUStoreInfoView.m in Sources */,
 				F033EBB61F26EA9A00DD4F10 /* MSUNearbyCell.m in Sources */,
 				F02337A81F21E531003204AE /* MSUStringTools.m in Sources */,
@@ -1771,15 +1878,18 @@
 				F00CE0481F25E3D0001B6445 /* MSUDanamicHeaderView.m in Sources */,
 				F024DCED1F2830B000DDA48F /* MSUShopDetailController.m in Sources */,
 				F03CBDE01EDE569300E9DC3E /* MSUPathTools.m in Sources */,
+				F02250F71F31ADC600D6F61D /* MSUVideoDetailController.m in Sources */,
 				F032909B1ED6D51E009BA6BB /* MSUScanView.m in Sources */,
 				F032909D1ED6D51E009BA6BB /* MSUShopStoreController.m in Sources */,
 				F03CBDDB1EDE506600E9DC3E /* MSUVideoView.m in Sources */,
+				F02251001F31CA0B00D6F61D /* MSUVideoDetailCommentView.m in Sources */,
 				F0A21ED51F298A7200305FB3 /* MSUCommentView.m in Sources */,
 				F02A6C541EFA21E00046E829 /* Order.m in Sources */,
 				F03290851ED6D51E009BA6BB /* MSUHUD.m in Sources */,
 				F042F78A1F2ED55C004F201E /* MSUHotTableCell.m in Sources */,
 				F02337AB1F21EDCD003204AE /* MSUDanamicTableCell.m in Sources */,
 				F03290891ED6D51E009BA6BB /* SVProgressHUD.m in Sources */,
+				F02250F01F316AD600D6F61D /* MSUPopTableCell.m in Sources */,
 				F0D73F181EE7D6DC00102779 /* MSUAFNRequest.m in Sources */,
 				F03290861ED6D51E009BA6BB /* SVIndefiniteAnimatedView.m in Sources */,
 				F00BDCAA1F2AD9DE00EC05CB /* MSUSearchCollectionCell.m in Sources */,
@@ -1791,10 +1901,12 @@
 				F02A6C571EFA21E00046E829 /* openssl_wrapper.m in Sources */,
 				F032909E1ED6D51E009BA6BB /* MSUPermissionTool.m in Sources */,
 				F01D3AE71F06302F00FA08EF /* MSUShareController.m in Sources */,
+				F02250ED1F31640500D6F61D /* MSUPaoPaoPopView.m in Sources */,
 				F032908B1ED6D51E009BA6BB /* AppDelegate.m in Sources */,
 				F032908D1ED6D51E009BA6BB /* MSUTabbarController.m in Sources */,
 				F01D3A971F06245F00FA08EF /* MSUAliPayController.m in Sources */,
 				F033EBB91F26F1CD00DD4F10 /* MSUNearbyHeaderView.m in Sources */,
+				F0C02C731F32B092006B2B47 /* MSUVideoCommentTableCell.m in Sources */,
 				F024DCF01F28345700DDA48F /* MSUShopDetailView.m in Sources */,
 				F042F7961F2F1F44004F201E /* MSUSearchHotView.m in Sources */,
 				F0A21EE41F29BE1F00305FB3 /* MSUOrderSureCell.m in Sources */,
@@ -1954,6 +2066,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VF4Q39SD8Y;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/秀贝/Classes/Framework/AliPay",
@@ -1963,6 +2076,7 @@
 					"$(PROJECT_DIR)/秀贝/Classes/Framework/ShareSDK/ShareSDK/Support/PlatformConnector",
 					"$(PROJECT_DIR)/秀贝/Classes/Framework/ShareSDK/ShareSDK/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/秀贝/Classes/Framework/ShareSDK/ShareSDK/Support/Required",
+					"$(PROJECT_DIR)/秀贝/Classes/Framework/Vendors",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1998,6 +2112,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VF4Q39SD8Y;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/秀贝/Classes/Framework/AliPay",
@@ -2007,6 +2122,7 @@
 					"$(PROJECT_DIR)/秀贝/Classes/Framework/ShareSDK/ShareSDK/Support/PlatformConnector",
 					"$(PROJECT_DIR)/秀贝/Classes/Framework/ShareSDK/ShareSDK/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/秀贝/Classes/Framework/ShareSDK/ShareSDK/Support/Required",
+					"$(PROJECT_DIR)/秀贝/Classes/Framework/Vendors",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

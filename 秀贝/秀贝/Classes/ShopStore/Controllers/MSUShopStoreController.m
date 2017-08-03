@@ -15,6 +15,7 @@
 #import "MSUDanamicHeaderView.h"
 #import "MSUNearbyController.h"
 #import "MSUShopDetailController.h"
+#import "MSUVideoDetailController.h"
 
 /// 视频播放器
 #import <AVFoundation/AVFoundation.h>
@@ -167,7 +168,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.hidesBottomBarWhenPushed = YES;
-    MSUShopDetailController *detail = [[MSUShopDetailController alloc] init];
+    MSUVideoDetailController *detail = [[MSUVideoDetailController alloc] init];
     [self.navigationController pushViewController:detail animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
