@@ -10,4 +10,13 @@
 
 @interface MSUShopSelectView : UIView
 
+/// 购买按钮
+@property (nonatomic , strong) UIButton *buyBtn;
+
+/// 取消按钮
+@property (nonatomic , strong) UIButton *cancelBtn;
+
+/// 商品列表
+@property (nonatomic , strong) UITableView *seleTableView;
+
 @end

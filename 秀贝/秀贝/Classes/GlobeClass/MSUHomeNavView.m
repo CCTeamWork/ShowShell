@@ -61,31 +61,37 @@
             case 7:
             {
                 /// 附近动态页面
-                [self createNearbyWithTittle:@"附近动态" imageName:@"Search"];
+                [self createNearbyWithTittle:@"附近动态" imageName:@"Search" title:nil];
             }
                 break;
             case 8:
             {
                 /// 商品详情页面
-                [self createNearbyWithTittle:@"商品详情" imageName:nil];
+                [self createNearbyWithTittle:@"商品详情" imageName:nil title:nil];
             }
                 break;
             case 9:
             {
                 /// 确认订单页面
-                [self createNearbyWithTittle:@"确认订单" imageName:nil];
+                [self createNearbyWithTittle:@"确认订单" imageName:nil title:nil];
             }
                 break;
             case 10:
             {
                 /// 确认订单页面
-                [self createNearbyWithTittle:@"地理位置" imageName:nil];
+                [self createNearbyWithTittle:@"地理位置" imageName:nil title:nil];
             }
                 break;
             case 11:
             {
                 /// 确认订单页面
-                [self createNearbyWithTittle:nil imageName:@"Search"];
+                [self createNearbyWithTittle:nil imageName:@"Search" title:nil];
+            }
+                break;
+            case 12:
+            {
+                /// 确认订单页面
+                [self createNearbyWithTittle:@"转发" imageName:@"1" title:@"发布"];
             }
                 break;
 
@@ -376,7 +382,7 @@
 }
 
 #pragma  mark - 附近人动态
-- (void)createNearbyWithTittle:(NSString *)tittle imageName:(NSString *)name{
+- (void)createNearbyWithTittle:(NSString *)tittle imageName:(NSString *)name title:(NSString *)rightTitle{
     // 左箭头
     self.backArrowBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backArrowBtn.backgroundColor = [UIColor blueColor];
@@ -406,11 +412,13 @@
         // 地图按钮
         self.positionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_positionBtn setImage:[MSUPathTools showImageWithContentOfFileByName:name] forState:UIControlStateNormal];
+        [_positionBtn setTitle:rightTitle forState:UIControlStateNormal];
+        [_positionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self addSubview:_positionBtn];
         [_positionBtn makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.top).offset(7);
             make.right.equalTo(self.right).offset(-10);
-            make.width.equalTo(30);
+            make.width.equalTo(40);
             make.height.equalTo(30);
         }];
     }

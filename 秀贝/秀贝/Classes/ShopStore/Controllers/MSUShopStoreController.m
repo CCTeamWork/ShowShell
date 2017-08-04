@@ -16,6 +16,7 @@
 #import "MSUNearbyController.h"
 #import "MSUShopDetailController.h"
 #import "MSUVideoDetailController.h"
+#import "MSUDanamicTranspodController.h"
 
 /// 视频播放器
 #import <AVFoundation/AVFoundation.h>
@@ -162,6 +163,7 @@
     }
     
     self.cellHeight = CGRectGetMaxY(cell.lineView.frame) + 40 + 20;
+    [cell.transpodBtn addTarget:self action:@selector(transpodBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 }
@@ -192,6 +194,13 @@
 }
 
 #pragma mark - 按钮点击事件
+- (void)transpodBtnClick:(UIButton *)sender{
+    self.hidesBottomBarWhenPushed = YES;
+    MSUDanamicTranspodController *trans = [[MSUDanamicTranspodController alloc] init];
+    [self.navigationController pushViewController:trans animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
 /* 视频按钮播放按钮 点击事件 */
 - (void)playBtnClick:(UIButton *)sender{
     NSLog(@"点击了第%ld个按钮",sender.tag);

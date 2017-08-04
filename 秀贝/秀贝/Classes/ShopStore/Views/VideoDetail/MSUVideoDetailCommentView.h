@@ -16,6 +16,9 @@
 /// 内容
 @property (nonatomic , strong) UITableView *tableView;
 
+/// 无内容视图
+@property (nonatomic , strong) UILabel * comeLab;
+
 
 /* 方法 */
 - (instancetype)initWithFrame:(CGRect)frame tableViewHeight:(CGFloat)height;

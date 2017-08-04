@@ -15,7 +15,7 @@
 #import "MSUVideoDetailCommentView.h"
 #import "MSUVideoCommentTableCell.h"
 #import "MSUShopSelectView.h"
-
+#import "MSUShopSelectTableCell.h"
 
 // 工具类
 #import "MSUStringTools.h"
@@ -28,6 +28,7 @@
 
 /// 商品选择页
 @property (nonatomic , strong) MSUShopSelectView *seleView;
+@property (nonatomic , strong) UIView *shadowView;
 
 /// 视频高度
 @property (nonatomic , assign) CGFloat videoHeight;
@@ -42,6 +43,8 @@
 /// 转发判断
 @property (nonatomic , assign) BOOL isTrans;
 
+@property (nonatomic , assign) BOOL isUnfold;
+
 @end
 
 @implementation MSUVideoDetailController
@@ -52,6 +55,7 @@
     
     self.view.backgroundColor = [UIColor blackColor];
     
+    self.isUnfold = NO;
     self.textStr = @"有一美人兮，见之不忘。一日不见兮，思之如狂。凤飞翱翔兮，四海求凰。无奈佳人兮，不在东墙。将琴代语兮，聊写衷肠。何日见许兮，慰我彷徨。愿言配德兮，携手相将。不得于飞兮，使我沦亡。";
     self.textRect = [MSUStringTools danamicGetHeightFromText:_textStr WithWidth:WIDTH-10 font:16];
     self.transText = @"转发视频";
@@ -162,10 +166,12 @@
 
 - (void)createCommentView{
     MSUVideoDetailCommentView *comment = [[MSUVideoDetailCommentView alloc] initWithFrame:CGRectMake(0, 5 + self.videoHeight + 5 + 130 + 5, WIDTH, (39+_textRect.size.height+50)*2) tableViewHeight:(39+_textRect.size.height+50)*2];
-    comment.backgroundColor = [UIColor whiteColor];
+    comment.backgroundColor = BGLINECOLOR;
     [_bgScrollView addSubview:comment];
     
     comment.titLab.text = [NSString stringWithFormat:@"评论%@",@"（62）"];
+//    comment.comeLab.hidden = NO;
+//    comment.tableView.hidden = YES;
     comment.tableView.delegate = self;
     comment.tableView.dataSource = self;
     comment.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -180,30 +186,93 @@
 }
 
 - (void)buyBtnClick:(UIButton *)sender{
+    self.shadowView.hidden = NO;
     self.seleView.hidden = NO;
+}
+
+- (void)cancelBtnClick:(UIButton *)sender{
+    self.shadowView.hidden = YES;
+}
+
+- (void)foldBtnClick:(UIButton *)sender{
+    sender.selected = !sender.selected;
+    NSLog(@"选择状态%d",sender.selected);
+    if (sender.selected) {
+        self.isUnfold = YES;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [_seleView.seleTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+        NSLog(@"展开了 ，选择状态是%d",sender.selected);
+
+    }else{
+        self.isUnfold = NO;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [_seleView.seleTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+        NSLog(@"合并");
+    }
 }
 
 #pragma mark - 代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    if (tableView == _seleView.seleTableView) {
+        return 3;
+    } else {
+        return 2;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 28+_textRect.size.height+10+1 +50;
+    if (tableView == _seleView.seleTableView) {
+        if (!self.isUnfold) {
+            return 100;
+        } else {
+            return 190;
+        }
+    } else {
+        return 28+_textRect.size.height+10+1 +50;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    MSUVideoCommentTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentVideoShopCell"];
-    
-//    [cell configCellWithModel:model indexPath:indexPath];
+    if (tableView == _seleView.seleTableView) {
+        MSUShopSelectTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"selectShopCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.shopNameLab.text = @"天青色等烟雨，而我在等你；炊烟袅袅升起，隔江千万里!";
+        CGRect hotRect = [MSUStringTools danamicGetHeightFromText:cell.shopNameLab.text WithWidth:(WIDTH-30) font:16];
+        cell.shopNameLab.frame = CGRectMake(5+80+10, 3, WIDTH-30-25-(5+80+10), hotRect.size.height);
+        cell.priceLab.text = [NSString stringWithFormat:@"¥%@",@"88.80"];
+        if (self.isUnfold) {
+            cell.bottomBGView.hidden = NO;
+        }else{
+            cell.bottomBGView.hidden = YES;
+        }
+        NSLog(@"展开合并状态%d",self.isUnfold);
+        
+        __weak __typeof(self) weakSelf= self;
+        cell.unfoldBtnClickBlock = ^(UIButton *unfoldBtn) {
+            weakSelf.isUnfold = !weakSelf.isUnfold;
+            NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
+            NSLog(@"第几行%ld",indexPath.row);
+            [_seleView.seleTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath1, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+        };
+        
+//        [cell.foldBtn addTarget:self action:@selector(foldBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 
-    [cell.iconBtn setImage:[UIImage imageNamed:@"icon-z"] forState:UIControlStateNormal];
-    cell.nickLab.text = @"叶叶叶叶叶子";
-    cell.commentLab.text = _textStr;
-    cell.commentLab.frame = CGRectMake(70, 28, WIDTH-70-10, _textRect.size.height);
-    cell.lineView.frame = CGRectMake(70, CGRectGetMaxY(cell.commentLab.frame)+40+10, WIDTH-70-10, 1);
-    
-    return cell;
+        return cell;
+    } else{
+        MSUVideoCommentTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentVideoShopCell"];
+        
+        //    [cell configCellWithModel:model indexPath:indexPath];
+        
+        [cell.iconBtn setImage:[UIImage imageNamed:@"icon-z"] forState:UIControlStateNormal];
+        cell.nickLab.text = @"叶叶叶叶叶子";
+        cell.commentLab.text = _textStr;
+        cell.commentLab.frame = CGRectMake(70, 28, WIDTH-70-10, _textRect.size.height);
+        cell.lineView.frame = CGRectMake(70, CGRectGetMaxY(cell.commentLab.frame)+40+10, WIDTH-70-10, 1);
+        
+        return cell;
+    }
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -211,15 +280,24 @@
 }
 
 #pragma mark - 初始化
+- (UIView *)shadowView{
+    if (!_shadowView) {
+        self.shadowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
+        _shadowView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+        [self.view addSubview:_shadowView];
+    }
+    return _shadowView;
+}
+
 - (MSUShopSelectView *)seleView{
     if (!_seleView) {
-        UIView *shadowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
-        shadowView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-        [self.view addSubview:shadowView];
-        
-        self.seleView = [[MSUShopSelectView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT*0.5)];
-        [shadowView addSubview:_seleView];
+        self.seleView = [[MSUShopSelectView alloc] initWithFrame:CGRectMake(0, HEIGHT*0.5, WIDTH, HEIGHT*0.5)];
+        [self.shadowView addSubview:_seleView];
         _seleView.hidden = YES;
+        _seleView.seleTableView.delegate = self;
+        _seleView.seleTableView.dataSource = self;
+        [_seleView.cancelBtn addTarget:self action:@selector(cancelBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     return _seleView;
 }

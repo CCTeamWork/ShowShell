@@ -30,12 +30,22 @@
 
 
 - (void)createViewWithHeight:(CGFloat)height{
+    UIView *navView = [[UIView alloc] init];
+    navView.backgroundColor = [UIColor whiteColor];
+    [self addSubview:navView];
+    [navView makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.top).offset(0);
+        make.left.equalTo(self.left).offset(0);
+        make.width.equalTo(SelfWidth);
+        make.height.equalTo(50);
+    }];
+    
     // 标题 评论
     self.titLab = [[UILabel alloc] init];
 //    _titLab.backgroundColor = [UIColor redColor];
     _titLab.font = [UIFont systemFontOfSize:16];
     _titLab.textColor = [UIColor blackColor];
-    [self addSubview:_titLab];
+    [navView addSubview:_titLab];
     [_titLab makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.top).offset(15);
         make.left.equalTo(self.left).offset(15);
@@ -62,6 +72,22 @@
         make.width.equalTo(SelfWidth);
         make.height.equalTo(height);
     }];
+    
+    self.comeLab = [[UILabel alloc] init];
+    _comeLab.backgroundColor = [UIColor clearColor];
+    _comeLab.text = @"快来发表你的评论吧~";
+    _comeLab.textAlignment = NSTextAlignmentCenter;
+    _comeLab.font = [UIFont systemFontOfSize:12];
+    _comeLab.textColor = [UIColor blackColor];
+    [self addSubview:_comeLab];
+    [_comeLab makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(navView.bottom).offset(10);
+        make.left.equalTo(self.left).offset(0);
+        make.width.equalTo(SelfWidth);
+        make.height.equalTo(20);
+    }];
+    _comeLab.hidden = YES;
+    
 
     
     
