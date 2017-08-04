@@ -21,7 +21,9 @@
 #import "MSUStringTools.h"
 #import "MSUPathTools.h"
 
-@interface MSUVideoDetailController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MSUVideoDetailController ()<UITableViewDelegate,UITableViewDataSource> {
+    BOOL isUnfolds[500];
+}
 
 /// 滚动视图
 @property (nonatomic , strong) UIScrollView *bgScrollView;
@@ -199,6 +201,9 @@
     NSLog(@"选择状态%d",sender.selected);
     if (sender.selected) {
         self.isUnfold = YES;
+        //** sqz---注释/添加
+        isUnfolds[sender.tag] =YES;
+        // */
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [_seleView.seleTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
         NSLog(@"展开了 ，选择状态是%d",sender.selected);
@@ -222,11 +227,19 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _seleView.seleTableView) {
-        if (!self.isUnfold) {
-            return 100;
-        } else {
+        //** sqz---注释/添加
+//        if (!self.isUnfold) {
+//            return 100;
+//        } else {
+//            return 190;
+//        }
+        if (isUnfolds[indexPath.row]) {
             return 190;
+        } else {
+            return 100;
         }
+        // */
+
     } else {
         return 28+_textRect.size.height+10+1 +50;
     }
@@ -241,16 +254,30 @@
         CGRect hotRect = [MSUStringTools danamicGetHeightFromText:cell.shopNameLab.text WithWidth:(WIDTH-30) font:16];
         cell.shopNameLab.frame = CGRectMake(5+80+10, 3, WIDTH-30-25-(5+80+10), hotRect.size.height);
         cell.priceLab.text = [NSString stringWithFormat:@"¥%@",@"88.80"];
-        if (self.isUnfold) {
+
+        //** sqz---注释/添加
+//        if (self.isUnfold) {
+//            cell.bottomBGView.hidden = NO;
+//        }else{
+//            cell.bottomBGView.hidden = YES;
+//        }
+        cell.foldBtn.tag =indexPath.row;
+        if (isUnfolds[indexPath.row]) {
             cell.bottomBGView.hidden = NO;
-        }else{
+        } else {
             cell.bottomBGView.hidden = YES;
         }
-        NSLog(@"展开合并状态%d",self.isUnfold);
         
-        __weak __typeof(self) weakSelf= self;
+//        NSLog(@"展开合并状态%d",self.isUnfold);
+//        
+//        __weak __typeof(self) weakSelf= self;
+        // */
         cell.unfoldBtnClickBlock = ^(UIButton *unfoldBtn) {
-            weakSelf.isUnfold = !weakSelf.isUnfold;
+            //** sqz---注释/添加
+//            weakSelf.isUnfold = !weakSelf.isUnfold;
+            isUnfolds[indexPath.row] =! isUnfolds[unfoldBtn.tag];
+            //*/
+            
             NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
             NSLog(@"第几行%ld",indexPath.row);
             [_seleView.seleTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath1, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
