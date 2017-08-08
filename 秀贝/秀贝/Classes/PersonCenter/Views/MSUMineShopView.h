@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MSUMineShopViewDelegate <NSObject>
+
+- (void)pushBtnClick;
+
+@end
+
 @interface MSUMineShopView : UIView
 
 @property (nonatomic , strong) UITableView *tableView;
+
+@property (nonatomic , strong) id<MSUMineShopViewDelegate>delegate;
 
 @end

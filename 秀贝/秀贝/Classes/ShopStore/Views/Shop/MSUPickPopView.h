@@ -16,4 +16,6 @@
 
 @property (nonatomic , strong) UIButton *cancelBtn;
 
+- (instancetype)initWithFrame:(CGRect)frame text:(NSString *)text;
+
 @end

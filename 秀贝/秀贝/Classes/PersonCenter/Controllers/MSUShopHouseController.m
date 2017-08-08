@@ -10,13 +10,18 @@
 #import "MSUHomeNavView.h"
 #import "MSUPrefixHeader.pch"
 #import "MSUMineShopView.h"
+#import "MSUPushShopView.h"
 
-@interface MSUShopHouseController ()<UIScrollViewDelegate>
+#import "MSUPushSetController.h"
+
+
+@interface MSUShopHouseController ()<UIScrollViewDelegate,MSUMineShopViewDelegate>
 
 @property (nonatomic , strong) UIScrollView *scrollView;
 @property (nonatomic , strong) UIView *lineView ;
 
 @property (nonatomic , strong) MSUMineShopView *mineView;
+@property (nonatomic , strong) MSUPushShopView *pushView;
 
 @end
 
@@ -26,6 +31,8 @@
     [super viewWillAppear:animated];
     /// 状态栏字体颜色
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    
+    self.hidesBottomBarWhenPushed = YES;
 }
 
 - (void)viewDidLoad {
@@ -76,12 +83,16 @@
     switch (sender.tag) {
         case 20170807:
         {
-            
+            [UIView animateWithDuration:0.25 animations:^{
+                self.pushView.hidden = YES;
+                self.mineView.hidden = NO;
+            }];
         }
             break;
         case 20170808:
         {
-            
+            self.mineView.hidden = YES;
+            self.pushView.hidden = NO;
         }
             break;
         default:
@@ -93,10 +104,26 @@
     if (!_mineView) {
         self.mineView = [[MSUMineShopView alloc] initWithFrame:CGRectMake(0, 64+40, WIDTH, HEIGHT-104)];
         [self.view addSubview:_mineView];
+        _mineView.delegate = self;
         _mineView.hidden = YES;
         
     }
     return _mineView;
+}
+
+- (MSUPushShopView *)pushView{
+    if (!_pushView) {
+        self.pushView = [[MSUPushShopView alloc] initWithFrame:CGRectMake(0, 64+40, WIDTH, HEIGHT-104)];
+        [self.view addSubview:_pushView];
+        _pushView.hidden = YES;
+    }
+    return _pushView;
+}
+
+- (void)pushBtnClick{
+    self.hidesBottomBarWhenPushed = YES;
+    MSUPushSetController *set = [[MSUPushSetController alloc] init];
+    [self.navigationController pushViewController:set animated:YES];
 }
 
 @end

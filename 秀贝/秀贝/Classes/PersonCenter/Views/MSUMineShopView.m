@@ -37,14 +37,19 @@
 
 
 - (void)createView{
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SelfWidth, SelfHeight-64-40) style:UITableViewStylePlain];
+    UIView *navView = [[UIView alloc] init];
+    navView.frame = CGRectMake(0, 0, SelfWidth, SelfHeight-104);
+    navView.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0];
+    [self addSubview:navView];
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 0, SelfWidth-20, SelfHeight-64-40) style:UITableViewStylePlain];
     _tableView.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0];
     _tableView.dataSource = self;
     _tableView.delegate = self;
     [self addSubview:_tableView];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_tableView registerClass:[MSUMineShopTableCell class] forCellReuseIdentifier:@"mineShopCell"];
-    _tableView.rowHeight = 100;
+    _tableView.rowHeight = 95;
 
     UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     addBtn.frame = CGRectMake(0, self.frame.size.height-50, SelfWidth, 50);
@@ -73,6 +78,8 @@
     cell.priceLab.text = [NSString stringWithFormat:@"¥%@",@"88.80"];
     cell.yongjinLab.text = [NSString stringWithFormat:@"总佣金:%@元",@"10"];
     [cell.yongjinBtn addTarget:self action:@selector(yongjinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    cell.pushBtn.hidden = NO;
+    [cell.pushBtn addTarget:self action:@selector(pushBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 }
@@ -81,6 +88,39 @@
     
 }
 
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+
+        // 1. 更新数据
+
+//        [_allDataArray removeObjectAtIndex:indexPath.row];
+
+        // 2. 更新UI
+
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
+
+//    [tableView reloadRowsAtIndexPaths:@[indexPath]withRowAnimation:UITableViewRowAnimationAutomatic];
+
+    UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"编辑" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+
+    }];
+    editAction.backgroundColor = [UIColor grayColor];
+
+    return @[deleteAction,editAction];
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    editingStyle = UITableViewCellEditingStyleDelete;
+}
+
+#pragma mark 按钮点击事件
 - (void)yongjinBtnClick:(UIButton *)sender{
     sender.selected = !sender.selected;
     if (sender.selected) {
@@ -97,33 +137,13 @@
     } else {
         [self.popView removeFromSuperview];
     }
-
+    
 }
 
-
-- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-
-        // 1. 更新数据
-
-//        [_allDataArray removeObjectAtIndex:indexPath.row];
-
-        // 2. 更新UI
-
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }];
-
-    [tableView reloadRowsAtIndexPaths:@[indexPath]withRowAnimation:UITableViewRowAnimationAutomatic];
-
-    UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"编辑" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-
-    }];
-
-    return @[deleteAction,editAction];
+- (void)pushBtnClick:(UIButton *)sender{
+    if ([_delegate respondsToSelector:@selector(pushBtnClick)]) {
+        [_delegate pushBtnClick];
+    }
 }
-
-
-
-
 
 @end

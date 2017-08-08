@@ -23,6 +23,7 @@
 #import "MSUTransitionTool.h"
 #import "MSUPathTools.h"
 #import "MSUStringTools.h"
+#import "MSUAFNRequest.h"
 
 /* 地图框架 */
 #import <CoreLocation/CoreLocation.h>
@@ -263,6 +264,14 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
+    
+    [[MSUAFNRequest sharedInstance] postRequestWithURL:@"http://192.168.10.151/index/home" parameters:nil withBlock:^(id obj, NSError *error) {
+        if (!error) {
+            NSLog(@"访问成功%@",obj);
+        }else{
+            NSLog(@"访问报错%@",error);
+        }
+    }];
 }
 
 @end

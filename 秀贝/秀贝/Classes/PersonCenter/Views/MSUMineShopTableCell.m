@@ -29,8 +29,8 @@
     navView.backgroundColor = [UIColor whiteColor];
     [self addSubview:navView];
     [navView makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.top).offset(10);
-        make.left.equalTo(self.left).offset(10);
+        make.top.equalTo(self.top).offset(5);
+        make.left.equalTo(self.left).offset(0);
         make.width.equalTo(SelfWidth-20);
         make.height.equalTo(90);
     }];
@@ -143,32 +143,35 @@
         make.width.equalTo(120);
         make.height.equalTo(20);
     }];
+    _yongjinLab.hidden = YES;
     
     self.yongjinBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _yongjinBtn.backgroundColor = [UIColor clearColor];
     _yongjinBtn.adjustsImageWhenHighlighted = NO;
-    [navView addSubview:_yongjinBtn];
+    [_yongjinLab addSubview:_yongjinBtn];
     [_yongjinBtn makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(navView.bottom).offset(-5);
         make.right.equalTo(navView.right).offset(-10);
         make.width.equalTo(120);
         make.height.equalTo(20);
     }];
+    _yongjinBtn.hidden = YES;
     
-    UIImageView *pushIma = [[UIImageView alloc] init];
-    pushIma.image = nil;
-    pushIma.alpha = 0.5;
-    pushIma.backgroundColor = [UIColor orangeColor];
-    pushIma.layer.cornerRadius = 25;
-    pushIma.layer.shouldRasterize = YES;
-    pushIma.layer.rasterizationScale = [UIScreen mainScreen].scale;
-    [navView addSubview:pushIma];
-    [pushIma makeConstraints:^(MASConstraintMaker *make) {
+    self.mineImaView = [[UIImageView alloc] init];
+    _mineImaView.image = nil;
+    _mineImaView.alpha = 0.5;
+    _mineImaView.backgroundColor = [UIColor orangeColor];
+    _mineImaView.layer.cornerRadius = 25;
+    _mineImaView.layer.shouldRasterize = YES;
+    _mineImaView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    [navView addSubview:_mineImaView];
+    [_mineImaView makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(navView.top).offset(10);
         make.right.equalTo(navView.right).offset(-10);
         make.width.equalTo(50);
         make.height.equalTo(50);
     }];
+    _mineImaView.hidden = YES;
 
 
 

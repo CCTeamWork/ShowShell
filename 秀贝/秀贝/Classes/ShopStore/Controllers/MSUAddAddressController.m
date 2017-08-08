@@ -176,7 +176,7 @@
 
 - (MSUPickPopView *)pickView{
     if (!_pickView) {
-        self.pickView = [[MSUPickPopView alloc] initWithFrame:CGRectMake(30, 128, WIDTH-60, HEIGHT-128-128)];
+        self.pickView = [[MSUPickPopView alloc] initWithFrame:CGRectMake(30, 128, WIDTH-60, HEIGHT-128-128) text:@"请选择省市"];
         _pickView.backgroundColor = [UIColor whiteColor];
         [self.shadowView addSubview:_pickView];
         _pickView.picker.delegate = self;

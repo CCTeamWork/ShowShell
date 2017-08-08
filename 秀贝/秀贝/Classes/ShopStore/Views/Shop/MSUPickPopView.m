@@ -18,21 +18,21 @@
 
 @implementation MSUPickPopView
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame text:(NSString *)text
 {
     if (self = [super initWithFrame:frame]) {
         
-        [self createView];
+        [self createViewWithtext:text];
         
     }
     return self;
 }
 
 
-- (void)createView{
+- (void)createViewWithtext:(NSString *)text{
     UILabel *seeLab = [[UILabel alloc] init];
     seeLab.textAlignment = NSTextAlignmentLeft;
-    seeLab.text = @"请选择省市";
+    seeLab.text = text;
     seeLab.textColor = [UIColor blackColor];
     seeLab.font = [UIFont systemFontOfSize:16];
     [self addSubview:seeLab];

@@ -118,6 +118,12 @@
                 [self createNearbyWithTittle:@"商品库" imageName:@"1" title:nil];
             }
                 break;
+            case 17:
+            {
+                /// 确认订单页面
+                [self createNearbyWithTittle:@"推广设置" imageName:@"1" title:nil];
+            }
+                break;
             default:
                 break;
         }
