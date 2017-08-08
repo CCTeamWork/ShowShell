@@ -16,6 +16,8 @@
 #import "MSUVideoCommentTableCell.h"
 #import "MSUShopSelectView.h"
 #import "MSUShopSelectTableCell.h"
+#import "MSUPullView.h"
+#import "MSUPickShopVideoView.h"
 
 // 工具类
 #import "MSUStringTools.h"
@@ -31,6 +33,13 @@
 /// 商品选择页
 @property (nonatomic , strong) MSUShopSelectView *seleView;
 @property (nonatomic , strong) UIView *shadowView;
+
+/// 添加商品库
+@property (nonatomic , strong) MSUPickShopVideoView *pickview;
+@property (nonatomic , strong) UIView *shadow1View;
+
+/// 下拉页面
+@property (nonatomic , strong) MSUPullView *pullView;
 
 /// 视频高度
 @property (nonatomic , assign) CGFloat videoHeight;
@@ -73,6 +82,7 @@
     // 导航视图
     MSUHomeNavView *nav = [[MSUHomeNavView alloc] initWithFrame:NavRect showNavWithNumber:11];
     [self.view addSubview:nav];
+    [nav.positionBtn addTarget:self action:@selector(positionBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     // 视频视图
     [self createVideoView];
@@ -144,6 +154,10 @@
         video.locationBtn.hidden = YES;
         video.dictanceBtn.hidden = YES;
     }
+    
+    video.pullBtnClickBlock = ^(UIButton *pullBtn) {
+        self.pullView.hidden = NO;
+    };
 }
 
 - (void)createShopViewWithCount:(NSInteger)count{
@@ -196,24 +210,9 @@
     self.shadowView.hidden = YES;
 }
 
-- (void)foldBtnClick:(UIButton *)sender{
-    sender.selected = !sender.selected;
-    NSLog(@"选择状态%d",sender.selected);
-    if (sender.selected) {
-        self.isUnfold = YES;
-        //** sqz---注释/添加
-        isUnfolds[sender.tag] =YES;
-        // */
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        [_seleView.seleTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
-        NSLog(@"展开了 ，选择状态是%d",sender.selected);
-
-    }else{
-        self.isUnfold = NO;
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        [_seleView.seleTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
-        NSLog(@"合并");
-    }
+- (void)positionBtnClick:(UIButton *)sender{
+    self.shadowView.hidden = NO;
+    self.pickview.hidden = NO;
 }
 
 #pragma mark - 代理
@@ -227,18 +226,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _seleView.seleTableView) {
-        //** sqz---注释/添加
-//        if (!self.isUnfold) {
-//            return 100;
-//        } else {
-//            return 190;
-//        }
         if (isUnfolds[indexPath.row]) {
             return 190;
         } else {
             return 100;
         }
-        // */
 
     } else {
         return 28+_textRect.size.height+10+1 +50;
@@ -255,12 +247,6 @@
         cell.shopNameLab.frame = CGRectMake(5+80+10, 3, WIDTH-30-25-(5+80+10), hotRect.size.height);
         cell.priceLab.text = [NSString stringWithFormat:@"¥%@",@"88.80"];
 
-        //** sqz---注释/添加
-//        if (self.isUnfold) {
-//            cell.bottomBGView.hidden = NO;
-//        }else{
-//            cell.bottomBGView.hidden = YES;
-//        }
         cell.foldBtn.tag =indexPath.row;
         if (isUnfolds[indexPath.row]) {
             cell.bottomBGView.hidden = NO;
@@ -268,23 +254,14 @@
             cell.bottomBGView.hidden = YES;
         }
         
-//        NSLog(@"展开合并状态%d",self.isUnfold);
-//        
-//        __weak __typeof(self) weakSelf= self;
-        // */
         cell.unfoldBtnClickBlock = ^(UIButton *unfoldBtn) {
-            //** sqz---注释/添加
-//            weakSelf.isUnfold = !weakSelf.isUnfold;
             isUnfolds[indexPath.row] =! isUnfolds[unfoldBtn.tag];
-            //*/
             
             NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
             NSLog(@"第几行%ld",indexPath.row);
             [_seleView.seleTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath1, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
         };
         
-//        [cell.foldBtn addTarget:self action:@selector(foldBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-
         return cell;
     } else{
         MSUVideoCommentTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentVideoShopCell"];
@@ -316,6 +293,15 @@
     return _shadowView;
 }
 
+- (UIView *)shadow1View{
+    if (!_shadow1View) {
+        self.shadow1View = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
+        _shadow1View.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+        [self.view addSubview:_shadow1View];
+    }
+    return _shadow1View;
+}
+
 - (MSUShopSelectView *)seleView{
     if (!_seleView) {
         self.seleView = [[MSUShopSelectView alloc] initWithFrame:CGRectMake(0, HEIGHT*0.5, WIDTH, HEIGHT*0.5)];
@@ -327,6 +313,30 @@
         
     }
     return _seleView;
+}
+
+- (MSUPullView *)pullView{
+    if (!_pullView) {
+        NSArray *arr = @[@"like",@"like",@"like",@"like"];
+        NSArray *titleArr = @[@"收藏",@"分享",@"提取商品",@"举报"];
+        self.pullView = [[MSUPullView alloc] initWithFrame:CGRectMake(WIDTH-10-120, 64+5, 120, 160) imaArr:arr tittleArr:titleArr];
+        [self.view addSubview:_pullView];
+        _pullView.backgroundColor = [UIColor whiteColor];
+        _pullView.layer.borderColor = [UIColor grayColor].CGColor;
+        _pullView.layer.borderWidth = 1;
+        _pullView.hidden = YES;
+    }
+    return _pullView;
+}
+
+- (MSUPickShopVideoView *)pickview{
+    if (!_pickview) {
+        self.pickview = [[MSUPickShopVideoView alloc] initWithFrame:CGRectMake(0, HEIGHT/5, WIDTH, HEIGHT*4/5)];
+        [self.shadow1View addSubview:_pickview];
+        _pickview.backgroundColor = [UIColor whiteColor];
+        _pickview.hidden = YES;
+    }
+    return _pickview;
 }
 
 @end

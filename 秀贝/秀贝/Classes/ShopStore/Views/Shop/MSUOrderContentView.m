@@ -87,6 +87,17 @@
         make.height.equalTo(40);
     }];
     
+    self.addAddressBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _addAddressBtn.backgroundColor = [UIColor clearColor];
+    _addAddressBtn.adjustsImageWhenHighlighted = NO;
+    [secondView addSubview:_addAddressBtn];
+    [_addAddressBtn makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(secondView.top).offset(0);
+        make.left.equalTo(secondView.left).offset(0);
+        make.width.equalTo(SelfWidth);
+        make.height.equalTo(40);
+    }];
+    
     // 第三个ciew
     UIView *thirdView = [[UIView alloc] init];
     thirdView.backgroundColor = [UIColor whiteColor];

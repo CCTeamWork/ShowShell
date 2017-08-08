@@ -94,7 +94,30 @@
                 [self createNearbyWithTittle:@"转发" imageName:@"1" title:@"发布"];
             }
                 break;
-
+            case 13:
+            {
+                /// 确认订单页面
+                [self createNearbyWithTittle:@"添加地址" imageName:@"1" title:nil];
+            }
+                break;
+            case 14:
+            {
+                /// 确认订单页面
+                [self createNearbyWithTittle:@"选择收货地址" imageName:@"1" title:@"管理"];
+            }
+                break;
+            case 15:
+            {
+                /// 确认订单页面
+                [self createNearbyWithTittle:@"管理收货地址" imageName:@"1" title:nil];
+            }
+                break;
+            case 16:
+            {
+                /// 确认订单页面
+                [self createNearbyWithTittle:@"商品库" imageName:@"1" title:nil];
+            }
+                break;
             default:
                 break;
         }

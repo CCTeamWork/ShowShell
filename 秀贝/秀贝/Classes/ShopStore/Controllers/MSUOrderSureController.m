@@ -12,6 +12,8 @@
 #import "MSUOrderSureCell.h"
 #import "MSUOrderContentView.h"
 #import "MSUPayView.h"
+#import "MSUAddAddressController.h"
+
 
 #import "MSUPathTools.h"
 #import "MSUStringTools.h"
@@ -32,6 +34,11 @@
 @end
 
 @implementation MSUOrderSureController
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.hidesBottomBarWhenPushed = YES;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -84,6 +91,7 @@
     [_scrollView addSubview:content];
     content.numLab.text = @"包邮";
     content.totalLab.attributedText = [MSUStringTools changeLabelWithText:[NSString stringWithFormat:@"合计:¥%@",@"88.80"] AndFromOrigiFont:14 toChangeFont:14 AndFromOrigiLoca:3 WithBeforePart:1];
+    [content.addAddressBtn addTarget:self action:@selector(addAddressBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     // 付款方式
     MSUPayView *pay = [[MSUPayView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(content.frame), WIDTH, 178)];
@@ -106,6 +114,13 @@
         _scrollView.scrollEnabled = NO;
     }
 
+}
+
+#pragma mark - 点击事件
+- (void)addAddressBtnClick:(UIButton *)sender{
+    self.hidesBottomBarWhenPushed = YES;
+    MSUAddAddressController *add = [[MSUAddAddressController alloc] init];
+    [self.navigationController pushViewController:add animated:YES];
 }
 
 #pragma mark - 代理相关

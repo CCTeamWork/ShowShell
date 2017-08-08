@@ -10,6 +10,7 @@
 #import "MSUPrefixHeader.pch"
 #import "MSUAliPayController.h"
 #import "MSUShareController.h"
+#import "MSUShopHouseController.h"
 
 @interface MSUPersonCenterController ()
 
@@ -53,6 +54,18 @@
         make.width.equalTo(WIDTH-40);
         make.height.equalTo(30);
     }];
+    
+    UIButton *houseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    houseBtn.backgroundColor = [UIColor blueColor];
+    [houseBtn setTitle:@"商品库" forState:UIControlStateNormal];
+    [self.view addSubview:houseBtn];
+    [houseBtn addTarget:self action:@selector(houseBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [houseBtn makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(shareBtn.bottom).offset(20);
+        make.left.equalTo(self.view.left).offset(20);
+        make.width.equalTo(WIDTH-40);
+        make.height.equalTo(30);
+    }];
 
 }
 
@@ -62,6 +75,12 @@
 
 - (void)shareBtnClick:(UIButton *)sender{
     [MSUShareController makeShareSomeContentWithText:@"何龙飞真帅" title:@"分享" url:nil];
+}
+
+- (void)houseBtnClick:(UIButton *)sender{
+    self.hidesBottomBarWhenPushed = YES;
+    MSUShopHouseController *house = [[MSUShopHouseController alloc] init];
+    [self.navigationController pushViewController:house animated:YES];
 }
 
 @end

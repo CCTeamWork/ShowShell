@@ -27,7 +27,7 @@
 + (NSMutableAttributedString*)changeLabelWithText:(NSString*)needText AndFromOrigiFont:(CGFloat)origi toChangeFont:(CGFloat)change AndFromOrigiLoca:(NSInteger)loca WithBeforePart:(NSInteger)part;
 
 /* 在已有字符串中 修改 输入字符 颜色和大小 */
-+ (NSMutableAttributedString *)makeKeyWordAttributedWithSubText:(NSString *)subText inOrigiText:(NSString *)origiText;
++ (NSMutableAttributedString *)makeKeyWordAttributedWithSubText:(NSString *)subText inOrigiText:(NSString *)origiText font:(CGFloat)font color:(UIColor *)color;
 
 /* 动态获取 String 宽 */
 + (CGSize)danamicGetWidthFromText:(NSString *)text WithFont:(CGFloat)font;

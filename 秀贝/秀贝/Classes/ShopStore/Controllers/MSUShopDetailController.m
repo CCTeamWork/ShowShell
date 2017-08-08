@@ -17,6 +17,7 @@
 #import "MSUCommentTableViewCell.h"
 #import "MSUShopDetailBoottomView.h"
 #import "MSUOrderSureController.h"
+#import "MSUShopDetailSKUView.h"
 
 #import "MSUAVPlayerViewTool.h"
 
@@ -28,9 +29,12 @@
 
 @property (nonatomic , strong) MSUShopDetailView *detail;
 
+@property (nonatomic , strong) UIView *shadowView;
+@property (nonatomic , strong) MSUShopDetailSKUView *skuView;
+
 // 评论内容高
 @property (nonatomic , assign) CGFloat commentHeight;
-@property (nonatomic , strong) NSString *comText;
+@property (nonatomic , copy) NSString *comText;
 
 @end
 
@@ -190,9 +194,47 @@
 
 #pragma mark - 点击事件
 - (void)buyBtnClick:(UIButton *)sender{
+    self.shadowView.hidden = NO;
+    self.skuView.hidden = NO;
+}
+
+- (void)sureBtnClick:(UIButton *)sender{
     self.hidesBottomBarWhenPushed = YES;
     MSUOrderSureController *order = [[MSUOrderSureController alloc] init];
     [self.navigationController pushViewController:order animated:YES];
+}
+
+
+- (UIView *)shadowView{
+    if (!_shadowView) {
+        self.shadowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
+        _shadowView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+        [self.view addSubview:_shadowView];
+        _shadowView.hidden = YES;
+    }
+    return _shadowView;
+}
+
+- (MSUShopDetailSKUView *)skuView{
+    if (!_skuView) {
+        self.skuView = [[MSUShopDetailSKUView alloc] initWithFrame:CGRectMake(0, HEIGHT-230, WIDTH, 230)];
+        _skuView.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:_skuView];
+        [_skuView.sureBtn addTarget:self action:@selector(sureBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        _skuView.shopNameLab.text =  @"天青色等烟雨，而我在等你；炊烟袅袅升起，隔江千万里!";
+        CGRect hotRect = [MSUStringTools danamicGetHeightFromText:_skuView.shopNameLab.text WithWidth:(WIDTH-30) font:16];
+        _skuView.shopNameLab.frame = CGRectMake(10+80+10, 10, WIDTH-10-(10+80+10), hotRect.size.height);
+        _skuView.priceLab.text = [NSString stringWithFormat:@"¥%@",@"88.80"];
+    }
+    return _skuView;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    CGPoint point = [[touches anyObject] locationInView:self.skuView];
+    if (![_skuView.layer containsPoint:point]) {
+        self.shadowView.hidden = YES;
+        self.skuView.hidden = YES;
+    }
 }
 
 @end

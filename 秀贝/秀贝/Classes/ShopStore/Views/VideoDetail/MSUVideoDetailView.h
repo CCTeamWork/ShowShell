@@ -10,6 +10,8 @@
 
 @interface MSUVideoDetailView : UIView
 
+@property (nonatomic , copy)void(^pullBtnClickBlock)(UIButton *pullBtn);
+
 /// 头像
 @property (nonatomic , strong) UIButton *iconBtn;
 
@@ -18,6 +20,9 @@
 
 /// 时间
 @property (nonatomic , strong) UILabel *timeLab;
+
+/// 下拉菜单
+@property (nonatomic , strong) UIButton *pullBtn;
 
 /// + 关注
 @property (nonatomic , strong) UIButton *attenBtn;

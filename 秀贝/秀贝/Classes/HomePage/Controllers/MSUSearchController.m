@@ -274,7 +274,7 @@
                 _tableBGView.hidden = NO;
                 // 将带属性的字符串添加到cell.textLabel上.
                 if (self.searchList && self.searchList.count>0) {
-                    [cell.searLab setAttributedText:[MSUStringTools makeKeyWordAttributedWithSubText:self.inputString inOrigiText:self.searchList[indexPath.row]]];
+                    [cell.searLab setAttributedText:[MSUStringTools makeKeyWordAttributedWithSubText:self.inputString inOrigiText:self.searchList[indexPath.row] font:17 color:[UIColor orangeColor]]];
                 }
             }];
         }

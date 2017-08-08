@@ -21,8 +21,23 @@
 		F00BDCB61F2B40AA00EC05CB /* MSUSearchTotalView.m in Sources */ = {isa = PBXBuildFile; fileRef = F00BDCB51F2B40AA00EC05CB /* MSUSearchTotalView.m */; };
 		F00CE0451F25DEC8001B6445 /* like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F00CE0441F25DEC8001B6445 /* like@2x.png */; };
 		F00CE0481F25E3D0001B6445 /* MSUDanamicHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F00CE0471F25E3D0001B6445 /* MSUDanamicHeaderView.m */; };
+		F00D037A1F37F460004BD8B3 /* MSUAddAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D03791F37F460004BD8B3 /* MSUAddAddressController.m */; };
+		F00D037D1F37F6D6004BD8B3 /* MSUAddAddressTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D037C1F37F6D6004BD8B3 /* MSUAddAddressTableCell.m */; };
+		F00D03801F37FD38004BD8B3 /* MSUPickPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D037F1F37FD38004BD8B3 /* MSUPickPopView.m */; };
+		F00D03861F381204004BD8B3 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = F00D03851F381204004BD8B3 /* address.plist */; };
+		F00D03881F381305004BD8B3 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = F00D03871F381305004BD8B3 /* area.plist */; };
+		F00D038B1F38381E004BD8B3 /* MSUSeleAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D038A1F38381E004BD8B3 /* MSUSeleAddressController.m */; };
+		F00D038E1F3839F2004BD8B3 /* MSUSeleAddressTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D038D1F3839F2004BD8B3 /* MSUSeleAddressTableCell.m */; };
+		F00D03911F383ECD004BD8B3 /* MSUSeleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D03901F383ECD004BD8B3 /* MSUSeleHeaderView.m */; };
+		F00D03941F3852B0004BD8B3 /* MSUManageAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D03931F3852B0004BD8B3 /* MSUManageAddressController.m */; };
+		F00D03971F3854D6004BD8B3 /* MSUManageAddressTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D03961F3854D6004BD8B3 /* MSUManageAddressTableCell.m */; };
+		F00D039A1F385C66004BD8B3 /* MSUShopDetailSKUView.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D03991F385C66004BD8B3 /* MSUShopDetailSKUView.m */; };
+		F00D9D871F38673A00034D14 /* MSUShopHouseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D9D861F38673A00034D14 /* MSUShopHouseController.m */; };
+		F00D9D8A1F386AE400034D14 /* MSUMineShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D9D891F386AE400034D14 /* MSUMineShopView.m */; };
+		F00D9D8D1F386BAB00034D14 /* MSUMineShopTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D9D8C1F386BAB00034D14 /* MSUMineShopTableCell.m */; };
 		F010314F1EFD0DCC00E2A1FB /* MSUTransitionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F010314E1EFD0DCC00E2A1FB /* MSUTransitionTool.m */; };
 		F0156F5A1F20BC38005CF610 /* MSUHomeCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0156F591F20BC38005CF610 /* MSUHomeCollectionCell.m */; };
+		F017BECD1F39480C00B280AC /* MSUHousePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F017BECC1F39480C00B280AC /* MSUHousePopView.m */; };
 		F01D3A971F06245F00FA08EF /* MSUAliPayController.m in Sources */ = {isa = PBXBuildFile; fileRef = F01D3A961F06245F00FA08EF /* MSUAliPayController.m */; };
 		F01D3AC41F062C9F00FA08EF /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01D3A9D1F062C9F00FA08EF /* MOBFoundation.framework */; };
 		F01D3AC51F062CA000FA08EF /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01D3A9F1F062C9F00FA08EF /* ShareSDK.framework */; };
@@ -138,6 +153,9 @@
 		F03CBDE71EDE586200E9DC3E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F03CBDE61EDE586200E9DC3E /* AVFoundation.framework */; };
 		F03CBDE91EDE5DAF00E9DC3E /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F03CBDE81EDE5DAF00E9DC3E /* AVKit.framework */; };
 		F03CBDEB1EDE6C5600E9DC3E /* 经济技术.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F03CBDEA1EDE6C5600E9DC3E /* 经济技术.mp4 */; };
+		F03E97411F344AE0000DD4BB /* MSUPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = F03E97401F344AE0000DD4BB /* MSUPullView.m */; };
+		F03E97441F345757000DD4BB /* MSUPickShopVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = F03E97431F345757000DD4BB /* MSUPickShopVideoView.m */; };
+		F03E97471F34760B000DD4BB /* MSUShopHouseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F03E97461F34760B000DD4BB /* MSUShopHouseTableCell.m */; };
 		F042F78A1F2ED55C004F201E /* MSUHotTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F042F7891F2ED55C004F201E /* MSUHotTableCell.m */; };
 		F042F78D1F2F019D004F201E /* MSUSearchVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = F042F78C1F2F019D004F201E /* MSUSearchVideoView.m */; };
 		F042F7901F2F130C004F201E /* MSUSearchUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = F042F78F1F2F130C004F201E /* MSUSearchUserView.m */; };
@@ -249,10 +267,38 @@
 		F00CE0441F25DEC8001B6445 /* like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "like@2x.png"; path = "../like@2x.png"; sourceTree = "<group>"; };
 		F00CE0461F25E3D0001B6445 /* MSUDanamicHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUDanamicHeaderView.h; sourceTree = "<group>"; };
 		F00CE0471F25E3D0001B6445 /* MSUDanamicHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUDanamicHeaderView.m; sourceTree = "<group>"; };
+		F00D03781F37F460004BD8B3 /* MSUAddAddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUAddAddressController.h; sourceTree = "<group>"; };
+		F00D03791F37F460004BD8B3 /* MSUAddAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUAddAddressController.m; sourceTree = "<group>"; };
+		F00D037B1F37F6D6004BD8B3 /* MSUAddAddressTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUAddAddressTableCell.h; sourceTree = "<group>"; };
+		F00D037C1F37F6D6004BD8B3 /* MSUAddAddressTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUAddAddressTableCell.m; sourceTree = "<group>"; };
+		F00D037E1F37FD38004BD8B3 /* MSUPickPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUPickPopView.h; sourceTree = "<group>"; };
+		F00D037F1F37FD38004BD8B3 /* MSUPickPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUPickPopView.m; sourceTree = "<group>"; };
+		F00D03851F381204004BD8B3 /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
+		F00D03871F381305004BD8B3 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		F00D03891F38381E004BD8B3 /* MSUSeleAddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUSeleAddressController.h; sourceTree = "<group>"; };
+		F00D038A1F38381E004BD8B3 /* MSUSeleAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUSeleAddressController.m; sourceTree = "<group>"; };
+		F00D038C1F3839F2004BD8B3 /* MSUSeleAddressTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUSeleAddressTableCell.h; sourceTree = "<group>"; };
+		F00D038D1F3839F2004BD8B3 /* MSUSeleAddressTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUSeleAddressTableCell.m; sourceTree = "<group>"; };
+		F00D038F1F383ECD004BD8B3 /* MSUSeleHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUSeleHeaderView.h; sourceTree = "<group>"; };
+		F00D03901F383ECD004BD8B3 /* MSUSeleHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUSeleHeaderView.m; sourceTree = "<group>"; };
+		F00D03921F3852B0004BD8B3 /* MSUManageAddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUManageAddressController.h; sourceTree = "<group>"; };
+		F00D03931F3852B0004BD8B3 /* MSUManageAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUManageAddressController.m; sourceTree = "<group>"; };
+		F00D03951F3854D6004BD8B3 /* MSUManageAddressTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUManageAddressTableCell.h; sourceTree = "<group>"; };
+		F00D03961F3854D6004BD8B3 /* MSUManageAddressTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUManageAddressTableCell.m; sourceTree = "<group>"; };
+		F00D03981F385C66004BD8B3 /* MSUShopDetailSKUView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUShopDetailSKUView.h; sourceTree = "<group>"; };
+		F00D03991F385C66004BD8B3 /* MSUShopDetailSKUView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUShopDetailSKUView.m; sourceTree = "<group>"; };
+		F00D9D851F38673A00034D14 /* MSUShopHouseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUShopHouseController.h; sourceTree = "<group>"; };
+		F00D9D861F38673A00034D14 /* MSUShopHouseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUShopHouseController.m; sourceTree = "<group>"; };
+		F00D9D881F386AE400034D14 /* MSUMineShopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUMineShopView.h; sourceTree = "<group>"; };
+		F00D9D891F386AE400034D14 /* MSUMineShopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUMineShopView.m; sourceTree = "<group>"; };
+		F00D9D8B1F386BAB00034D14 /* MSUMineShopTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUMineShopTableCell.h; sourceTree = "<group>"; };
+		F00D9D8C1F386BAB00034D14 /* MSUMineShopTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUMineShopTableCell.m; sourceTree = "<group>"; };
 		F010314D1EFD0DCC00E2A1FB /* MSUTransitionTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUTransitionTool.h; sourceTree = "<group>"; };
 		F010314E1EFD0DCC00E2A1FB /* MSUTransitionTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUTransitionTool.m; sourceTree = "<group>"; };
 		F0156F581F20BC38005CF610 /* MSUHomeCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUHomeCollectionCell.h; sourceTree = "<group>"; };
 		F0156F591F20BC38005CF610 /* MSUHomeCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUHomeCollectionCell.m; sourceTree = "<group>"; };
+		F017BECB1F39480C00B280AC /* MSUHousePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUHousePopView.h; sourceTree = "<group>"; };
+		F017BECC1F39480C00B280AC /* MSUHousePopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUHousePopView.m; sourceTree = "<group>"; };
 		F01D3A951F06245F00FA08EF /* MSUAliPayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUAliPayController.h; sourceTree = "<group>"; };
 		F01D3A961F06245F00FA08EF /* MSUAliPayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUAliPayController.m; sourceTree = "<group>"; };
 		F01D3A9D1F062C9F00FA08EF /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
@@ -497,6 +543,12 @@
 		F03CBDE61EDE586200E9DC3E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		F03CBDE81EDE5DAF00E9DC3E /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		F03CBDEA1EDE6C5600E9DC3E /* 经济技术.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "经济技术.mp4"; sourceTree = "<group>"; };
+		F03E973F1F344AE0000DD4BB /* MSUPullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUPullView.h; sourceTree = "<group>"; };
+		F03E97401F344AE0000DD4BB /* MSUPullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUPullView.m; sourceTree = "<group>"; };
+		F03E97421F345757000DD4BB /* MSUPickShopVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUPickShopVideoView.h; sourceTree = "<group>"; };
+		F03E97431F345757000DD4BB /* MSUPickShopVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUPickShopVideoView.m; sourceTree = "<group>"; };
+		F03E97451F34760B000DD4BB /* MSUShopHouseTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUShopHouseTableCell.h; sourceTree = "<group>"; };
+		F03E97461F34760B000DD4BB /* MSUShopHouseTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUShopHouseTableCell.m; sourceTree = "<group>"; };
 		F042F7881F2ED55C004F201E /* MSUHotTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUHotTableCell.h; sourceTree = "<group>"; };
 		F042F7891F2ED55C004F201E /* MSUHotTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSUHotTableCell.m; sourceTree = "<group>"; };
 		F042F78B1F2F019D004F201E /* MSUSearchVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSUSearchVideoView.h; sourceTree = "<group>"; };
@@ -898,6 +950,12 @@
 				F0894E0B1F32D3BE0016836D /* MSUShopSelectView.m */,
 				F0894E0D1F32EFAE0016836D /* MSUShopSelectTableCell.h */,
 				F0894E0E1F32EFAE0016836D /* MSUShopSelectTableCell.m */,
+				F03E973F1F344AE0000DD4BB /* MSUPullView.h */,
+				F03E97401F344AE0000DD4BB /* MSUPullView.m */,
+				F03E97421F345757000DD4BB /* MSUPickShopVideoView.h */,
+				F03E97431F345757000DD4BB /* MSUPickShopVideoView.m */,
+				F03E97451F34760B000DD4BB /* MSUShopHouseTableCell.h */,
+				F03E97461F34760B000DD4BB /* MSUShopHouseTableCell.m */,
 			);
 			path = VideoDetail;
 			sourceTree = "<group>";
@@ -1073,6 +1131,8 @@
 		F032903E1ED6D51E009BA6BB /* GlobeClass */ = {
 			isa = PBXGroup;
 			children = (
+				F00D03871F381305004BD8B3 /* area.plist */,
+				F00D03851F381204004BD8B3 /* address.plist */,
 				F0D73EC11EE7962700102779 /* cities.plist */,
 				F032903F1ED6D51E009BA6BB /* AppDelegate.h */,
 				F03290401ED6D51E009BA6BB /* AppDelegate.m */,
@@ -1267,6 +1327,8 @@
 				F01D3A961F06245F00FA08EF /* MSUAliPayController.m */,
 				F01D3AE51F06302F00FA08EF /* MSUShareController.h */,
 				F01D3AE61F06302F00FA08EF /* MSUShareController.m */,
+				F00D9D851F38673A00034D14 /* MSUShopHouseController.h */,
+				F00D9D861F38673A00034D14 /* MSUShopHouseController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1304,6 +1366,12 @@
 		F032906D1ED6D51E009BA6BB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F00D9D881F386AE400034D14 /* MSUMineShopView.h */,
+				F00D9D891F386AE400034D14 /* MSUMineShopView.m */,
+				F00D9D8B1F386BAB00034D14 /* MSUMineShopTableCell.h */,
+				F00D9D8C1F386BAB00034D14 /* MSUMineShopTableCell.m */,
+				F017BECB1F39480C00B280AC /* MSUHousePopView.h */,
+				F017BECC1F39480C00B280AC /* MSUHousePopView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1336,6 +1404,12 @@
 				F02250F61F31ADC600D6F61D /* MSUVideoDetailController.m */,
 				F0894E141F332CC20016836D /* MSUDanamicTranspodController.h */,
 				F0894E151F332CC20016836D /* MSUDanamicTranspodController.m */,
+				F00D03781F37F460004BD8B3 /* MSUAddAddressController.h */,
+				F00D03791F37F460004BD8B3 /* MSUAddAddressController.m */,
+				F00D03891F38381E004BD8B3 /* MSUSeleAddressController.h */,
+				F00D038A1F38381E004BD8B3 /* MSUSeleAddressController.m */,
+				F00D03921F3852B0004BD8B3 /* MSUManageAddressController.h */,
+				F00D03931F3852B0004BD8B3 /* MSUManageAddressController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1564,6 +1638,18 @@
 				F0A21EE61F29DE8B00305FB3 /* MSUPayView.m */,
 				F00BDCA41F2AC75700EC05CB /* MSUShopDetailBoottomView.h */,
 				F00BDCA51F2AC75700EC05CB /* MSUShopDetailBoottomView.m */,
+				F00D037B1F37F6D6004BD8B3 /* MSUAddAddressTableCell.h */,
+				F00D037C1F37F6D6004BD8B3 /* MSUAddAddressTableCell.m */,
+				F00D037E1F37FD38004BD8B3 /* MSUPickPopView.h */,
+				F00D037F1F37FD38004BD8B3 /* MSUPickPopView.m */,
+				F00D038C1F3839F2004BD8B3 /* MSUSeleAddressTableCell.h */,
+				F00D038D1F3839F2004BD8B3 /* MSUSeleAddressTableCell.m */,
+				F00D038F1F383ECD004BD8B3 /* MSUSeleHeaderView.h */,
+				F00D03901F383ECD004BD8B3 /* MSUSeleHeaderView.m */,
+				F00D03951F3854D6004BD8B3 /* MSUManageAddressTableCell.h */,
+				F00D03961F3854D6004BD8B3 /* MSUManageAddressTableCell.m */,
+				F00D03981F385C66004BD8B3 /* MSUShopDetailSKUView.h */,
+				F00D03991F385C66004BD8B3 /* MSUShopDetailSKUView.m */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -1733,6 +1819,7 @@
 				F0D745B01ED6DA1A00039672 /* Search@2x.png in Resources */,
 				F01D3AC91F062CA000FA08EF /* ShareSDKUI.bundle in Resources */,
 				F0D745C21ED6DA2B00039672 /* myselfchoose@3x.png in Resources */,
+				F00D03861F381204004BD8B3 /* address.plist in Resources */,
 				F0D745CA1ED6DE7B00039672 /* logo@3x.png in Resources */,
 				F0D745AC1ED6DA1A00039672 /* marketchoose@2x.png in Resources */,
 				F0D3E6461EDF9F98003F36AA /* Images.xcassets in Resources */,
@@ -1765,6 +1852,7 @@
 				F03290921ED6D51E009BA6BB /* QRCodeRightBottom@2x.png in Resources */,
 				F0D745C61ED6DA2B00039672 /* videochoose@3x.png in Resources */,
 				F0D745BF1ED6DA2B00039672 /* market@3x.png in Resources */,
+				F00D03881F381305004BD8B3 /* area.plist in Resources */,
 				F03290961ED6D51E009BA6BB /* QRCodeLeftTop@3x.png in Resources */,
 				F0D745AE1ED6DA1A00039672 /* myselfchoose@2x.png in Resources */,
 				F03290881ED6D51E009BA6BB /* SVProgressHUD.bundle in Resources */,
@@ -1852,6 +1940,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F00D038E1F3839F2004BD8B3 /* MSUSeleAddressTableCell.m in Sources */,
 				F08839541F0CE45500F4E128 /* MSUNaviBaseController.m in Sources */,
 				F0A21EE71F29DE8B00305FB3 /* MSUPayView.m in Sources */,
 				F077E0C91F3085860015E5D9 /* MSUMapAnnotationView.m in Sources */,
@@ -1864,25 +1953,32 @@
 				F0C02C761F32C6D9006B2B47 /* MSUCommentTextTableCell.m in Sources */,
 				F02250FD1F31C0FF00D6F61D /* MSUVideoDetailBottomView.m in Sources */,
 				F02A6C561EFA21E00046E829 /* NSDataEx.m in Sources */,
+				F00D037A1F37F460004BD8B3 /* MSUAddAddressController.m in Sources */,
 				F0A21EE11F29BA0200305FB3 /* MSUOrderContentView.m in Sources */,
 				F082D9B71ED8040200173948 /* ZCChinaLocation.m in Sources */,
 				F032908E1ED6D51E009BA6BB /* MSUHomePageController.m in Sources */,
 				F082D9CC1ED9565800173948 /* MSUSearchController.m in Sources */,
 				F032908F1ED6D51E009BA6BB /* MSUScanController.m in Sources */,
+				F03E97441F345757000DD4BB /* MSUPickShopVideoView.m in Sources */,
 				F03C761B1F300E9A0010BE30 /* MSUMapShowController.m in Sources */,
 				F033EBB31F26E5FF00DD4F10 /* MSUNearbyController.m in Sources */,
 				F0894E0C1F32D3BE0016836D /* MSUShopSelectView.m in Sources */,
+				F017BECD1F39480C00B280AC /* MSUHousePopView.m in Sources */,
 				F042F78D1F2F019D004F201E /* MSUSearchVideoView.m in Sources */,
 				F00BDCA61F2AC75700EC05CB /* MSUShopDetailBoottomView.m in Sources */,
+				F00D03941F3852B0004BD8B3 /* MSUManageAddressController.m in Sources */,
 				F02A6C591EFA21E00046E829 /* RSADataVerifier.m in Sources */,
+				F00D03911F383ECD004BD8B3 /* MSUSeleHeaderView.m in Sources */,
 				F00BDCB01F2B085500EC05CB /* MSUSearchTableCell.m in Sources */,
 				F0A21ECF1F29725500305FB3 /* MSUGeussLikeView.m in Sources */,
+				F00D03971F3854D6004BD8B3 /* MSUManageAddressTableCell.m in Sources */,
 				F0894E191F33351E0016836D /* MSUTranspodTableCell.m in Sources */,
 				F032908C1ED6D51E009BA6BB /* MSUHomeNavView.m in Sources */,
 				F00BDCAD1F2AE51E00EC05CB /* MSUCollectBGView.m in Sources */,
 				F0A21EDB1F29B58900305FB3 /* MSUOrderSureController.m in Sources */,
 				F00BDCB31F2B16C300EC05CB /* MSUSearchResultView.m in Sources */,
 				F024DD0A1F28A37A00DDA48F /* MSUAVPlayerViewTool.m in Sources */,
+				F03E97471F34760B000DD4BB /* MSUShopHouseTableCell.m in Sources */,
 				F04EDB2A1F1DEC00006DA738 /* TestTools.m in Sources */,
 				F03CBDE51EDE582700E9DC3E /* MSUPlayerController.m in Sources */,
 				F02250FA1F31AFA900D6F61D /* MSUVideoDetailView.m in Sources */,
@@ -1895,6 +1991,7 @@
 				F08F66571F0F7D04001CFEB8 /* MSUQRCodeTools.m in Sources */,
 				F042F7931F2F14A1004F201E /* MSUSearchUserTableCell.m in Sources */,
 				F010314F1EFD0DCC00E2A1FB /* MSUTransitionTool.m in Sources */,
+				F00D037D1F37F6D6004BD8B3 /* MSUAddAddressTableCell.m in Sources */,
 				F00BDCB61F2B40AA00EC05CB /* MSUSearchTotalView.m in Sources */,
 				F03290A01ED6D51E009BA6BB /* MSUVideoController.m in Sources */,
 				F032908A1ED6D51E009BA6BB /* SVRadialGradientLayer.m in Sources */,
@@ -1909,14 +2006,18 @@
 				F03CBDDB1EDE506600E9DC3E /* MSUVideoView.m in Sources */,
 				F02251001F31CA0B00D6F61D /* MSUVideoDetailCommentView.m in Sources */,
 				F0A21ED51F298A7200305FB3 /* MSUCommentView.m in Sources */,
+				F00D039A1F385C66004BD8B3 /* MSUShopDetailSKUView.m in Sources */,
 				F02A6C541EFA21E00046E829 /* Order.m in Sources */,
 				F03290851ED6D51E009BA6BB /* MSUHUD.m in Sources */,
 				F042F78A1F2ED55C004F201E /* MSUHotTableCell.m in Sources */,
 				F02337AB1F21EDCD003204AE /* MSUDanamicTableCell.m in Sources */,
+				F00D03801F37FD38004BD8B3 /* MSUPickPopView.m in Sources */,
 				F03290891ED6D51E009BA6BB /* SVProgressHUD.m in Sources */,
 				F02250F01F316AD600D6F61D /* MSUPopTableCell.m in Sources */,
 				F0D73F181EE7D6DC00102779 /* MSUAFNRequest.m in Sources */,
 				F03290861ED6D51E009BA6BB /* SVIndefiniteAnimatedView.m in Sources */,
+				F03E97411F344AE0000DD4BB /* MSUPullView.m in Sources */,
+				F00D9D871F38673A00034D14 /* MSUShopHouseController.m in Sources */,
 				F00BDCAA1F2AD9DE00EC05CB /* MSUSearchCollectionCell.m in Sources */,
 				F02A6C581EFA21E00046E829 /* RSADataSigner.m in Sources */,
 				F03290871ED6D51E009BA6BB /* SVProgressAnimatedView.m in Sources */,
@@ -1925,9 +2026,12 @@
 				F02A6C551EFA21E00046E829 /* base64.m in Sources */,
 				F02A6C571EFA21E00046E829 /* openssl_wrapper.m in Sources */,
 				F032909E1ED6D51E009BA6BB /* MSUPermissionTool.m in Sources */,
+				F00D9D8D1F386BAB00034D14 /* MSUMineShopTableCell.m in Sources */,
 				F01D3AE71F06302F00FA08EF /* MSUShareController.m in Sources */,
 				F02250ED1F31640500D6F61D /* MSUPaoPaoPopView.m in Sources */,
+				F00D038B1F38381E004BD8B3 /* MSUSeleAddressController.m in Sources */,
 				F032908B1ED6D51E009BA6BB /* AppDelegate.m in Sources */,
+				F00D9D8A1F386AE400034D14 /* MSUMineShopView.m in Sources */,
 				F032908D1ED6D51E009BA6BB /* MSUTabbarController.m in Sources */,
 				F01D3A971F06245F00FA08EF /* MSUAliPayController.m in Sources */,
 				F033EBB91F26F1CD00DD4F10 /* MSUNearbyHeaderView.m in Sources */,

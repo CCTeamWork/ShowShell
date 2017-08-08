@@ -67,6 +67,18 @@
         make.width.equalTo(SelfWidth * 0.5);
         make.height.equalTo(20);
     }];
+    
+    // 下拉菜单
+    self.pullBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _pullBtn.backgroundColor = [UIColor blueColor];
+    [self addSubview:_pullBtn];
+    [_pullBtn makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_nickLab.top).offset(10);
+        make.right.equalTo(self.right).offset(-10);
+        make.width.equalTo(20);
+        make.height.equalTo(20);
+    }];
+    [_pullBtn addTarget:self action:@selector(pullBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 
     // 转发评论
     self.transpodLab = [[UILabel alloc] init];
@@ -144,6 +156,12 @@
         make.width.equalTo(50);
         make.height.equalTo(25);
     }];  
+}
+
+- (void)pullBtnClick:(UIButton *)sender{
+    if (self.pullBtnClickBlock) {
+        self.pullBtnClickBlock(sender);
+    }
 }
 
 @end

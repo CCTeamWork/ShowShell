@@ -126,7 +126,7 @@
 }
 
 /* 在已有字符串中 修改 输入字符 颜色和大小 */
-+ (NSMutableAttributedString *)makeKeyWordAttributedWithSubText:(NSString *)subText inOrigiText:(NSString *)origiText{
++ (NSMutableAttributedString *)makeKeyWordAttributedWithSubText:(NSString *)subText inOrigiText:(NSString *)origiText font:(CGFloat)font color:(UIColor *)color{
     // 获取关键字的位置
     NSRange range = [origiText rangeOfString:subText];
     
@@ -134,10 +134,10 @@
     NSMutableAttributedString *attribute = [[NSMutableAttributedString alloc] initWithString:origiText];
     
     // 添加属性(粗体)
-    [attribute addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:range];
+    [attribute addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:font] range:range];
     
     // 关键字高亮
-    [attribute addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:range];
+    [attribute addAttribute:NSForegroundColorAttributeName value:color range:range];
     
     return attribute;
 }
