@@ -81,6 +81,7 @@
     self.hidesBottomBarWhenPushed = YES;
     MSUShopHouseController *house = [[MSUShopHouseController alloc] init];
     [self.navigationController pushViewController:house animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 @end
