@@ -124,6 +124,30 @@
                 [self createNearbyWithTittle:@"推广设置" imageName:@"1" title:nil];
             }
                 break;
+            case 18:
+            {
+                /// 确认订单页面
+                [self createOrderWithTittle:@"我的订单" imageName:@"1" title:@"切换到卖家版"];
+            }
+                break;
+            case 19:
+            {
+                /// 发表评论
+                [self createNearbyWithTittle:@"发表评论" imageName:nil title:nil];
+            }
+                break;
+            case 20:
+            {
+                /// 发表评论
+                [self createNearbyWithTittle:@"订单详情" imageName:nil title:nil];
+            }
+                break;
+            case 21:
+            {
+                /// 发表评论
+                [self createNearbyWithTittle:@"退货退款" imageName:nil title:nil];
+            }
+                break;
             default:
                 break;
         }
@@ -449,6 +473,55 @@
             make.right.equalTo(self.right).offset(-10);
             make.width.equalTo(40);
             make.height.equalTo(30);
+        }];
+    }
+}
+
+#pragma  mark - 我的订单
+- (void)createOrderWithTittle:(NSString *)tittle imageName:(NSString *)name title:(NSString *)rightTitle{
+    // 左箭头
+    self.backArrowBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backArrowBtn.backgroundColor = [UIColor blueColor];
+    [self addSubview:_backArrowBtn];
+    [_backArrowBtn makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.top).offset(7);
+        make.left.equalTo(self.left).offset(15);
+        make.width.equalTo(20);
+        make.height.equalTo(30);
+    }];
+    
+    // 附近动态
+    UILabel *titeleLab = [[UILabel alloc] init];
+    titeleLab.text = tittle;
+    titeleLab.textAlignment = NSTextAlignmentCenter;
+    titeleLab.font = [UIFont systemFontOfSize:20];
+    [titeleLab setTextColor:[UIColor whiteColor]];
+    [self addSubview:titeleLab];
+    [titeleLab makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.top).offset(0);
+        make.left.equalTo(self.left).offset(WIDTH * 0.5 - 75);
+        make.width.equalTo(150);
+        make.height.equalTo(44);
+    }];
+    
+    if (name) {
+        // 地图按钮
+        self.positionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_positionBtn setImage:[MSUPathTools showImageWithContentOfFileByName:name] forState:UIControlStateNormal];
+        [_positionBtn setTitle:rightTitle forState:UIControlStateNormal];
+        [_positionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _positionBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _positionBtn.layer.borderWidth = 1;
+        _positionBtn.layer.borderColor = BGLINECOLOR.CGColor;
+        _positionBtn.layer.cornerRadius = 3;
+        _positionBtn.layer.shouldRasterize = YES;
+        _positionBtn.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        [self addSubview:_positionBtn];
+        [_positionBtn makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.top).offset(12);
+            make.right.equalTo(self.right).offset(-10);
+            make.width.equalTo(90);
+            make.height.equalTo(20);
         }];
     }
 }

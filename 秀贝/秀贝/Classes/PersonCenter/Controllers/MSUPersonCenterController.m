@@ -11,6 +11,7 @@
 #import "MSUAliPayController.h"
 #import "MSUShareController.h"
 #import "MSUShopHouseController.h"
+#import "MSUOrderDeatilController.h"
 
 @interface MSUPersonCenterController ()
 
@@ -66,6 +67,18 @@
         make.width.equalTo(WIDTH-40);
         make.height.equalTo(30);
     }];
+    
+    UIButton *orderBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    orderBtn.backgroundColor = [UIColor blueColor];
+    [orderBtn setTitle:@"我的订单" forState:UIControlStateNormal];
+    [self.view addSubview:orderBtn];
+    [orderBtn addTarget:self action:@selector(orderBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [orderBtn makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(houseBtn.bottom).offset(20);
+        make.left.equalTo(self.view.left).offset(20);
+        make.width.equalTo(WIDTH-40);
+        make.height.equalTo(30);
+    }];
 
 }
 
@@ -81,6 +94,13 @@
     self.hidesBottomBarWhenPushed = YES;
     MSUShopHouseController *house = [[MSUShopHouseController alloc] init];
     [self.navigationController pushViewController:house animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+- (void)orderBtnClick:(UIButton *)sender{
+    self.hidesBottomBarWhenPushed = YES;
+    MSUOrderDeatilController *order = [[MSUOrderDeatilController alloc] init];
+    [self.navigationController pushViewController:order animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
 
