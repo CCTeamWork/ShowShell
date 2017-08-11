@@ -36,7 +36,7 @@
     
     self.view.backgroundColor = [UIColor blackColor];
     
-    MSUHomeNavView *nav = [[MSUHomeNavView alloc] initWithFrame:NavRect showNavWithNumber:20];
+    MSUHomeNavView *nav = [[MSUHomeNavView alloc] initWithFrame:NavRect showNavWithNumber:22];
     [self.view addSubview:nav];
     
     [self createContentView];
@@ -114,7 +114,16 @@
     bottomView.companyLab.hidden = YES;
     bottomView.expressLab.hidden = YES;
     
-    bgView.contentSize = CGSizeMake(0, CGRectGetMaxY(bottomView.frame)+40);
+    UIButton *privateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    privateBtn.frame = CGRectMake(WIDTH*0.5, CGRectGetMaxY(bottomView.frame)+10, WIDTH*0.5, 50);
+    [privateBtn setTitle:@"同意申请" forState:UIControlStateNormal];
+    [privateBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    privateBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    privateBtn.backgroundColor = [UIColor orangeColor];
+    privateBtn.adjustsImageWhenHighlighted = NO;
+    [bgView addSubview:privateBtn];
+    
+    bgView.contentSize = CGSizeMake(0, CGRectGetMaxY(privateBtn.frame)+40);
 
 }
 

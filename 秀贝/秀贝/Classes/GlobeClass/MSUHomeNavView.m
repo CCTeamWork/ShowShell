@@ -148,6 +148,12 @@
                 [self createNearbyWithTittle:@"退货退款" imageName:nil title:nil];
             }
                 break;
+            case 22:
+            {
+                /// 发表评论
+                [self createNearbyWithTittle:@"退款状态" imageName:nil title:nil];
+            }
+                break;
             default:
                 break;
         }
@@ -509,6 +515,7 @@
         self.positionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_positionBtn setImage:[MSUPathTools showImageWithContentOfFileByName:name] forState:UIControlStateNormal];
         [_positionBtn setTitle:rightTitle forState:UIControlStateNormal];
+        [_positionBtn setTitle:@"切换到买家版" forState:UIControlStateSelected];
         [_positionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _positionBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         _positionBtn.layer.borderWidth = 1;

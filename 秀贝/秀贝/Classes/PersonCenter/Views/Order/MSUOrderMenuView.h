@@ -14,4 +14,6 @@
 @property (nonatomic , strong) UIButton *menuBtn;
 @property (nonatomic , strong) UIView *lineView;
 
+- (instancetype)initWithFrame:(CGRect)frame titArr:(NSArray *)arr;
+
 @end

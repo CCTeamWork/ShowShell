@@ -17,25 +17,24 @@
 
 @implementation MSUOrderMenuView
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame titArr:(NSArray *)arr
 {
     if (self = [super initWithFrame:frame]) {
         self.btnArr = [NSMutableArray array];
-        [self createView];
+        [self createViewWithArr:arr];
         
     }
     return self;
 }
 
 
-- (void)createView{
-    NSArray *nameArr = @[@"全部",@"待付款",@"待收货",@"待评价"];
+- (void)createViewWithArr:(NSArray *)arr{
     CGFloat btnWid = (SelfWidth-60-20*3)/4;
-    for (NSInteger i = 0; i < nameArr.count; i++) {
+    for (NSInteger i = 0; i < arr.count; i++) {
         self.menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _menuBtn.adjustsImageWhenHighlighted = NO;
 //        _menuBtn.backgroundColor = [UIColor orangeColor];
-        [_menuBtn setTitle:[NSString stringWithFormat:@"%@",nameArr[i]] forState:UIControlStateNormal];
+        [_menuBtn setTitle:[NSString stringWithFormat:@"%@",arr[i]] forState:UIControlStateNormal];
         [_menuBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 //        [_menuBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
         _menuBtn.titleLabel.font = [UIFont systemFontOfSize:18];

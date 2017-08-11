@@ -34,7 +34,12 @@
 
 
 - (void)createView{
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SelfWidth, SelfHeight-64-40) style:UITableViewStylePlain];
+    UIView *navView = [[UIView alloc] init];
+    navView.frame = CGRectMake(0, 0, SelfWidth, SelfHeight-104);
+    navView.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0];
+    [self addSubview:navView];
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 0, SelfWidth-20, SelfHeight-64-40) style:UITableViewStylePlain];
     _tableView.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0];
     _tableView.dataSource = self;
     _tableView.delegate = self;
