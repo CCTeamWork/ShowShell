@@ -20,6 +20,8 @@
 #define SelfWidth [UIScreen mainScreen].bounds.size.width
 #define SelfHeight self.frame.size.height
 
+#define HEXCOLOR(rgbValue)      [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
 @interface MSUPickShopVideoView()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -40,18 +42,18 @@
 - (void)createView{
     UILabel *topLab = [[UILabel alloc] init];
     topLab.text = @"选择本页商品提取至”我的商品库“中:";
-    topLab.textColor = [UIColor grayColor];
+    topLab.textColor = HEXCOLOR(0x757575);
     topLab.font = [UIFont systemFontOfSize:14];
     [self addSubview:topLab];
     [topLab makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.top).offset(5);
-        make.left.equalTo(self.left).offset(10);
+        make.top.equalTo(self.top).offset(10);
+        make.left.equalTo(self.left).offset(14);
         make.width.equalTo(SelfWidth);
         make.height.equalTo(20);
     }];
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(15, 30, SelfWidth-30, SelfHeight-30-50) style:UITableViewStylePlain];
-    _tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(14, 40, SelfWidth-28, SelfHeight-40-45) style:UITableViewStylePlain];
+    _tableView.backgroundColor = HEXCOLOR(0xffffff);
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -69,7 +71,7 @@
         make.bottom.equalTo(self.bottom).offset(0);
         make.left.equalTo(self.left).offset(0);
         make.width.equalTo(SelfWidth);
-        make.height.equalTo(50);
+        make.height.equalTo(45);
     }];
 }
 
@@ -78,7 +80,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 95;
+    return 111;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -87,11 +89,11 @@
     
     cell.shopNameLab.text = @"天青色等烟雨，而我在等你；炊烟袅袅升起，隔江千万里!";
     CGRect hotRect = [MSUStringTools danamicGetHeightFromText:cell.shopNameLab.text WithWidth:(SelfWidth-30) font:16];
-    cell.shopNameLab.frame = CGRectMake(5+80+10, 3, SelfWidth-30-30-(5+80+10), hotRect.size.height);
+    cell.shopNameLab.frame = CGRectMake(5+80+10, 11, SelfWidth-24-30-(5+80+10)-5, hotRect.size.height);
     cell.priceLab.text = [NSString stringWithFormat:@"¥%@",@"88.80"];
     cell.tuiGuangLab.text = [NSString stringWithFormat:@"推广佣金：%@元",@"10"];
 //    cell.tuiGuangLab.frame = CGRectMake(SelfWidth-15-10-sizel.width,65 , sizel.width, 20);
-    [cell.infoBtn setImage:[MSUPathTools showImageWithContentOfFileByName:@"like"] forState:UIControlStateNormal];
+    [cell.infoBtn setImage:[MSUPathTools showImageWithContentOfFileByName:@"search-headbig"] forState:UIControlStateNormal];
     [cell.infoBtn setTitle:@"叶叶叶叶叶子" forState:UIControlStateNormal];
     
     

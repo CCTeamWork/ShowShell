@@ -59,7 +59,8 @@
 
     // 背景颜色
 //    self.view.backgroundColor = NavColor;
-    self.view.backgroundColor = [UIColor blackColor];
+//    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = HEXCOLOR(0x333333);
     
     // 定位初始化
     [self locationInit];
@@ -94,11 +95,11 @@
 - (void)createNavView{
     self.navView = [[MSUHomeNavView alloc] initWithFrame:NavRect showNavWithNumber:0];
 //    nav.backgroundColor = NavColor;
-    _navView.backgroundColor = [UIColor blackColor];
+//    _navView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:_navView];
     
     // 点击事件
-    [_navView.scanBtn addTarget:self action:@selector(scanBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [_navView.scanBtn addTarget:self action:@selector(scanBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [_navView.LocationBtn addTarget:self action:@selector(locationBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [_navView.homeSearchBtn addTarget:self action:@selector(homeSearchBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -107,13 +108,13 @@
 - (void)createCollectionView{
     UICollectionViewFlowLayout *layOut = [[UICollectionViewFlowLayout alloc] init];
     [layOut setScrollDirection:UICollectionViewScrollDirectionVertical];
-    layOut.itemSize = CGSizeMake(WIDTH * 0.5 - 5, 300);
+    layOut.itemSize = CGSizeMake(WIDTH * 0.5 - 2.5, 272);
     // 列间距
-    layOut.minimumInteritemSpacing = 10;
+    layOut.minimumInteritemSpacing = 5;
     // 行间距
-    layOut.minimumLineSpacing = 10;
+    layOut.minimumLineSpacing = 5;
     // 四边距
-    layOut.sectionInset = UIEdgeInsetsMake(5, 0, 5, 0);
+    layOut.sectionInset = UIEdgeInsetsMake(5, 0, 0, 0);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64 - 44) collectionViewLayout:layOut];
     _collectionView.backgroundColor = SLIVERYCOLOR;
@@ -154,6 +155,10 @@
 }
 
 #pragma mark - 点击事件相关
+- (void)likeBtnClick:(UIButton *)sender{
+    sender.selected = YES;
+}
+
 /* 扫描点击事件 */
 - (void)scanBtnClick:(UIButton *)sender{
     self.hidesBottomBarWhenPushed = YES;
@@ -254,13 +259,12 @@
     cell.backgroundColor = [UIColor whiteColor];
     
     cell.imageView.image = [UIImage imageNamed:@""];
-    cell.iconImage.image = [UIImage imageNamed:@"icon-z"];
+    cell.iconImage.image = [UIImage imageNamed:@"search-headbig"];
     cell.titleLabel.text = @"欧尼欧尼欧尼";
     cell.likeNumLab.text = @"199233";
     CGSize titleSize = [MSUStringTools danamicGetWidthFromText:cell.likeNumLab.text WithFont:10];
-    cell.likeNumLab.frame = CGRectMake(WIDTH*0.5-10-titleSize.width, 300-40+5, titleSize.width, 30);
-    [cell.likeBtn setImage:[UIImage imageNamed:@"marketchoose"] forState:UIControlStateNormal];
-//    cell.likeBtn.frame = CGRectMake(CGRectGetMinX(cell.likeNumLab.frame)-18-5, 300-40+11, 18, 18);
+    cell.likeNumLab.frame = CGRectMake(WIDTH*0.5-2.5-10-titleSize.width, 272-28, titleSize.width, 28);
+    [cell.likeBtn addTarget:self action:@selector(likeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 }
@@ -268,7 +272,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"点击了第 %zd组 第%zd个",indexPath.section, indexPath.row);
     
-//    [[MSUAFNRequest sharedInstance] postRequestWithURL:@"http://192.168.10.151/index/home" parameters:nil withBlock:^(id obj, NSError *error) {
+//    [[MSUAFNRequest sharedInstance] postRequestWithURL:@"http://192.168.10.151/index/home" parameters:@"2" withBlock:^(id obj, NSError *error) {
 //        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:obj options:NSJSONReadingMutableContainers error:nil];
 //        if (!error) {
 //            NSLog(@"访问成功%@",jsonDict);

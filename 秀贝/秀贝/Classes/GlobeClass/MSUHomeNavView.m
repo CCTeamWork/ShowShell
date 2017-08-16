@@ -10,6 +10,7 @@
 #import "MSUPrefixHeader.pch"
 #import "MSUPathTools.h"
 
+
 @implementation MSUHomeNavView
 
 - (instancetype)initWithFrame:(CGRect)frame showNavWithNumber:(NSInteger)number
@@ -61,13 +62,13 @@
             case 7:
             {
                 /// 附近动态页面
-                [self createNearbyWithTittle:@"附近动态" imageName:@"Search" title:nil];
+                [self createNearbyWithTittle:@"附近动态" imageName:@"state-screening" title:nil];
             }
                 break;
             case 8:
             {
                 /// 商品详情页面
-                [self createNearbyWithTittle:@"商品详情" imageName:nil title:nil];
+                [self createNearbyWithTittle:@"" imageName:@"vide-more" title:nil];
             }
                 break;
             case 9:
@@ -85,7 +86,7 @@
             case 11:
             {
                 /// 确认订单页面
-                [self createNearbyWithTittle:nil imageName:@"Search" title:nil];
+                [self createNearbyWithTittle:nil imageName:@"vide-more" title:nil];
             }
                 break;
             case 12:
@@ -163,59 +164,72 @@
 
 #pragma mark - 首页的导航视图
 - (void)createHomePageNavView{
-    NSString *city;
-    //取出存值，判断是否第一次进入 如果第一次进入 city默认为上海 ；如果不是第一次进入 city为上次定位位置
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"city"]) {
-        city = [[NSUserDefaults standardUserDefaults] objectForKey:@"city"];
-    }else{
-        city = @"上海";
-    }
-    // 定位按钮
-    self.LocationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    _LocationBtn.backgroundColor = [UIColor whiteColor];
-    [_LocationBtn setTitle:city forState:UIControlStateNormal];
-    _LocationBtn.titleLabel.font = [UIFont systemFontOfSize:18];
-    [self addSubview:_LocationBtn];
-//    [_LocationBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_LocationBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.top).offset(17);
-        make.left.equalTo(self.left).offset(0);
-        make.width.equalTo(80);
-        make.height.equalTo(20);
-    }];
+//    NSString *city;
+//    //取出存值，判断是否第一次进入 如果第一次进入 city默认为上海 ；如果不是第一次进入 city为上次定位位置
+//    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"city"]) {
+//        city = [[NSUserDefaults standardUserDefaults] objectForKey:@"city"];
+//    }else{
+//        city = @"上海";
+//    }
+//    // 定位按钮
+//    self.LocationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+////    _LocationBtn.backgroundColor = [UIColor whiteColor];
+//    [_LocationBtn setTitle:city forState:UIControlStateNormal];
+//    _LocationBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+//    [self addSubview:_LocationBtn];
+////    [_LocationBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [_LocationBtn makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.top).offset(17);
+//        make.left.equalTo(self.left).offset(0);
+//        make.width.equalTo(80);
+//        make.height.equalTo(20);
+//    }];
     
     // 中部标识
-    UIImageView *logoIma = [[UIImageView alloc] init];
-    logoIma.image = [UIImage imageNamed:@"logo"];
-    logoIma.contentMode = UIViewContentModeScaleAspectFit;
-    [self addSubview:logoIma];
-    [logoIma makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.top).offset(7);
+//    UIImageView *logoIma = [[UIImageView alloc] init];
+//    logoIma.image = [UIImage imageNamed:@"logo"];
+//    logoIma.contentMode = UIViewContentModeScaleAspectFit;
+//    [self addSubview:logoIma];
+//    [logoIma makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.top).offset(7);
+//        make.left.equalTo(self.left).offset(WIDTH * 0.5 - 50);
+//        make.width.equalTo(100);
+//        make.height.equalTo(30);
+//    }];
+    
+    UILabel *homeLab = [[UILabel alloc] init];
+    homeLab.textAlignment = NSTextAlignmentCenter;
+    homeLab.text = @"秀贝";
+    homeLab.textColor = HEXCOLOR(0xffffff);
+    homeLab.font = [UIFont systemFontOfSize:18];
+    [self addSubview:homeLab];
+    [homeLab makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.top).offset(0);
         make.left.equalTo(self.left).offset(WIDTH * 0.5 - 50);
         make.width.equalTo(100);
-        make.height.equalTo(30);
+        make.height.equalTo(40);
     }];
-
+    
     // 扫描按钮
-    self.scanBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_scanBtn setImage:[UIImage imageNamed:@"scan"] forState:UIControlStateNormal];
-    [self addSubview:_scanBtn];
-    [_scanBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.top).offset(7);
-        make.right.equalTo(self.right).offset(-15);
-        make.width.equalTo(30);
-        make.height.equalTo(30);
-    }];
+//    self.scanBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [_scanBtn setImage:[UIImage imageNamed:@"scan"] forState:UIControlStateNormal];
+//    [self addSubview:_scanBtn];
+//    [_scanBtn makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.top).offset(7);
+//        make.right.equalTo(self.right).offset(-15);
+//        make.width.equalTo(30);
+//        make.height.equalTo(30);
+//    }];
     
     // 搜索按钮
     self.homeSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_homeSearchBtn setImage:[UIImage imageNamed:@"Search"] forState:UIControlStateNormal];
+    [_homeSearchBtn setImage:[UIImage imageNamed:@"home-search"] forState:UIControlStateNormal];
     [self addSubview:_homeSearchBtn];
     [_homeSearchBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.top).offset(7);
-        make.right.equalTo(_scanBtn.left).offset(-10);
-        make.width.equalTo(30);
-        make.height.equalTo(30);
+        make.top.equalTo(self.top).offset(10);
+        make.right.equalTo(self.right).offset(-16);
+        make.width.equalTo(20);
+        make.height.equalTo(20);
     }];
 }
 
@@ -341,7 +355,7 @@
 #pragma mark - 搜索框视图
 - (void)createSerachNavView{
     /// 搜索框
-    self.search = [[UISearchBar alloc]initWithFrame:CGRectMake(10, 0, WIDTH-10-60, 44)];
+    self.search = [[UISearchBar alloc]initWithFrame:CGRectMake(14, 6, WIDTH-14-6-30-14, 28)];
     _search.placeholder =  @"搜索感兴趣的内容";
     _search.searchBarStyle = UISearchBarStyleMinimal;
     _search.backgroundImage = [self imageWithColor:WHITECOLOR size:_search.bounds.size];
@@ -360,13 +374,13 @@
     self.searchCancleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:_searchCancleBtn];
     [_searchCancleBtn setTitle:@"取消" forState:UIControlStateNormal];
-    _searchCancleBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    [_searchCancleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _searchCancleBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [_searchCancleBtn setTitleColor:HEXCOLOR(0x989898) forState:UIControlStateNormal];
     [_searchCancleBtn makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.top).offset(0);
-        make.left.equalTo(_search.right).offset(5);
-        make.width.equalTo(40);
-        make.height.equalTo(44);
+        make.left.equalTo(_search.right).offset(6);
+        make.width.equalTo(30);
+        make.height.equalTo(40);
     }];
 
 }
@@ -419,24 +433,24 @@
     UILabel *titeleLab = [[UILabel alloc] init];
     titeleLab.text = tittle;
     titeleLab.textAlignment = NSTextAlignmentCenter;
-    titeleLab.font = [UIFont systemFontOfSize:20];
-    [titeleLab setTextColor:[UIColor whiteColor]];
+    titeleLab.font = [UIFont systemFontOfSize:18];
+    [titeleLab setTextColor:HEXCOLOR(0xffffff)];
     [self addSubview:titeleLab];
     [titeleLab makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.top).offset(0);
         make.left.equalTo(self.left).offset(WIDTH * 0.5 - 25);
         make.width.equalTo(50);
-        make.height.equalTo(44);
+        make.height.equalTo(40);
     }];
     // 搜索按钮
     self.homeSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_homeSearchBtn setImage:[UIImage imageNamed:@"Search"] forState:UIControlStateNormal];
+    [_homeSearchBtn setImage:[UIImage imageNamed:@"home-search"] forState:UIControlStateNormal];
     [self addSubview:_homeSearchBtn];
     [_homeSearchBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.top).offset(7);
-        make.right.equalTo(self.right).offset(-10);
-        make.width.equalTo(30);
-        make.height.equalTo(30);
+        make.top.equalTo(self.top).offset(10);
+        make.right.equalTo(self.right).offset(-19);
+        make.width.equalTo(20);
+        make.height.equalTo(20);
     }];
 }
 
@@ -444,27 +458,28 @@
 - (void)createNearbyWithTittle:(NSString *)tittle imageName:(NSString *)name title:(NSString *)rightTitle{
     // 左箭头
     self.backArrowBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _backArrowBtn.backgroundColor = [UIColor blueColor];
+//    _backArrowBtn.backgroundColor = [UIColor blueColor];
+    [_backArrowBtn setImage:[MSUPathTools showImageWithContentOfFileByName:@"back"] forState:UIControlStateNormal];
     [self addSubview:_backArrowBtn];
     [_backArrowBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.top).offset(7);
-        make.left.equalTo(self.left).offset(15);
-        make.width.equalTo(20);
-        make.height.equalTo(30);
+        make.top.equalTo(self.top).offset(9.5);
+        make.left.equalTo(self.left).offset(19);
+        make.width.equalTo(12);
+        make.height.equalTo(21);
     }];
     
     // 附近动态
     UILabel *titeleLab = [[UILabel alloc] init];
     titeleLab.text = tittle;
     titeleLab.textAlignment = NSTextAlignmentCenter;
-    titeleLab.font = [UIFont systemFontOfSize:20];
-    [titeleLab setTextColor:[UIColor whiteColor]];
+    titeleLab.font = [UIFont systemFontOfSize:18];
+    [titeleLab setTextColor:HEXCOLOR(0xffffff)];
     [self addSubview:titeleLab];
     [titeleLab makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.top).offset(0);
         make.left.equalTo(self.left).offset(WIDTH * 0.5 - 75);
         make.width.equalTo(150);
-        make.height.equalTo(44);
+        make.height.equalTo(40);
     }];
     
     if (name) {
@@ -475,10 +490,10 @@
         [_positionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self addSubview:_positionBtn];
         [_positionBtn makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.top).offset(7);
-            make.right.equalTo(self.right).offset(-10);
-            make.width.equalTo(40);
-            make.height.equalTo(30);
+            make.top.equalTo(self.top).offset(9.5);
+            make.right.equalTo(self.right).offset(-19);
+            make.width.equalTo(21);
+            make.height.equalTo(21);
         }];
     }
 }

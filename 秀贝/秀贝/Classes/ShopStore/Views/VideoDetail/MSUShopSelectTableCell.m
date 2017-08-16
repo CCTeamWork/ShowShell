@@ -7,6 +7,7 @@
 //
 
 #import "MSUShopSelectTableCell.h"
+#import "MSUPathTools.h"
 
 //masonry
 #define MAS_SHORTHAND
@@ -16,7 +17,8 @@
 #define SelfWidth [UIScreen mainScreen].bounds.size.width
 #define SelfHeight [UIScreen mainScreen].bounds.size.height
 
-#define SeleWidth SelfWidth - 30 - 25
+#define SeleWidth SelfWidth - 30 - 30
+#define HEXCOLOR(rgbValue)      [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
 @implementation MSUShopSelectTableCell
@@ -30,22 +32,27 @@
 
 - (void)createContentView{
     self.topBGView = [[UIView alloc] init];
-    _topBGView.backgroundColor = [UIColor whiteColor];
+    _topBGView.backgroundColor = HEXCOLOR(0xffffff);
+    _topBGView.layer.borderWidth = 1;
+    _topBGView.layer.borderColor = [UIColor grayColor].CGColor;
     [self addSubview:_topBGView];
     [_topBGView makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.top).offset(10);
-        make.left.equalTo(self.left).offset(15);
+        make.left.equalTo(self.left).offset(14);
         make.width.equalTo(SeleWidth);
         make.height.equalTo(90);
     }];
     
     // 选择按钮
     self.seleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _seleBtn.backgroundColor = [UIColor blueColor];
+    [_seleBtn setImage:[MSUPathTools showImageWithContentOfFileByName:@"video-product-choose"] forState:UIControlStateNormal];
+    [_seleBtn setImage:[MSUPathTools showImageWithContentOfFileByName:@"WechatIMG570"] forState:UIControlStateSelected];
+//    _seleBtn.backgroundColor = [UIColor blueColor];
+    _seleBtn.adjustsImageWhenHighlighted = NO;
     [_topBGView addSubview:_seleBtn];
     [_seleBtn makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(_topBGView.centerY).offset(0);
-        make.right.equalTo(self.right).offset(-10);
+        make.right.equalTo(self.right).offset(-14);
         make.width.equalTo(15);
         make.height.equalTo(15);
     }];
@@ -84,13 +91,15 @@
     
     // 展开按钮
     self.foldBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _foldBtn.backgroundColor = [UIColor blueColor];
+//    _foldBtn.backgroundColor = [UIColor blueColor];
+    _foldBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [_foldBtn setImage:[MSUPathTools showImageWithContentOfFileByName:@"video-buy-more"] forState:UIControlStateNormal];
     [_topBGView addSubview:_foldBtn];
     [_foldBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(_shopIma.bottom).offset(0);
+        make.top.equalTo(_priceLab.top).offset(0);
         make.right.equalTo(_topBGView.right).offset(-10);
-        make.width.equalTo(20);
-        make.height.equalTo(20);
+        make.width.equalTo(15);
+        make.height.equalTo(7);
     }];
     [_foldBtn addTarget:self action:@selector(foldBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -107,8 +116,8 @@
     
     UILabel *seleLab = [[UILabel alloc] init];
     seleLab.text = @"选择商品规格 :";
-    seleLab.font = [UIFont systemFontOfSize:14];
-    seleLab.textColor = [UIColor blackColor];
+    seleLab.font = [UIFont systemFontOfSize:12];
+    seleLab.textColor = HEXCOLOR(0x333333);
     [_bottomBGView addSubview:seleLab];
     [seleLab makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_bottomBGView.top).offset(5);
@@ -120,8 +129,8 @@
     UILabel *colorLab = [[UILabel alloc] init];
 //    colorLab.backgroundColor = [UIColor redColor];
     colorLab.text = @"颜色 :";
-    colorLab.font = [UIFont systemFontOfSize:14];
-    colorLab.textColor = [UIColor blackColor];
+    colorLab.font = [UIFont systemFontOfSize:12];
+    colorLab.textColor = HEXCOLOR(0x333333);
     [_bottomBGView addSubview:colorLab];
     [colorLab makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(seleLab.bottom).offset(10);
@@ -139,15 +148,15 @@
         [_colorBtn setTitle:@"黑色原点" forState:UIControlStateNormal];
         [_colorBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _colorBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-        _colorBtn.layer.borderColor = [UIColor grayColor].CGColor;
+        _colorBtn.layer.borderColor = HEXCOLOR(0xb4b4b42).CGColor;
         _colorBtn.layer.borderWidth = 1;
-        _colorBtn.backgroundColor = [UIColor blueColor];
+//        _colorBtn.backgroundColor = [UIColor blueColor];
         [_bottomBGView addSubview:_colorBtn];
         [_colorBtn makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(colorLab.top).offset(0);
-            make.left.equalTo(colorLab.right).offset(5+(60+5)*i);
-            make.width.equalTo(60);
-            make.height.equalTo(20);
+            make.centerY.equalTo(colorLab.centerY).offset(0);
+            make.left.equalTo(colorLab.right).offset(5+(65+5)*i);
+            make.width.equalTo(65);
+            make.height.equalTo(27);
         }];
         [self.colorBtnArr addObject:_colorBtn];
     }
@@ -155,7 +164,7 @@
     UILabel *numberLab = [[UILabel alloc] init];
     numberLab.text = @"数量 :";
     numberLab.font = [UIFont systemFontOfSize:14];
-    numberLab.textColor = [UIColor blackColor];
+    numberLab.textColor = HEXCOLOR(0x333333);
     [_bottomBGView addSubview:numberLab];
     [numberLab makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(colorLab.bottom).offset(10);
@@ -165,7 +174,10 @@
     }];
     
     self.cutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _cutBtn.backgroundColor = [UIColor blueColor];
+    [_cutBtn setTitle:@"-" forState:UIControlStateNormal];
+    [_cutBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _cutBtn.layer.borderWidth = 1;
+    _cutBtn.layer.borderColor = HEXCOLOR(0xb4b4b4).CGColor;
     [_bottomBGView addSubview:_cutBtn];
     [_cutBtn makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(numberLab.top).offset(0);
@@ -175,10 +187,10 @@
     }];
     
     self.numLab = [[UILabel alloc] init];
-    _numLab.backgroundColor = [UIColor redColor];
+//    _numLab.backgroundColor = [UIColor redColor];
     _numLab.text = @"2";
     _numLab.font = [UIFont systemFontOfSize:12];
-    _numLab.textColor = [UIColor blackColor];
+    _numLab.textColor = HEXCOLOR(0x333333);
     _numLab.textAlignment = NSTextAlignmentCenter;
     [_bottomBGView addSubview:_numLab];
     [_numLab makeConstraints:^(MASConstraintMaker *make) {
@@ -189,7 +201,10 @@
     }];
     
     self.addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _addBtn.backgroundColor = [UIColor blueColor];
+    [_addBtn setTitle:@"+" forState:UIControlStateNormal];
+    [_addBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _addBtn.layer.borderWidth = 1;
+    _addBtn.layer.borderColor = HEXCOLOR(0xb4b4b4).CGColor;
     [_bottomBGView addSubview:_addBtn];
     [_addBtn makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(numberLab.top).offset(0);

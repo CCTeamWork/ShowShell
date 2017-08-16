@@ -64,19 +64,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = BlackColor;
     
     self.isUnfold = NO;
     self.textStr = @"有一美人兮，见之不忘。一日不见兮，思之如狂。凤飞翱翔兮，四海求凰。无奈佳人兮，不在东墙。将琴代语兮，聊写衷肠。何日见许兮，慰我彷徨。愿言配德兮，携手相将。不得于飞兮，使我沦亡。";
-    self.textRect = [MSUStringTools danamicGetHeightFromText:_textStr WithWidth:WIDTH-10 font:16];
+    self.textRect = [MSUStringTools danamicGetHeightFromText:_textStr WithWidth:WIDTH-10 font:12];
     self.transText = @"转发视频";
-    self.transRect = [MSUStringTools danamicGetHeightFromText:_transText WithWidth:WIDTH-10 font:16];
+    self.transRect = [MSUStringTools danamicGetHeightFromText:_transText WithWidth:WIDTH-10 font:12];
     
     self.isTrans = NO;
     if (_isTrans) {
-        self.videoHeight = 50 + 10 + _transRect.size.height + 5 + _textRect.size.height + 220 + 40;
+        self.videoHeight = 59 + 10 + _transRect.size.height + 5 + _textRect.size.height+10 + 171.5 + 10+30;
     } else {
-        self.videoHeight = 50 + 10 + _textRect.size.height + 5 + 210 + 30;
+        self.videoHeight = 59 + 10 + _textRect.size.height  + 171.5 + 30;
     }
 
     // 导航视图
@@ -93,14 +93,14 @@
     [self createCommentView];
     
     // 底部视图
-    MSUVideoDetailBottomView *bottom = [[MSUVideoDetailBottomView alloc] initWithFrame:CGRectMake(0, HEIGHT-50, WIDTH, 50)];
+    MSUVideoDetailBottomView *bottom = [[MSUVideoDetailBottomView alloc] initWithFrame:CGRectMake(0, HEIGHT-47, WIDTH, 47)];
     [self.view addSubview:bottom];
     [bottom.buyBtn addTarget:self action:@selector(buyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)createVideoView{
-    self.bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT)];
-    _bgScrollView.backgroundColor = BGLINECOLOR;
+    self.bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 60, WIDTH, HEIGHT)];
+    _bgScrollView.backgroundColor = HEXCOLOR(0xf4f4f4);
     _bgScrollView.scrollEnabled = YES;
     _bgScrollView.contentSize = CGSizeMake(0, 5+self.videoHeight+5+130+200+(39+_textRect.size.height+50)*2);
     _bgScrollView.showsHorizontalScrollIndicator = NO;
@@ -108,7 +108,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:_bgScrollView];
 
-    MSUVideoDetailView *video = [[MSUVideoDetailView alloc] initWithFrame:CGRectMake(0, 5, WIDTH, self.videoHeight)];
+    MSUVideoDetailView *video = [[MSUVideoDetailView alloc] initWithFrame:CGRectMake(0, 10, WIDTH, self.videoHeight)];
     video.backgroundColor = [UIColor whiteColor];
     [_bgScrollView addSubview:video];
     // 头像
@@ -123,22 +123,22 @@
     if (video.isTranspod) {
         // 转发评论
         video.transpodLab.text = self.transText;
-        video.transpodLab.frame = CGRectMake(10, 50 + 10, WIDTH-20, _transRect.size.height);
+        video.transpodLab.frame = CGRectMake(14, 59, WIDTH-28, _transRect.size.height);
         // 内容正题
         video.tittleLab.text = self.textStr;
-        video.tittleBGView.frame = CGRectMake(0, 50 + 10 + _transRect.size.height + 5, WIDTH, _textRect.size.height+5);
-        video.tittleLab.frame = CGRectMake(10, 5, WIDTH-20, _textRect.size.height);
-        video.videoBGView.frame = CGRectMake(0, CGRectGetMaxY(video.tittleBGView.frame), WIDTH, 220);
+        video.tittleBGView.frame = CGRectMake(0, 59 + _transRect.size.height + 5, WIDTH, _textRect.size.height+10);
+        video.tittleLab.frame = CGRectMake(14, 10, WIDTH-28, _textRect.size.height);
+        video.videoBGView.frame = CGRectMake(0, CGRectGetMaxY(video.tittleBGView.frame), WIDTH, 191.5);
         
-        video.tittleBGView.backgroundColor = SLIVERYCOLOR;
-        video.videoBGView.backgroundColor = SLIVERYCOLOR;
+        video.tittleBGView.backgroundColor =  HEXCOLOR(0xf2f2f2);
+        video.videoBGView.backgroundColor =  HEXCOLOR(0xf2f2f2);
         
     }else{
         // 内容正题
         video.tittleLab.text = _textStr;
-        video.tittleBGView.frame = CGRectMake(0, 50 + 10 , WIDTH, _textRect.size.height);
-        video.tittleLab.frame = CGRectMake(10, 0, WIDTH-20, _textRect.size.height);
-        video.videoBGView.frame = CGRectMake(0, CGRectGetMaxY(video.tittleBGView.frame), WIDTH, 210);
+        video.tittleBGView.frame = CGRectMake(0, 59 , WIDTH, _textRect.size.height);
+        video.tittleLab.frame = CGRectMake(14, 0, WIDTH-28, _textRect.size.height);
+        video.videoBGView.frame = CGRectMake(0, CGRectGetMaxY(video.tittleBGView.frame), WIDTH, 181.5);
     }
     
     // 视频页面
@@ -161,19 +161,19 @@
 }
 
 - (void)createShopViewWithCount:(NSInteger)count{
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 5 + self.videoHeight + 5, WIDTH, 130)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 10 + self.videoHeight + 10, WIDTH, 126)];
     bgView.backgroundColor = [UIColor whiteColor];
     [_bgScrollView addSubview:bgView];
     
     for (NSInteger i = 0; i < count; i++) {
-        CGFloat btnWidth = (WIDTH-20-3*10)/4;
+        CGFloat btnWidth = (WIDTH-28-3*6.5)/4;
         UIButton *shopBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         shopBtn.layer.cornerRadius = 5;
         shopBtn.layer.shouldRasterize = YES;
         shopBtn.layer.rasterizationScale = [UIScreen mainScreen].scale;
         shopBtn.layer.borderWidth = 1;
         shopBtn.layer.borderColor = [UIColor redColor].CGColor;
-        shopBtn.frame = CGRectMake(10+(btnWidth+10)*i, 10, btnWidth, 110);
+        shopBtn.frame = CGRectMake(14+(btnWidth+6.5)*i, 11, btnWidth, 104);
         shopBtn.backgroundColor = [UIColor colorWithRed:247/255.0 green:215/255.0 blue:33/255.0 alpha:1];
         [bgView addSubview:shopBtn];
         [shopBtn addTarget:self action:@selector(shopBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -181,7 +181,7 @@
 }
 
 - (void)createCommentView{
-    MSUVideoDetailCommentView *comment = [[MSUVideoDetailCommentView alloc] initWithFrame:CGRectMake(0, 5 + self.videoHeight + 5 + 130 + 5, WIDTH, (39+_textRect.size.height+50)*2) tableViewHeight:(39+_textRect.size.height+50)*2];
+    MSUVideoDetailCommentView *comment = [[MSUVideoDetailCommentView alloc] initWithFrame:CGRectMake(0, 10 + self.videoHeight + 10 + 130 + 10, WIDTH, (39+_textRect.size.height+50)*2) tableViewHeight:(39+_textRect.size.height+50)*2];
     comment.backgroundColor = BGLINECOLOR;
     [_bgScrollView addSubview:comment];
     
@@ -304,22 +304,23 @@
 
 - (MSUShopSelectView *)seleView{
     if (!_seleView) {
-        self.seleView = [[MSUShopSelectView alloc] initWithFrame:CGRectMake(0, HEIGHT*0.5, WIDTH, HEIGHT*0.5)];
+        self.seleView = [[MSUShopSelectView alloc] initWithFrame:CGRectMake(0, 270 ,WIDTH, HEIGHT-270)];
         [self.shadowView addSubview:_seleView];
         _seleView.hidden = YES;
         _seleView.seleTableView.delegate = self;
         _seleView.seleTableView.dataSource = self;
         [_seleView.cancelBtn addTarget:self action:@selector(cancelBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        
+        [_seleView.buyBtn addTarget:self action:@selector(buyBtnBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+
     }
     return _seleView;
 }
 
 - (MSUPullView *)pullView{
     if (!_pullView) {
-        NSArray *arr = @[@"like",@"like",@"like",@"like"];
-        NSArray *titleArr = @[@"收藏",@"分享",@"提取商品",@"举报"];
-        self.pullView = [[MSUPullView alloc] initWithFrame:CGRectMake(WIDTH-10-120, 64+5, 120, 160) imaArr:arr tittleArr:titleArr];
+        NSArray *arr = @[@"state-detail-more-save",@"state-detail-more-share",@"video-takeproduct",@"state-detail-more-inform"];
+        NSArray *titleArr = @[@"收藏",@"提取商品",@"分享",@"举报"];
+        self.pullView = [[MSUPullView alloc] initWithFrame:CGRectMake(WIDTH-14-135, 64+5, 135, 37*4) imaArr:arr tittleArr:titleArr rowHeight:37];
         [self.view addSubview:_pullView];
         _pullView.backgroundColor = [UIColor whiteColor];
         _pullView.layer.borderColor = [UIColor grayColor].CGColor;
@@ -331,7 +332,7 @@
 
 - (MSUPickShopVideoView *)pickview{
     if (!_pickview) {
-        self.pickview = [[MSUPickShopVideoView alloc] initWithFrame:CGRectMake(0, HEIGHT/5, WIDTH, HEIGHT*4/5)];
+        self.pickview = [[MSUPickShopVideoView alloc] initWithFrame:CGRectMake(0, 143, WIDTH, HEIGHT-143)];
         [self.shadow1View addSubview:_pickview];
         _pickview.backgroundColor = [UIColor whiteColor];
         _pickview.hidden = YES;

@@ -24,9 +24,9 @@
 
 #define WIDTH [UIScreen mainScreen].bounds.size.width
 #define HEIGHT [UIScreen mainScreen].bounds.size.height
+#define HEXCOLOR(rgbValue)      [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
-
-@interface MSUTabbarController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface MSUTabbarController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITabBarControllerDelegate>
 
 @end
 
@@ -34,9 +34,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // 更改tabbar 选中字体颜色
-    self.tabBar.tintColor = [UIColor orangeColor];
 
     // tabbar创建方法
     [self createSystemTabbar];
@@ -57,7 +54,7 @@
     
     // 更改tabbar 选中字体颜色
     UITabBar *tabbar = [UITabBar appearanceWhenContainedIn:self, nil];
-    tabbar.tintColor = [UIColor orangeColor];
+    tabbar.tintColor = HEXCOLOR(0xf7d721);
     tabbar.backgroundColor = [UIColor whiteColor];
     
     // 设置所有item的选中时颜色
@@ -65,21 +62,21 @@
     // 创建字典去描述文本
     NSMutableDictionary *attSelect = [NSMutableDictionary dictionary];
     // 文本颜色 -> 描述富文本属性的key -> NSAttributedString.h
-    attSelect[NSForegroundColorAttributeName] = [UIColor orangeColor];
+    attSelect[NSForegroundColorAttributeName] = HEXCOLOR(0xf7d721);
     [item setTitleTextAttributes:attSelect forState:UIControlStateSelected];
     
     // 通过normal状态设置字体大小
     // 字体大小 跟 normal
     NSMutableDictionary *attrNormal = [NSMutableDictionary dictionary];
     // 设置字体
-    attrNormal[NSFontAttributeName] = [UIFont systemFontOfSize:13];
+    attrNormal[NSFontAttributeName] = [UIFont systemFontOfSize:10];
     [item setTitleTextAttributes:attrNormal forState:UIControlStateNormal];
     
     // 文字偏移量
-    //[item setTitlePositionAdjustment:<#(UIOffset)#>];
+    [item setTitlePositionAdjustment:UIOffsetMake(0, -3)];
     
     // icon偏移量
-    // item.imageInsets = UIEdgeInsetsMake(<#CGFloat top#>, <#CGFloat left#>, <#CGFloat bottom#>, <#CGFloat right#>);
+//    [item setImageInsets:UIEdgeInsetsMake(-2.5, 0, 2.5, 0)];
 }
 
 #pragma mark - tabbar 子控制器们
@@ -102,23 +99,27 @@
     MSUPersonCenterController *center = [[MSUPersonCenterController alloc] init];
     
     // 图片数组
-    NSArray *imageArr = @[@"home",@"market",@"video",@"myself"];
-    NSArray *selectImaArr = @[@"homechoose",@"marketchoose",@"videochoose",@"myselfchoose"];
+    NSArray *imageArr = @[@"home-tab-showbuy",@"home-tab-dynamic",@"home-tab-message",@"home-tab-account"];
+    NSArray *selectImaArr = @[@"home-tab-showbuychoose",@"home-tab-dynamicchoose",@"home-tab-messagechoose",@"home-tab-accountchoose"];
     
     //数组设置
     self.viewControllers = [NSArray arrayWithObjects:
-                            [self createNavWithViewController:home WithTitle:@"首页" image:[UIImage imageNamed:imageArr[0]] selectedImage:[UIImage imageNamed:selectImaArr[0]] badgeValue:@"18"],
-                            [self createNavWithViewController:shop WithTitle:@"商城" image:[UIImage imageNamed:imageArr[1]] selectedImage:[UIImage imageNamed:selectImaArr[1]] badgeValue:nil],
+                            [self createNavWithViewController:home WithTitle:@"秀贝" image:[UIImage imageNamed:imageArr[0]] selectedImage:[UIImage imageNamed:selectImaArr[0]] badgeValue:@"18"],
+                            [self createNavWithViewController:shop WithTitle:@"动态" image:[UIImage imageNamed:imageArr[1]] selectedImage:[UIImage imageNamed:selectImaArr[1]] badgeValue:nil],
                             [self createNavWithViewController:vc WithTitle:nil image:nil selectedImage:nil badgeValue:nil],
-                            [self createNavWithViewController:video WithTitle:@"视频" image:[UIImage imageNamed:imageArr[2]] selectedImage:[UIImage imageNamed:selectImaArr[2]] badgeValue:nil],
+                            [self createNavWithViewController:video WithTitle:@"消息" image:[UIImage imageNamed:imageArr[2]] selectedImage:[UIImage imageNamed:selectImaArr[2]] badgeValue:nil],
                            [self createNavWithViewController:center WithTitle:@"我的" image:[UIImage imageNamed:imageArr[3]] selectedImage:[UIImage imageNamed:selectImaArr[3]] badgeValue:nil],
                             nil];
     
     
     //中间突出按钮设置
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0.0,0.0,65,65)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0.0,0.0,49,49)];
     button.center = CGPointMake(WIDTH/2,15);
-    [button setBackgroundImage:[UIImage imageNamed:@"icon-z"] forState:UIControlStateNormal];
+    button.layer.shadowColor = HEXCOLOR(0xf7d721).CGColor;
+    button.layer.shadowOffset = CGSizeMake(1, 1);
+    button.layer.shadowOpacity = 0.4;
+    button.layer.shadowRadius = 3;
+    [button setBackgroundImage:[UIImage imageNamed:@"xiang"] forState:UIControlStateNormal];
     button.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [button addTarget:self action:@selector(pickClick) forControlEvents:UIControlEventTouchUpInside];
     [self.tabBar addSubview:button];

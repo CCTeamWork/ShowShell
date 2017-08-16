@@ -14,6 +14,8 @@
 #define MAS_SHORTHAND_GLOBALS
 #import "Masonry.h"
 
+#define HEXCOLOR(rgbValue)      [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
 #import "MSUVideoCommentTableCell.h"
 
 @implementation MSUVideoDetailCommentView
@@ -43,12 +45,12 @@
     // 标题 评论
     self.titLab = [[UILabel alloc] init];
 //    _titLab.backgroundColor = [UIColor redColor];
-    _titLab.font = [UIFont systemFontOfSize:16];
-    _titLab.textColor = [UIColor blackColor];
+    _titLab.font = [UIFont systemFontOfSize:14];
+    _titLab.textColor = HEXCOLOR(0x333333);
     [navView addSubview:_titLab];
     [_titLab makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.top).offset(15);
-        make.left.equalTo(self.left).offset(15);
+        make.left.equalTo(self.left).offset(14);
         make.width.equalTo(SelfWidth*0.5);
         make.height.equalTo(20);
     }];
@@ -77,8 +79,8 @@
     _comeLab.backgroundColor = [UIColor clearColor];
     _comeLab.text = @"快来发表你的评论吧~";
     _comeLab.textAlignment = NSTextAlignmentCenter;
-    _comeLab.font = [UIFont systemFontOfSize:12];
-    _comeLab.textColor = [UIColor blackColor];
+    _comeLab.font = [UIFont systemFontOfSize:11];
+    _comeLab.textColor = HEXCOLOR(0xf49418);
     [self addSubview:_comeLab];
     [_comeLab makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(navView.bottom).offset(10);

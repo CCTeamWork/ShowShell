@@ -7,11 +7,15 @@
 //
 
 #import "MSUMapAnnotationView.h"
+#import "MSUPathTools.h"
 
 //masonry
 #define MAS_SHORTHAND
 #define MAS_SHORTHAND_GLOBALS
 #import "Masonry.h"
+
+
+#define HEXCOLOR(rgbValue)      [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #define SelfWidth self.frame.size.width
 
@@ -34,38 +38,52 @@
     _annoImaView.backgroundColor = [UIColor brownColor];
     [self addSubview:_annoImaView];
     [_annoImaView makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.top).offset(10);
-        make.left.equalTo(self.left).offset(10);
-        make.width.equalTo(50);
-        make.height.equalTo(50);
+        make.top.equalTo(self.top).offset(6.5);
+        make.left.equalTo(self.left).offset(5);
+        make.width.equalTo(42);
+        make.height.equalTo(42);
     }];
     
     
     self.annoNickLab = [[UILabel alloc] init];
-    _annoNickLab.font = [UIFont systemFontOfSize:14];
+    _annoNickLab.font = [UIFont systemFontOfSize:11];
+    _annoNickLab.textColor = HEXCOLOR(0x333333);
     //    _nickLab.backgroundColor = [UIColor brownColor];
     [self addSubview:_annoNickLab];
     [_annoNickLab makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.top).offset(10);
+        make.top.equalTo(self.top).offset(8);
         make.left.equalTo(_annoImaView.right).offset(5);
-        make.width.equalTo(SelfWidth- 50 - 10);
+        make.width.equalTo(SelfWidth- 47 - 5);
         make.height.equalTo(20);
     }];
     
     self.annoAddBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_annoAddBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [_annoAddBtn setTitleColor:HEXCOLOR(0x757575) forState:UIControlStateNormal];
     _annoAddBtn.userInteractionEnabled = NO;
-    _annoAddBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    _annoAddBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-    _annoAddBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    _annoAddBtn.titleLabel.font = [UIFont systemFontOfSize:8];
+    _annoAddBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 1, 0, 0);
+    [_annoAddBtn setImage:[MSUPathTools showImageWithContentOfFileByName:@"map-location"] forState:UIControlStateNormal];
+    _annoAddBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -2, 0, 0);
     _annoAddBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:_annoAddBtn];
     [_annoAddBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_annoNickLab.bottom).offset(5);
+        make.top.equalTo(_annoNickLab.bottom).offset(-2);
         make.left.equalTo(_annoImaView.right).offset(5);
-        make.width.equalTo(SelfWidth- 50 - 10 - 10 -5);
+        make.width.equalTo(SelfWidth- 47 - 5 - 10);
         make.height.equalTo(20);
     }];
+    
+    UIImageView *wolfIma = [[UIImageView alloc] init];
+    wolfIma.image = [MSUPathTools showImageWithContentOfFileByName:@"more"];
+    wolfIma.contentMode = UIViewContentModeScaleAspectFit;
+    [self addSubview:wolfIma];
+    [wolfIma makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.bottom).offset(-5);
+        make.right.equalTo(self.right).offset(-7.5);
+        make.width.equalTo(10);
+        make.height.equalTo(10);
+    }];
+
     
 }
 

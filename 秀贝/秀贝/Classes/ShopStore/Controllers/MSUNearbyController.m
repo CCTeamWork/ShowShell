@@ -12,6 +12,8 @@
 #import "MSUNearbyCell.h"
 #import "MSUNearbyHeaderView.h"
 #import "MSUMapShowController.h"
+#import "MSUPullView.h"
+#import "MSUNearbyPopView.h"
 
 /// 工具类
 #import "MSUStringTools.h"
@@ -26,8 +28,15 @@
 /// 列表
 @property (nonatomic , strong) UITableView *tableView;
 
+/// 弹出框
+@property (nonatomic , strong) MSUNearbyPopView *popView;
+
 // cell高
 @property (nonatomic , assign) NSInteger cellHeight;
+
+// 弹出视图
+@property (nonatomic , strong) MSUNearbyCell *current1Cell;
+@property (nonatomic , strong) MSUPullView *pullView;
 
 // 播放视频相关
 @property (nonatomic , strong) UIView *playerView;
@@ -51,7 +60,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = BlackColor;
     
     // 导航视图
     MSUHomeNavView *nav = [[MSUHomeNavView alloc] initWithFrame:NavRect showNavWithNumber:7];
@@ -75,12 +84,28 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-/* 地图按钮 */
+- (void)pullBtnClick:(UIButton *)sender{
+    sender.selected = !sender.selected;
+    _pullView.hidden = !sender.selected;
+    self.current1Cell = (MSUNearbyCell *)sender.superview.superview;
+    [self.current1Cell addSubview:self.pullView];
+    
+}
+
+/* 筛选按钮 */
 - (void)positionBtnClick:(UIButton *)sender{
+    sender.selected = !sender.selected;
+    self.popView.hidden = !sender.selected;
+}
+
+/* nearbyPositionBtnClick  地图按钮  点击事件 */
+- (void)nearbyPositionBtnClick:(UIButton *)sender{
     self.hidesBottomBarWhenPushed = YES;
     MSUMapShowController *map = [[MSUMapShowController alloc] init];
     [self.navigationController pushViewController:map animated:YES];
+
 }
+
 
 /* 视频按钮播放按钮 点击事件 */
 - (void)playBtnClick:(UIButton *)sender{
@@ -127,22 +152,18 @@
     self.playerItem = nil;
 }
 
-/* nearbyPositionBtnClick 点击事件 */
-- (void)nearbyPositionBtnClick:(UIButton *)sender{
-    
-}
 
 #pragma mark - 中部视图
 - (void)createTableView{
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64) style:UITableViewStylePlain];
-    _tableView.backgroundColor = SLIVERYCOLOR;
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, WIDTH, HEIGHT-60) style:UITableViewStylePlain];
+    _tableView.backgroundColor = HEXCOLOR(0xf4f4f4);
     _tableView.dataSource = self;
     _tableView.delegate = self;
     [self.view addSubview:_tableView];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    MSUNearbyHeaderView *header = [[MSUNearbyHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 60)];
-    header.backgroundColor = BGLINECOLOR;
+    MSUNearbyHeaderView *header = [[MSUNearbyHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 55)];
+    header.backgroundColor = HEXCOLOR(0xf4f4f4);
     _tableView.tableHeaderView = header;
     header.positionLab.text = @"杭州市 西湖文化广场";
     [header.positionBtn addTarget:self action:@selector(nearbyPositionBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -170,7 +191,7 @@
     // 头像
     [cell.iconBtn setImage:[UIImage imageNamed:@"icon-z"] forState:UIControlStateNormal];
     // 昵称
-    cell.nickLab.text = @"何何何何太太";
+    cell.nickLab.text = @"叶叶叶叶叶子";
     // 时间
     cell.timeLab.text = @"2017-07-11 19:30";
     // 是否转发
@@ -180,24 +201,24 @@
         // 转发评论
         cell.transpodLab.text = @"转发视频";
         CGRect transRect = [MSUStringTools danamicGetHeightFromText:cell.transpodLab.text WithWidth:WIDTH-10 font:12];
-        cell.transpodLab.frame = CGRectMake(10, 50 + 10, WIDTH-20, transRect.size.height);
+        cell.transpodLab.frame = CGRectMake(14, 59, WIDTH-28, transRect.size.height);
         // 内容正题
         cell.tittleLab.text = @"有一美人兮，见之不忘。一日不见兮，思之如狂。凤飞翱翔兮，四海求凰。无奈佳人兮，不在东墙。将琴代语兮，聊写衷肠。何日见许兮，慰我彷徨。愿言配德兮，携手相将。不得于飞兮，使我沦亡。";
         CGRect textRect = [MSUStringTools danamicGetHeightFromText:cell.tittleLab.text WithWidth:WIDTH-10 font:12];
-        cell.tittleBGView.frame = CGRectMake(0, 50 + 10 + transRect.size.height + 5, WIDTH, textRect.size.height+5);
-        cell.tittleLab.frame = CGRectMake(10, 5, WIDTH-20, textRect.size.height);
-        cell.videoBGView.frame = CGRectMake(0, CGRectGetMaxY(cell.tittleBGView.frame), WIDTH, 220);
+        cell.tittleBGView.frame = CGRectMake(0, 59 + transRect.size.height + 5, WIDTH, textRect.size.height+10);
+        cell.tittleLab.frame = CGRectMake(14, 10, WIDTH-28, textRect.size.height);
+        cell.videoBGView.frame = CGRectMake(0, CGRectGetMaxY(cell.tittleBGView.frame), WIDTH, 191.5);
         
-        cell.tittleBGView.backgroundColor = SLIVERYCOLOR;
-        cell.videoBGView.backgroundColor = SLIVERYCOLOR;
+        cell.tittleBGView.backgroundColor = HEXCOLOR(0xf2f2f2);
+        cell.videoBGView.backgroundColor = HEXCOLOR(0xf2f2f2);;
         
     }else{
         // 内容正题
         cell.tittleLab.text = @"有一美人兮，见之不忘。一日不见兮，思之如狂。凤飞翱翔兮，四海求凰。无奈佳人兮，不在东墙。将琴代语兮，聊写衷肠。何日见许兮，慰我彷徨。愿言配德兮，携手相将。不得于飞兮，使我沦亡。";
         CGRect textRect = [MSUStringTools danamicGetHeightFromText:cell.tittleLab.text WithWidth:WIDTH-10 font:12];
-        cell.tittleBGView.frame = CGRectMake(0, 50 + 10 , WIDTH, textRect.size.height);
-        cell.tittleLab.frame = CGRectMake(10, 0, WIDTH-20, textRect.size.height);
-        cell.videoBGView.frame = CGRectMake(0, CGRectGetMaxY(cell.tittleBGView.frame), WIDTH, 210);
+        cell.tittleBGView.frame = CGRectMake(0, 59 , WIDTH, textRect.size.height);
+        cell.tittleLab.frame = CGRectMake(14, 0, WIDTH-28, textRect.size.height);
+        cell.videoBGView.frame = CGRectMake(0, CGRectGetMaxY(cell.tittleBGView.frame), WIDTH, 181.5);
     }
     
     // 视频页面
@@ -209,7 +230,7 @@
     // 是否定位
     cell.isLocation = YES;
     if (cell.isLocation) {
-        cell.lineView.frame = CGRectMake(0, CGRectGetMaxY(cell.videoBGView.frame) + 5+ 25+ 5 , WIDTH, 1);
+        cell.lineView.frame = CGRectMake(0, CGRectGetMaxY(cell.videoBGView.frame) + 5+ 20+ 5 , WIDTH, 1);
     }else{
         cell.locationBtn.hidden = YES;
         cell.dictanceBtn.hidden = YES;
@@ -217,6 +238,7 @@
     }
     
     self.cellHeight = CGRectGetMaxY(cell.lineView.frame) + 40 + 20;
+    [cell.pullBtn addTarget:self action:@selector(pullBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 }
@@ -387,6 +409,37 @@
     [self releasePlayer];
 }
 
+
+#pragma mark - 初始化
+- (MSUNearbyPopView *)popView{
+    if (!_popView) {
+        NSArray *arr = @[@"全部",@"只看男♂",@"只看♀"];
+        self.popView = [[MSUNearbyPopView alloc] initWithFrame:CGRectMake(WIDTH-19-135, 70, 135, 111) titArr:arr rowSize:CGSizeMake(135, 37)];
+        [self.view addSubview:_popView];
+        _popView.backgroundColor = [UIColor whiteColor];
+        _popView.layer.shadowColor = [UIColor grayColor].CGColor;
+        _popView.layer.shadowOffset = CGSizeMake(10, 3);
+        _popView.layer.shadowOpacity = 0.5;
+        _popView.layer.shadowRadius = 3;
+        _popView.hidden = YES;
+    }
+    return _popView;
+}
+
+- (MSUPullView *)pullView{
+    if (!_pullView) {
+        NSArray *imaArr = @[@"state-detail-more-save",@"state-detail-more-unfollow",@"state-detail-more-share",@"state-detail-more-inform"];
+        NSArray *titArr = @[@"收藏",@"关注",@"分享",@"举报"];
+        self.pullView = [[MSUPullView alloc] initWithFrame:CGRectMake(WIDTH-14-135, 42, 135, 37*4) imaArr:imaArr tittleArr:titArr rowHeight:37];
+        _pullView.backgroundColor = HEXCOLOR(0xffffff);
+        _pullView.layer.shadowColor = HEXCOLOR(0xc3c3c3).CGColor;
+        _pullView.layer.shadowOffset = CGSizeMake(15, 3);
+        _pullView.layer.shadowOpacity = 0.5;
+        _pullView.layer.shadowRadius = 3;
+        _pullView.hidden = YES;
+    }
+    return _pullView;
+}
 
 
 @end

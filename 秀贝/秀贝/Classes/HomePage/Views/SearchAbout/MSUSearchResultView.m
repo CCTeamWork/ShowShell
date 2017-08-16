@@ -11,6 +11,7 @@
 #define SelfWidth [UIScreen mainScreen].bounds.size.width
 #define SelfHeight [UIScreen mainScreen].bounds.size.height
 #define lineColor [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0]
+#define HEXCOLOR(rgbValue)      [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 //masonry
 #define MAS_SHORTHAND
@@ -45,7 +46,7 @@
         make.top.equalTo(lineView.bottom).offset(0);
         make.left.equalTo(self.left).offset(0);
         make.width.equalTo(SelfWidth);
-        make.height.equalTo(50);
+        make.height.equalTo(36);
     }];
     
     NSArray *nameArr = @[@"综合",@"视频",@"用户",@"商品"];
@@ -54,9 +55,9 @@
         _seleBtn.adjustsImageWhenHighlighted = NO;
         _seleBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [_seleBtn setTitle:[NSString stringWithFormat:@"%@",nameArr[i]] forState:UIControlStateNormal];
-        [_seleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_seleBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
-        _seleBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+        [_seleBtn setTitleColor:HEXCOLOR(0x757575) forState:UIControlStateNormal];
+        [_seleBtn setTitleColor:HEXCOLOR(0x333333) forState:UIControlStateSelected];
+        _seleBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
         if (i == 0) {
             _seleBtn.selected = YES;
         }
@@ -66,7 +67,7 @@
             make.top.equalTo(bgView.top).offset(0);
             make.left.equalTo(bgView.left).offset(SelfWidth/4*i);
             make.width.equalTo(SelfWidth/4);
-            make.height.equalTo(45);
+            make.height.equalTo(36);
         }];
         [self.seleArr addObject:_seleBtn];
     }

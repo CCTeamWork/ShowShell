@@ -40,6 +40,10 @@
         make.width.equalTo(SelfWidth-30);
         make.height.equalTo(90);
     }];
+    bgView.layer.shadowColor = [UIColor grayColor].CGColor;
+    bgView.layer.shadowOffset = CGSizeMake(3, 3);
+    bgView.layer.shadowOpacity = 0.6;
+    bgView.layer.shadowRadius = 3;
     
     // 商品图片
     self.shopIma = [[UIImageView alloc] init];

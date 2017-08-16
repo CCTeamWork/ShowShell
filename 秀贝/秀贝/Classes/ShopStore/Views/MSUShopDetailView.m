@@ -41,7 +41,7 @@
         make.top.equalTo(self.top).offset(0);
         make.left.equalTo(self.left).offset(0);
         make.width.equalTo(SelfWidth);
-        make.height.equalTo(400);
+        make.height.equalTo(325);
     }];
 
     self.pageControl = [[UIPageControl alloc] init];

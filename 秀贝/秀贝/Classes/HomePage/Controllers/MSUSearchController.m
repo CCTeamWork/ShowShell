@@ -143,7 +143,7 @@
 /* 表格视图 */
 - (void)createColletView{
     // 表格
-    self.collecBGView = [[MSUCollectBGView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64) tableHeight:41 * self.historyList.count];
+    self.collecBGView = [[MSUCollectBGView alloc] initWithFrame:CGRectMake(0, 60, WIDTH, HEIGHT-60) tableHeight:41 * self.historyList.count];
     _collecBGView.backgroundColor = BGLINECOLOR;
     [self.view addSubview:_collecBGView];
     _collecBGView.collectionView.delegate = self;
@@ -235,10 +235,10 @@
     if (tableView == _totalView.danamicTableView) {
         return self.totalCellHeight;
     } else if (tableView == _tableView){
-        return 41;
+        return 36;
     }
     else if (tableView == _collecBGView.historyTableView){
-        return 41;
+        return 36;
     }
     else if (tableView == _totalView.hotTableView ){
         return 97;
@@ -274,7 +274,7 @@
                 _tableBGView.hidden = NO;
                 // 将带属性的字符串添加到cell.textLabel上.
                 if (self.searchList && self.searchList.count>0) {
-                    [cell.searLab setAttributedText:[MSUStringTools makeKeyWordAttributedWithSubText:self.inputString inOrigiText:self.searchList[indexPath.row] font:17 color:[UIColor orangeColor]]];
+                    [cell.searLab setAttributedText:[MSUStringTools makeKeyWordAttributedWithSubText:self.inputString inOrigiText:self.searchList[indexPath.row] font:14 color:HEXCOLOR(0xff7e00)]];
                 }
             }];
         }
@@ -361,7 +361,7 @@
     NSString *textStr = @"愿我来时，春暖花开";
     CGSize strSize = [MSUStringTools danamicGetWidthFromText:@"愿我来时，春暖花开" WithFont:14];
     cell.hotLab.text = textStr;
-    cell.hotLab.frame = CGRectMake(15, 0, strSize.width, 40);
+    cell.hotLab.frame = CGRectMake(15, 0, strSize.width, 35);
     if (indexPath.row == 0) {
         cell.hotIma.hidden = NO;
     }
@@ -374,7 +374,7 @@
     NSLog(@"哈哈哈哈 滚动滚动%f",scrollView.contentOffset.x);
     if (scrollView == _resultView.scrollView) {
         [UIView animateWithDuration:0.25 animations:^{
-            _resultView.underLineView.frame = CGRectMake(WIDTH/8-15+WIDTH/4*((scrollView.contentOffset.x-WIDTH)/(WIDTH)+1), 38, 30, 5);
+            _resultView.underLineView.frame = CGRectMake(WIDTH/8-15+WIDTH/4*((scrollView.contentOffset.x-WIDTH)/(WIDTH)+1), 28, 30, 5);
         }];
     }
     
@@ -404,11 +404,11 @@
 
 - (void)seleBtnClick:(UIButton *)sender{
     [UIView animateWithDuration:0.25 animations:^{
-        _resultView.underLineView.frame = CGRectMake(CGRectGetMidX(sender.frame)-15, 38, 30, 5);
+        _resultView.underLineView.frame = CGRectMake(CGRectGetMidX(sender.frame)-15, 28, 30, 5);
         //        _resultView.underLineView.frame = CGRectMake(WIDTH/8-15+WIDTH/4*(sender.tag-2017), 38, 30, 5);
     }];
     
-    NSLog(@"==== 线%f, 按钮 %f ",CGRectGetMidX(_resultView.underLineView.frame),CGRectGetMidX(sender.frame));
+//    NSLog(@"==== 线%f, 按钮 %f ",CGRectGetMidX(_resultView.underLineView.frame),CGRectGetMidX(sender.frame));
     
     for (UIButton *btn in _resultView.seleArr) {
         btn.selected = NO;
@@ -474,11 +474,12 @@
 #pragma mark - 初始化
 - (MSUSearchResultView *)resultView{
     if (!_resultView) {
-        self.resultView = [[MSUSearchResultView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64)];
+        self.resultView = [[MSUSearchResultView alloc] initWithFrame:CGRectMake(0, 60, WIDTH, HEIGHT-60)];
+        _resultView.backgroundColor = HEXCOLOR(0xf4f4f4);
         //    _resultView.hidden = YES;
         [self.view addSubview:_resultView];
         _resultView.scrollView.delegate = self;
-        _resultView.underLineView.frame = CGRectMake(WIDTH/8-15, 38, 30, 5);
+        _resultView.underLineView.frame = CGRectMake(WIDTH/8-15, 30, 30, 5);
         for (UIButton *btn in _resultView.seleArr) {
             [btn addTarget:self action:@selector(seleBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         }
@@ -489,10 +490,13 @@
 - (MSUSearchTotalView *)totalView{
     if (!_totalView) {
         NSArray *arr = @[@"icon-z",@"icon-z",@"icon-z",@"icon-z",@"icon-z",@"icon-z",@"icon-z",@"icon-z"];
-        self.totalView = [[MSUSearchTotalView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-120) imageArr:arr tableHeight:self.totalCellHeight*2];
+        self.totalView = [[MSUSearchTotalView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-120) imageArr:arr tableHeight:self.totalCellHeight*2+31];
         _totalView.backgroundColor = BGLINECOLOR;
         [_resultView.scrollView addSubview:_totalView];
         _totalView.userLab.text = [NSString stringWithFormat:@"相关用户(%@个)",@"88"];
+        [_totalView.iconBtn setImage:[MSUPathTools showImageWithContentOfFileByName:@"search-headbig"] forState:UIControlStateNormal];
+        _totalView.userNickLab.text = @"一只小黄鸡";
+        _totalView.introLab.text = @"喜欢自拍,喜欢交朋友！";
         
         // 中部动态视图
         _totalView.danamicTableView.delegate = self;

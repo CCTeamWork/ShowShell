@@ -7,9 +7,13 @@
 //
 
 #import "MSUDanamicHeaderView.h"
+#import "MSUPathTools.h"
 
 #define SelfWidth [UIScreen mainScreen].bounds.size.width
-#define NearbyWidth 50
+#define NearbyWidth 45
+
+
+#define HEXCOLOR(rgbValue)      [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @implementation MSUDanamicHeaderView
 
@@ -23,7 +27,7 @@
 - (void)createContentViewWithAttention:(BOOL)attention{
     // 附近人视图
     self.nearbyView = [[UIView alloc] init];
-    _nearbyView.backgroundColor = [UIColor whiteColor];
+    _nearbyView.backgroundColor = HEXCOLOR(0xffffff);
     [self addSubview:_nearbyView];
     [_nearbyView makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.top).offset(0);
@@ -46,67 +50,68 @@
     // 附近的人 label
     UILabel *textLab = [[UILabel alloc] init];
     textLab.text = @"附近的人";
-    textLab.font = [UIFont systemFontOfSize:18];
+    textLab.font = [UIFont systemFontOfSize:14];
     textLab.textColor = [UIColor blackColor];
     [_nearbyView addSubview:textLab];
     [textLab makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_nearbyView.top).offset(0);
-        make.left.equalTo(_nearbyView.left).offset(20);
+        make.left.equalTo(_nearbyView.left).offset(14);
         make.width.equalTo(100);
         make.height.equalTo(NearbyWidth);
     }];
     
     // 箭头
     UIImageView *arrowIma = [[UIImageView alloc] init];
-    arrowIma.backgroundColor = [UIColor redColor];
-    arrowIma.image = [UIImage imageNamed:@""];
+//    arrowIma.backgroundColor = [UIColor redColor];
+    arrowIma.contentMode = UIViewContentModeScaleAspectFit;
+    arrowIma.image = [MSUPathTools showImageWithContentOfFileByName:@"more"];
     [_nearbyView addSubview:arrowIma];
     [arrowIma makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_nearbyView.top).offset(0);
-        make.right.equalTo(_nearbyView.right).offset(10);
-        make.width.equalTo(50);
-        make.height.equalTo(NearbyWidth);
+        make.top.equalTo(_nearbyView.top).offset(12.5);
+        make.right.equalTo(_nearbyView.right).offset(-14);
+        make.width.equalTo(8);
+        make.height.equalTo(14);
     }];
 
     
     // 三个头像
     self.thirdImaView = [[UIImageView alloc] init];
     _thirdImaView.backgroundColor = [UIColor blueColor];
-    _thirdImaView.layer.cornerRadius = 20;
+    _thirdImaView.layer.cornerRadius = 18;
     _thirdImaView.layer.shouldRasterize = YES;
     _thirdImaView.layer.rasterizationScale = [UIScreen mainScreen].scale;
     [_nearbyView addSubview:_thirdImaView];
     [_thirdImaView makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.top).offset(5);
+        make.top.equalTo(self.top).offset(4.5);
         make.right.equalTo(arrowIma.left).offset(-10);
-        make.width.equalTo(40);
-        make.height.equalTo(40);
+        make.width.equalTo(36);
+        make.height.equalTo(36);
     }];
     
     self.secondImaView = [[UIImageView alloc] init];
     _secondImaView.backgroundColor = [UIColor blueColor];
-    _secondImaView.layer.cornerRadius = 20;
+    _secondImaView.layer.cornerRadius = 18;
     _secondImaView.layer.shouldRasterize = YES;
     _secondImaView.layer.rasterizationScale = [UIScreen mainScreen].scale;
     [_nearbyView addSubview:_secondImaView];
     [_secondImaView makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.top).offset(5);
+        make.top.equalTo(self.top).offset(4.5);
         make.right.equalTo(_thirdImaView.left).offset(-10);
-        make.width.equalTo(40);
-        make.height.equalTo(40);
+        make.width.equalTo(36);
+        make.height.equalTo(36);
     }];
     
     self.firstImaView = [[UIImageView alloc] init];
     _firstImaView.backgroundColor = [UIColor blueColor];
-    _firstImaView.layer.cornerRadius = 20;
+    _firstImaView.layer.cornerRadius = 18;
     _firstImaView.layer.shouldRasterize = YES;
     _firstImaView.layer.rasterizationScale = [UIScreen mainScreen].scale;
     [_nearbyView addSubview:_firstImaView];
     [_firstImaView makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.top).offset(5);
+        make.top.equalTo(self.top).offset(4.5);
         make.right.equalTo(_secondImaView.left).offset(-10);
-        make.width.equalTo(40);
-        make.height.equalTo(40);
+        make.width.equalTo(36);
+        make.height.equalTo(36);
     }];
 
     
@@ -114,45 +119,45 @@
     if (!attention) {
         // 暂时无关注视图
         UILabel *attentionLab = [[UILabel alloc] init];
-        attentionLab.backgroundColor = [UIColor whiteColor];
+        attentionLab.backgroundColor = HEXCOLOR(0xffffff);
         attentionLab.text = @"暂时没有关注的人~";
-        attentionLab.font = [UIFont systemFontOfSize:14];
+        attentionLab.font = [UIFont systemFontOfSize:11];
         attentionLab.textAlignment = NSTextAlignmentCenter;
-        attentionLab.textColor = [UIColor grayColor];
+        attentionLab.textColor = HEXCOLOR(0x757575);
         [self addSubview:attentionLab];
         [attentionLab makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_nearbyView.bottom).offset(15);
+            make.top.equalTo(_nearbyView.bottom).offset(10);
             make.left.equalTo(self.left).offset(0);
             make.width.equalTo(SelfWidth);
-            make.height.equalTo(80);
+            make.height.equalTo(66);
         }];
 
         // 猜你喜欢背景图
         UIView *bgView = [[UIView alloc] init];
         [self addSubview:bgView];
-        bgView.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0];
+        bgView.backgroundColor = HEXCOLOR(0xf4f4f4);
         [bgView makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(attentionLab.bottom).offset(0);
             make.left.equalTo(self.left).offset(0);
             make.width.equalTo(SelfWidth);
-            make.height.equalTo(60);
+            make.height.equalTo(54);
         }];
   
         // 猜你喜欢
         UILabel *geussLab = [[UILabel alloc] init];
         geussLab.text = @"猜你喜欢";
-        geussLab.font = [UIFont systemFontOfSize:20];
-        geussLab.textColor = [UIColor blackColor];
+        geussLab.font = [UIFont systemFontOfSize:14];
+        geussLab.textColor = HEXCOLOR(0x333333);
         geussLab.textAlignment = NSTextAlignmentCenter;
-        geussLab.backgroundColor = [UIColor yellowColor];
+        geussLab.backgroundColor = HEXCOLOR(0xf7d721);
         [self addSubview:geussLab];
         [geussLab makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(bgView.top).offset(15);
-            make.left.equalTo(self.left).offset(SelfWidth * 0.5-50);
-            make.width.equalTo(110);
-            make.height.equalTo(30);
+            make.left.equalTo(self.left).offset(SelfWidth * 0.5-40);
+            make.width.equalTo(80);
+            make.height.equalTo(29);
         }];
-        geussLab.layer.cornerRadius = 15;
+        geussLab.layer.cornerRadius = 14;
         geussLab.clipsToBounds = YES;
         geussLab.layer.shouldRasterize = YES;
         geussLab.layer.rasterizationScale = [UIScreen mainScreen].scale;

@@ -317,9 +317,13 @@
 //    BMKPinAnnotationView *annotationView=[[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
 //    annotationView.animatesDrop = YES;
     
-    MSUMapAnnotationView *anno = [[MSUMapAnnotationView alloc] initWithFrame:CGRectMake(0, 0, 200, 70)];
+    MSUMapAnnotationView *anno = [[MSUMapAnnotationView alloc] initWithFrame:CGRectMake(0, 0, 151.5, 58)];
     anno.layer.cornerRadius = 8;
     anno.backgroundColor = [UIColor whiteColor];
+    anno.layer.shadowColor = HEXCOLOR(0x333).CGColor;
+    anno.layer.shadowOffset = CGSizeMake(15, 3);
+    anno.layer.shadowOpacity = 0.5;
+    anno.layer.shadowRadius = 3;
 //    anno.layer.contents =(id)[UIImage imageNamed:@"pao.png"].CGImage;//这张图片是做好的透明
     anno.annoNickLab.text = @"迪凯银座";
     [anno.annoAddBtn setTitle:@"杭州市江干区解放东路嘻米哈" forState:UIControlStateNormal];
@@ -335,8 +339,11 @@
 
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view{
     NSLog(@"点击了气泡");
-    MSUPaoPaoPopView *paoPaoPopView = [[MSUPaoPaoPopView alloc] initWithFrame:CGRectMake(20, 64+25, WIDTH-40, HEIGHT-64-25-25)];
-    paoPaoPopView.backgroundColor = [UIColor orangeColor];
+    MSUPaoPaoPopView *paoPaoPopView = [[MSUPaoPaoPopView alloc] initWithFrame:CGRectMake(35, 60+20, WIDTH-70, HEIGHT-80-80)];
+    paoPaoPopView.backgroundColor = HEXCOLOR(0xf5d021);
+    paoPaoPopView.layer.cornerRadius = 5;
+    paoPaoPopView.layer.shouldRasterize = YES;
+    paoPaoPopView.layer.rasterizationScale = [UIScreen mainScreen].scale;
     paoPaoPopView.locaLab.text = @"迪凯银座";
     paoPaoPopView.popTablView.delegate = self;
     paoPaoPopView.popTablView.dataSource = self;

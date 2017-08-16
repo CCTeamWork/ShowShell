@@ -283,4 +283,11 @@
     return pathUrl;
 }
 
+#pragma mark - 画四周阴影
++ (UIBezierPath *)drawShadowAroundControls{
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    
+    return path;
+}
+
 @end

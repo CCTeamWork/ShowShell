@@ -23,6 +23,12 @@
 /// 时间
 @property (nonatomic , strong) UILabel *timeLab;
 
+/// 下拉
+@property (nonatomic , strong) UIButton *pullBtn;
+
+/// 关注
+@property (nonatomic , strong) UIButton *attenBtn;
+
 /// 内容
 @property (nonatomic , strong) UIView *tittleBGView;
 @property (nonatomic , strong) UILabel *tittleLab;
@@ -53,7 +59,7 @@
 @property (nonatomic , strong) UIButton *transpodBtn;
 
 /// 分享
-@property (nonatomic , strong) UIButton *shareBtn;
+//@property (nonatomic , strong) UIButton *shareBtn;
 
 
 

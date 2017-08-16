@@ -17,6 +17,7 @@
 #import "MSUShopDetailController.h"
 #import "MSUVideoDetailController.h"
 #import "MSUDanamicTranspodController.h"
+#import "MSUPullView.h"
 
 /// 视频播放器
 #import <AVFoundation/AVFoundation.h>
@@ -41,6 +42,12 @@
 @property (nonatomic , strong) AVPlayerLayer *playerLayer;
 @property (nonatomic , strong) NSURL *localUrl;
 
+
+
+// 弹出视图
+@property (nonatomic , strong) MSUDanamicTableCell *current1Cell;
+@property (nonatomic , strong) MSUPullView *pullView;
+
 @end
 
 @implementation MSUShopStoreController
@@ -55,7 +62,7 @@
     [super viewDidLoad];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = BlackColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     // 导航视图
@@ -75,7 +82,7 @@
 
 #pragma mark - 中部视图
 - (void)createTableView{
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64 -44) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, WIDTH, HEIGHT-60 -49) style:UITableViewStylePlain];
     _tableView.backgroundColor = SLIVERYCOLOR;
     _tableView.dataSource = self;
     _tableView.delegate = self;
@@ -85,9 +92,9 @@
     BOOL isAttention = NO;
     CGFloat height;
     if (isAttention) {
-        height = 50 + 20;
+        height = 45 + 10;
     }else{
-        height = 50 + 15 + 80 + 60;
+        height = 45 + 10 + 66 + 54;
     }
     MSUDanamicHeaderView *header = [[MSUDanamicHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, height) isAttention:isAttention];
     header.backgroundColor = YELLOWCOLOR;
@@ -121,30 +128,30 @@
     // 时间
     cell.timeLab.text = @"2017-07-11 19:30";
     // 是否转发
-    cell.isTranspod = NO;
+    cell.isTranspod = YES;
     
     if (cell.isTranspod) {
         // 转发评论
         cell.transpodLab.text = @"转发视频";
         CGRect transRect = [MSUStringTools danamicGetHeightFromText:cell.transpodLab.text WithWidth:WIDTH-10 font:12];
-        cell.transpodLab.frame = CGRectMake(10, 50 + 10, WIDTH-20, transRect.size.height);
+        cell.transpodLab.frame = CGRectMake(14, 59, WIDTH-28, transRect.size.height);
         // 内容正题
         cell.tittleLab.text = @"有一美人兮，见之不忘。一日不见兮，思之如狂。凤飞翱翔兮，四海求凰。无奈佳人兮，不在东墙。将琴代语兮，聊写衷肠。何日见许兮，慰我彷徨。愿言配德兮，携手相将。不得于飞兮，使我沦亡。";
         CGRect textRect = [MSUStringTools danamicGetHeightFromText:cell.tittleLab.text WithWidth:WIDTH-10 font:12];
-        cell.tittleBGView.frame = CGRectMake(0, 50 + 10 + transRect.size.height + 5, WIDTH, textRect.size.height);
-        cell.tittleLab.frame = CGRectMake(10, 0, WIDTH-20, textRect.size.height);
-        cell.videoBGView.frame = CGRectMake(0, CGRectGetMaxY(cell.tittleBGView.frame), WIDTH, 220);
+        cell.tittleBGView.frame = CGRectMake(0, 59 + transRect.size.height + 5, WIDTH, textRect.size.height+10);
+        cell.tittleLab.frame = CGRectMake(14, 10, WIDTH-28, textRect.size.height);
+        cell.videoBGView.frame = CGRectMake(0, CGRectGetMaxY(cell.tittleBGView.frame), WIDTH, 191.5);
         
-        cell.tittleBGView.backgroundColor = [UIColor grayColor];
-        cell.videoBGView.backgroundColor = [UIColor grayColor];;
+        cell.tittleBGView.backgroundColor = HEXCOLOR(0xf2f2f2);
+        cell.videoBGView.backgroundColor = HEXCOLOR(0xf2f2f2);;
 
     }else{
         // 内容正题
         cell.tittleLab.text = @"有一美人兮，见之不忘。一日不见兮，思之如狂。凤飞翱翔兮，四海求凰。无奈佳人兮，不在东墙。将琴代语兮，聊写衷肠。何日见许兮，慰我彷徨。愿言配德兮，携手相将。不得于飞兮，使我沦亡。";
         CGRect textRect = [MSUStringTools danamicGetHeightFromText:cell.tittleLab.text WithWidth:WIDTH-10 font:12];
-        cell.tittleBGView.frame = CGRectMake(0, 50 + 10 , WIDTH, textRect.size.height);
-        cell.tittleLab.frame = CGRectMake(10, 0, WIDTH-20, textRect.size.height);
-        cell.videoBGView.frame = CGRectMake(0, CGRectGetMaxY(cell.tittleBGView.frame), WIDTH, 210);
+        cell.tittleBGView.frame = CGRectMake(0, 59 , WIDTH, textRect.size.height);
+        cell.tittleLab.frame = CGRectMake(14, 0, WIDTH-28, textRect.size.height);
+        cell.videoBGView.frame = CGRectMake(0, CGRectGetMaxY(cell.tittleBGView.frame), WIDTH, 181.5);
     }
 
     // 视频页面
@@ -156,7 +163,7 @@
     // 是否定位
     cell.isLocation = YES;
     if (cell.isLocation) {
-        cell.lineView.frame = CGRectMake(0, CGRectGetMaxY(cell.videoBGView.frame) + 5+ 25+ 5 , WIDTH, 1);
+        cell.lineView.frame = CGRectMake(0, CGRectGetMaxY(cell.videoBGView.frame) + 5+ 20+ 5 , WIDTH, 1);
     }else{
         cell.locationBtn.hidden = YES;
         cell.lineView.frame = CGRectMake(0, CGRectGetMaxY(cell.videoBGView.frame) + 5 , WIDTH, 1);
@@ -164,6 +171,7 @@
     
     self.cellHeight = CGRectGetMaxY(cell.lineView.frame) + 40 + 20;
     [cell.transpodBtn addTarget:self action:@selector(transpodBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.pullBtn addTarget:self action:@selector(pullBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 }
@@ -199,6 +207,14 @@
     MSUDanamicTranspodController *trans = [[MSUDanamicTranspodController alloc] init];
     [self.navigationController pushViewController:trans animated:YES];
     self.hidesBottomBarWhenPushed = NO;
+}
+
+- (void)pullBtnClick:(UIButton *)sender{
+    sender.selected = !sender.selected;
+    _pullView.hidden = !sender.selected;
+    self.current1Cell = (MSUDanamicTableCell *)sender.superview.superview;
+    [self.current1Cell addSubview:self.pullView];
+
 }
 
 /* 视频按钮播放按钮 点击事件 */
@@ -403,5 +419,21 @@
     [self releasePlayer];
 }
 
+
+#pragma mark - 初始化
+- (MSUPullView *)pullView{
+    if (!_pullView) {
+        NSArray *imaArr = @[@"state-detail-more-save",@"state-detail-more-unfollow",@"state-detail-more-share",@"state-detail-more-inform"];
+        NSArray *titArr = @[@"收藏",@"关注",@"分享",@"举报"];
+        self.pullView = [[MSUPullView alloc] initWithFrame:CGRectMake(WIDTH-14-135, 42, 135, 37*4) imaArr:imaArr tittleArr:titArr rowHeight:37];
+        _pullView.backgroundColor = HEXCOLOR(0xffffff);
+        _pullView.layer.shadowColor = HEXCOLOR(0xc3c3c3).CGColor;
+        _pullView.layer.shadowOffset = CGSizeMake(15, 3);
+        _pullView.layer.shadowOpacity = 0.5;
+        _pullView.layer.shadowRadius = 3;
+        _pullView.hidden = YES;
+    }
+    return _pullView;
+}
 
 @end

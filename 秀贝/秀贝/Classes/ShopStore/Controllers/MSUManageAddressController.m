@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = BlackColor;
     
     self.addressStr = @"浙江省杭州市江干区四季青街道凯旋路迪凯银座迪凯银座迪凯银座迪凯银座1301室";
     self.textRect = [MSUStringTools danamicGetHeightFromText:self.addressStr WithWidth:WIDTH font:16];
@@ -35,8 +35,8 @@
     MSUHomeNavView *nav = [[MSUHomeNavView alloc] initWithFrame:NavRect showNavWithNumber:15];
     [self.view addSubview:nav];
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64) style:UITableViewStylePlain];
-    _tableView.backgroundColor = YELLOWCOLOR;
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, WIDTH, HEIGHT-60) style:UITableViewStylePlain];
+    _tableView.backgroundColor = HEXCOLOR(0xf3f3f3);
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -47,7 +47,7 @@
     UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     addBtn.frame = CGRectMake(0, HEIGHT-50, WIDTH, 50);
     [addBtn setTitle:@"添加地址" forState:UIControlStateNormal];
-    [addBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [addBtn setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
     addBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     addBtn.backgroundColor = [UIColor redColor];
     addBtn.adjustsImageWhenHighlighted = NO;
@@ -60,7 +60,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 30 + _textRect.size.height + 6 + 40;
+    return 37.5 + _textRect.size.height + 15 + 34;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

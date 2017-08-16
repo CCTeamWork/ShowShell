@@ -14,7 +14,7 @@
 /// 定位位置按钮
 @property (nonatomic , strong) UIButton *LocationBtn;
 /// 二维码扫描按钮
-@property (nonatomic , strong) UIButton *scanBtn;
+//@property (nonatomic , strong) UIButton *scanBtn;
 /// 首页搜索框按钮
 @property (nonatomic , strong) UIButton *homeSearchBtn;
 

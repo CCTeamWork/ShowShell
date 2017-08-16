@@ -17,6 +17,10 @@
 #define SelfWidth [UIScreen mainScreen].bounds.size.width
 #define SelfHeight [UIScreen mainScreen].bounds.size.height
 
+
+#define HEXCOLOR(rgbValue)      [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+
 @implementation MSUShopSelectView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -31,44 +35,21 @@
 
 
 - (void)createView{
-    UIView *lineView = [[UIView alloc] init];
-    lineView.backgroundColor = [UIColor redColor];
-    [self addSubview:lineView];
-    [lineView makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.bottom).offset(-50);
-        make.left.equalTo(self.left).offset(0);
-        make.width.equalTo(SelfWidth);
-        make.height.equalTo(1);
-    }];
-
-    self.cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _cancelBtn.backgroundColor = [UIColor whiteColor];
-    [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [_cancelBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    _cancelBtn .titleLabel.font = [UIFont systemFontOfSize:12];
-    [self addSubview:_cancelBtn];
-    [_cancelBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.bottom).offset(0);
-        make.left.equalTo(self.left).offset(0);
-        make.width.equalTo(SelfWidth*0.5);
-        make.height.equalTo(49);
-    }];
-    
     self.buyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _buyBtn.backgroundColor = [UIColor redColor];
+    _buyBtn.backgroundColor = HEXCOLOR(0xf49418);
     [_buyBtn setTitle:@"我要买" forState:UIControlStateNormal];
-    [_buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_buyBtn setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
     _buyBtn .titleLabel.font = [UIFont systemFontOfSize:14];
     [self addSubview:_buyBtn];
     [_buyBtn makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.bottom).offset(0);
         make.right.equalTo(self.right).offset(0);
-        make.width.equalTo(SelfWidth*0.5);
-        make.height.equalTo(49);
+        make.width.equalTo(SelfWidth);
+        make.height.equalTo(45);
     }];
     
     self.seleTableView = [[UITableView alloc] init];
-    _seleTableView.backgroundColor = [UIColor whiteColor];
+    _seleTableView.backgroundColor = HEXCOLOR(0xffffff);
     _seleTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_seleTableView registerClass:[MSUShopSelectTableCell class] forCellReuseIdentifier:@"selectShopCell"];
     [self addSubview:_seleTableView];
@@ -76,7 +57,7 @@
         make.top.equalTo(self.top).offset(0);
         make.left.equalTo(self.left).offset(0);
         make.width.equalTo(SelfWidth);
-        make.height.equalTo(SelfHeight*0.5-50);
+        make.height.equalTo(SelfHeight-270-45);
     }];
 
 
